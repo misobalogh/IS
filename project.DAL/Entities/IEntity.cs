@@ -1,4 +1,4 @@
-﻿namespace project.DAL
+﻿namespace project.DAL.Entities
 {
     public interface IEntity
     {
