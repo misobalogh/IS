@@ -1,18 +1,17 @@
-﻿using System;
-using project.DAL.Enums;
+﻿using project.DAL.Enums;
 
 namespace project.DAL.Entities
 {
     public record ActivityEntity : IEntity
     {
-        public required Guid Id;
-        public required DateTime Start;
-        public required DateTime End;
-        public required Place Place;
-        public required ActivityType ActivityType;
-        public string Description;
-        public required SubjectEntity Subject;
-        public EvaluationEntity Evaluation;
+        public required Guid Id { get; set; }
+        public required DateTime Start { get; set; }
+        public required DateTime End { get; set; }
+        public required Place Place { get; set; }
+        public required ActivityType ActivityType { get; set; }
+        public string? Description { get; set; }
+        public required SubjectEntity Subject { get; set; }
+        public required EvaluationEntity Evaluation { get; set; }
 
     }
 }

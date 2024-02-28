@@ -7,7 +7,7 @@ namespace project.DAL.Entities
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public string? Image { get; set; }
-        public ICollection<SubjectEntity> EnrolledSubjects { get; init; } = new List<SubjectEntity>();
+        public ICollection<SubjectEntity> EnrolledSubjects { get; init; } = [];
 
     }
 }

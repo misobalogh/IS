@@ -2,7 +2,7 @@ namespace project.DAL.Enums
 {
     public enum ActivityType
     {
-        lectrue,
+        lecture,
         practice,
         consultation,
         midtermExam,
