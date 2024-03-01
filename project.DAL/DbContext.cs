@@ -11,4 +11,27 @@ public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemo
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
     public DbSet<SubjectEntity> Subjects => Set<SubjectEntity>();
     public DbSet<TeacherEntity> Teachers => Set<TeacherEntity>();
+    public DbSet<RegisteredActivitiesEntity> RegisteredActivities => Set<RegisteredActivitiesEntity>();
+    public DbSet<RegisteredSubjectEntity> RegisteredSubjects => Set<RegisteredSubjectEntity>();
+    public DbSet<TeachingSubjectsEntity> TeachingSubjects => Set<TeachingSubjectsEntity>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<StudentEntity>()
+            .HasMany(i => i.EnrolledSubjects)
+            .WithOne(i => i.Student)
+            .OnDelete(DeleteBehavior.Cascade); //CHECK: Restrict or Cascade?
+
+        modelBuilder.Entity<StudentEntity>()
+            .HasMany(i => i.RegisteredActivities)
+            .WithOne(i => i.Student)
+            .OnDelete(DeleteBehavior.Cascade); //CHECK: Restrict or Cascade?
+
+        modelBuilder.Entity<TeacherEntity>()
+            .HasMany(i => i.Subjects)
+            .WithOne(i => i.Teacher)
+            .OnDelete(DeleteBehavior.Cascade); //CHECK: Restrict or Cascade?
+    }
 }
