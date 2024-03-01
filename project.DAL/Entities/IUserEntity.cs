@@ -1,11 +1,11 @@
-namespace project.DAL.Entities
+﻿namespace project.DAL.Entities
 {
     public interface IUserEntity : IEntity
     {
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string? Image { get; set; }
+        string Email { get; set; }
+        string FirstName { get; set; }
+        string LastName { get; set; }
+        string? Image { get; set; }
 
     }
 

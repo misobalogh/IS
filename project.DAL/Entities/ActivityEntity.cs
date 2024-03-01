@@ -10,8 +10,8 @@ namespace project.DAL.Entities
         public required Place Place { get; set; }
         public required ActivityType ActivityType { get; set; }
         public string? Description { get; set; }
-        public required SubjectEntity Subject { get; set; }
-        public required EvaluationEntity Evaluation { get; set; }
+        public required SubjectEntity Subject { get; init; }
+        public required EvaluationEntity Evaluation { get; init; }
 
     }
 }
