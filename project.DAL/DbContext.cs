@@ -22,16 +22,16 @@ public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemo
         modelBuilder.Entity<StudentEntity>()
             .HasMany(i => i.EnrolledSubjects)
             .WithOne(i => i.Student)
-            .OnDelete(DeleteBehavior.Cascade); //CHECK: Restrict or Cascade?
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<StudentEntity>()
             .HasMany(i => i.RegisteredActivities)
             .WithOne(i => i.Student)
-            .OnDelete(DeleteBehavior.Cascade); //CHECK: Restrict or Cascade?
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<TeacherEntity>()
             .HasMany(i => i.Subjects)
             .WithOne(i => i.Teacher)
-            .OnDelete(DeleteBehavior.Cascade); //CHECK: Restrict or Cascade?
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
