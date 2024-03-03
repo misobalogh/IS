@@ -7,7 +7,7 @@ namespace project.DAL.Factories;
 /// </summary>
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
 {
-    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory = new($"Data Source=project;Cache=Shared");
+    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory = new($"project;Cache=Shared");
 
     public ApplicationDbContext CreateDbContext(string[] args) => _dbContextSqLiteFactory.CreateDbContext();
 }

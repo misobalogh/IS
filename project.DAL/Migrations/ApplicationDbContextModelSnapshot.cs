@@ -46,8 +46,7 @@ namespace project.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EvaluationId")
-                        .IsUnique();
+                    b.HasIndex("EvaluationId");
 
                     b.HasIndex("SubjectId");
 
@@ -225,8 +224,8 @@ namespace project.DAL.Migrations
             modelBuilder.Entity("project.DAL.Entities.ActivityEntity", b =>
                 {
                     b.HasOne("project.DAL.Entities.EvaluationEntity", "Evaluation")
-                        .WithOne("Activity")
-                        .HasForeignKey("project.DAL.Entities.ActivityEntity", "EvaluationId")
+                        .WithMany()
+                        .HasForeignKey("EvaluationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -307,12 +306,6 @@ namespace project.DAL.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("project.DAL.Entities.EvaluationEntity", b =>
-                {
-                    b.Navigation("Activity")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("project.DAL.Entities.StudentEntity", b =>

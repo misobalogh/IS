@@ -186,8 +186,7 @@ namespace project.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Activities_EvaluationId",
                 table: "Activities",
-                column: "EvaluationId",
-                unique: true);
+                column: "EvaluationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Activities_SubjectId",
