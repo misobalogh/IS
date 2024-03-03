@@ -12,7 +12,7 @@ namespace project.DAL.Entities
         public string? Description { get; set; }
         public required SubjectEntity Subject { get; init; }
         public required EvaluationEntity Evaluation { get; init; }
-
+        public required Guid EvaluationId { get; init; }
     }
 }
 
