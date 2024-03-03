@@ -19,9 +19,9 @@ public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemo
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<ActivityEntity>()
-            .HasOne(i => i.Evaluation)
-            .WithOne(i => i.Activity);
+        //modelBuilder.Entity<ActivityEntity>()
+        //    .HasOne(i => i.Evaluation)
+        //    .WithOne(i => i.Activity);
 
         modelBuilder.Entity<StudentEntity>()
             .HasMany(i => i.EnrolledSubjects)
