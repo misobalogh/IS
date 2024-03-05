@@ -10,5 +10,6 @@ namespace project.DAL.Enums
         C01,
         D01,
         D02,
+        Online,
     }
 }
