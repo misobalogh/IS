@@ -2,6 +2,6 @@
 {
     public enum TitleAfter
     {
-        PhD,
+        Phd,
     }
 }

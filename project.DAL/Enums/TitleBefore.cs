@@ -3,8 +3,8 @@
     public enum TitleBefore
     {
        Ing,
-       doc,
-       prof,
+       Doc,
+       Prof,
        Dr,
     }
 }
