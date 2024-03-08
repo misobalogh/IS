@@ -1,11 +1,11 @@
-namespace project.DAL.Enums
+﻿namespace project.DAL.Enums
 {
     public enum ActivityType
     {
-        lecture,
-        practice,
-        consultation,
-        midtermExam,
-        finalExam,
+        Lecture,
+        Practice,
+        Consultation,
+        MidtermExam,
+        FinalExam,
     }
 }

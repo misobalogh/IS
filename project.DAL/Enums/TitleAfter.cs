@@ -1,7 +1,7 @@
-namespace project.DAL.Enums
+﻿namespace project.DAL.Enums
 {
     public enum TitleAfter
     {
-        phd,
+        PhD,
     }
 }

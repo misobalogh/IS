@@ -1,9 +1,10 @@
-namespace project.DAL.Enums
+﻿namespace project.DAL.Enums
 {
     public enum TitleBefore
     {
-       ing,
+       Ing,
        doc,
-       mudr,
+       prof,
+       Dr,
     }
 }
