@@ -5,6 +5,8 @@
         public required Guid Id { get; set; }   
         public required int Points { get; set; }
         public string? Note { get; set; }
+        public required Guid StudentId { get; set; }
+
         public required StudentEntity Student { get; init; }
 
     }
