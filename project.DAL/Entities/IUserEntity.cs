@@ -5,7 +5,7 @@
         string Email { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        string? Image { get; set; }
+        Uri? Image { get; set; }
 
     }
 
