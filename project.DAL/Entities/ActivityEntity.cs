@@ -12,7 +12,8 @@ namespace project.DAL.Entities
         public string? Description { get; set; }
         public required SubjectEntity Subject { get; init; }
         public EvaluationEntity? Evaluation { get; init; }
-        public required Guid EvaluationId { get; init; }
+        public required Guid EvaluationId { get; set; }
+        public required Guid SubjectId { get; set; }
     }
 }
 
