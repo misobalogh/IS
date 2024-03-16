@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using project.DAL.Entities;
+using project.DAL.Mappers;
 
 namespace project.DAL.Repositories;
 
 public class Repository<TEntity>(
-    DbContext dbContext
-    //TODO: IEntityMapper<TEntity> entityMapper,
+    DbContext dbContext,
+    IEntityMapper<TEntity> entityMapper
     ) : IRepository<TEntity>
     where TEntity : class, IEntity
 {
@@ -25,7 +26,7 @@ public class Repository<TEntity>(
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {
         TEntity existingEntity = await _dbSet.SingleAsync(e => e.Id == entity.Id).ConfigureAwait(false);
-        //TODO: entityMapper.MapToExistingEntity(existingEntity, entity);
+        entityMapper.MapToExistingEntity(existingEntity, entity);
         return existingEntity;
     }
 }
