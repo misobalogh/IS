@@ -22,9 +22,7 @@ public record UserProfileModel : ModelBase
         Username = string.Empty,
         FirstName = string.Empty,
         LastName = string.Empty,
-        Email = string.Empty,
-        Role = Role.None,
-        PhotoUrl = string.Empty
+        Email = string.Empty
     };
 }
 
