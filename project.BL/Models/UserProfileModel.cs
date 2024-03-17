@@ -11,7 +11,7 @@ public record UserProfileModel : ModelBase
     public required string LastName { get; set; }
     public required string Email { get; set; }
     public ObservableCollection<SubjectModel> SubjectInformation { get; set; } = new();
-    public string? PhotoUrl { get; set; }
+    public Uri? PhotoUrl { get; set; }
 
     //TODO: bude změna hesla?
 
