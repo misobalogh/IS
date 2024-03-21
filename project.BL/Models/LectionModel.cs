@@ -10,7 +10,16 @@ public record LectionModel : ModelBase
     public required TimeSpan Duration { get; set; }
     public required ActivityType ActivityType { get; set; }
     public required Place Place { get; set; }
-    public required ObservableCollection<SubjectModel> Subject { get; set; } = new();
+    public ObservableCollection<SubjectModel> Subject { get; set; } = new();
     public ObservableCollection<HourSettingModel> HourSettingModelId { get; init; } = new();
 
+    public static LectionModel Empty => new()
+    {
+        LectionModelId = Guid.Empty,
+        Id = Guid.Empty,
+        Day = Days.None,
+        Duration = TimeSpan.Zero,
+        ActivityType = ActivityType.None,
+        Place = Place.None,
+    };
 }

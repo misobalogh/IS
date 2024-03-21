@@ -2,6 +2,7 @@
 
 public enum Days
 {
+    None,
     Monday,
     Tuesday, 
     Wednesday,
