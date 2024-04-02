@@ -1,6 +1,6 @@
 namespace project.DAL.Enums
 {
-    public enum Place
+    public enum Room
     {
         None = 0,
         A01,

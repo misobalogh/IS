@@ -8,7 +8,7 @@ public record LectureModel : ModelBase
     public required Guid LectureModelId { get; set; }
     public required Day Day { get; set; }
     public required ActivityType ActivityType { get; set; }
-    public required Place Place { get; set; }
+    public required Room Room { get; set; }
     public ObservableCollection<HourSettingModel> HourSettingModelId { get; init; } = new();
 
     public static LectureModel Empty => new()
@@ -17,6 +17,6 @@ public record LectureModel : ModelBase
         Id = Guid.Empty,
         Day = Day.None,
         ActivityType = ActivityType.None,
-        Place = Place.None,
+        Room = Room.None,
     };
 }

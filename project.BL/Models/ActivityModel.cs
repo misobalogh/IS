@@ -7,7 +7,7 @@ public record ActivityModel : ModelBase
     public required Guid ActivityModelId { get; set; }
     public required string ActivityName { get; set; }
     public required UserModel Teacher { get; set; }
-    public required Place Room { get; set; }
+    public required Room Room { get; set; }
     public required int Capacity { get; set; }
     public required int MaxPoints { get; set; }
 
@@ -17,7 +17,7 @@ public record ActivityModel : ModelBase
         Id = Guid.Empty,
         ActivityName = string.Empty,
         Teacher = UserModel.Empty,
-        Room = Place.None,
+        Room = Room.None,
         Capacity = 0,
         MaxPoints = 0
     };

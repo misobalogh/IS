@@ -8,7 +8,7 @@ public class ActivityEntityMapper : IEntityMapper<ActivityEntity>
     {
         existingEntity.Start = newEntity.Start;
         existingEntity.End = newEntity.End;
-        existingEntity.Place = newEntity.Place;
+        existingEntity.Room = newEntity.Room;
         existingEntity.ActivityType = newEntity.ActivityType;
         existingEntity.Description = newEntity.Description;
         existingEntity.SubjectId = newEntity.SubjectId;
