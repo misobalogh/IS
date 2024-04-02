@@ -1,6 +1,6 @@
 ﻿namespace project.DAL.Enums;
 
-public enum Days
+public enum Day
 {
     None,
     Monday,

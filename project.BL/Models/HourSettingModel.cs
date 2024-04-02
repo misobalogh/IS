@@ -2,13 +2,13 @@
 
 public record HourSettingModel : ModelBase
 {
-    public required TimeSpan StartTime { get; set; }
-    public required TimeSpan EndTime { get; set; }
+    public required DateTime StartTime { get; set; }
+    public required DateTime EndTime { get; set; }
 
     public static HourSettingModel Empty => new() 
     {
-        StartTime = TimeSpan.Zero,
-        EndTime = TimeSpan.Zero,
+        StartTime = DateTime.Now,
+        EndTime = DateTime.Now,
     };
 }
 

@@ -3,22 +3,19 @@ using project.DAL.Enums;
 
 namespace project.BL.Models;
 
-public record LectionModel : ModelBase
+public record LectureModel : ModelBase
 {
-    public required Guid LectionModelId { get; set; }
-    public required Days Day { get; set; }
-    public required TimeSpan Duration { get; set; }
+    public required Guid LectureModelId { get; set; }
+    public required Day Day { get; set; }
     public required ActivityType ActivityType { get; set; }
     public required Place Place { get; set; }
-    public ObservableCollection<SubjectModel> Subject { get; set; } = new();
     public ObservableCollection<HourSettingModel> HourSettingModelId { get; init; } = new();
 
-    public static LectionModel Empty => new()
+    public static LectureModel Empty => new()
     {
-        LectionModelId = Guid.Empty,
+        LectureModelId = Guid.Empty,
         Id = Guid.Empty,
-        Day = Days.None,
-        Duration = TimeSpan.Zero,
+        Day = Day.None,
         ActivityType = ActivityType.None,
         Place = Place.None,
     };
