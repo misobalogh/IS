@@ -1,7 +1,8 @@
 ﻿namespace project.DAL.Enums;
 
-public enum Marks
+public enum Mark
 {
+    None,
     A,
     B,
     C,

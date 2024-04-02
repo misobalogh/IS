@@ -1,6 +1,6 @@
 ﻿namespace project.DAL.Entities
 {
-    public record RegisteredSubjectEntity : IUsersSubjectEntity
+    public record EnrolledSubjectEntity : IUsersSubjectEntity
     {
         public required Guid Id { get; set; }
         public required DateTime Year { get; set; }

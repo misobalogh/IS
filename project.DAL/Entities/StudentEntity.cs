@@ -8,8 +8,8 @@
         public required string LastName { get; set; }
         public Uri? Image { get; set; }
 
-        public ICollection<RegisteredSubjectEntity> EnrolledSubjects { get; init; } =
-            new List<RegisteredSubjectEntity>();
+        public ICollection<EnrolledSubjectEntity> EnrolledSubjects { get; init; } =
+            new List<EnrolledSubjectEntity>();
 
         public ICollection<RegisteredActivitiesEntity> RegisteredActivities { get; init; } =
             new List<RegisteredActivitiesEntity>();

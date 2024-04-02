@@ -1,13 +1,14 @@
-﻿namespace project.BL.Models;
+﻿using System.Collections.ObjectModel;
 
-public record StrudentClassificationModel : ModelBase
+namespace project.BL.Models;
+
+public record ClassificationModel : ModelBase
 {
-    public required string SemesterName { get; set; } 
-    public required SubjectModel Subject { get; set; }
+    public required string SemesterName { get; set; }
+    public ObservableCollection<ActivityPointsModel> ActivityPoints { get; set; } = new();
 
-    public static StrudentClassificationModel Empty => new()
+    public static ClassificationModel Empty => new()
     {
-        SemesterName = string.Empty,
-        Subject = SubjectModel.Empty,
+        SemesterName = string.Empty
     };
 }
