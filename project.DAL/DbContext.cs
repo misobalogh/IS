@@ -12,7 +12,7 @@ public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemo
     public DbSet<SubjectEntity> Subjects => Set<SubjectEntity>();
     public DbSet<TeacherEntity> Teachers => Set<TeacherEntity>();
     public DbSet<RegisteredActivitiesEntity> RegisteredActivities => Set<RegisteredActivitiesEntity>();
-    public DbSet<RegisteredSubjectEntity> RegisteredSubjects => Set<RegisteredSubjectEntity>();
+    public DbSet<EnrolledSubjectEntity> RegisteredSubjects => Set<EnrolledSubjectEntity>();
     public DbSet<TeachingSubjectsEntity> TeachingSubjects => Set<TeachingSubjectsEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -2,9 +2,9 @@
 
 namespace project.DAL.Mappers;
 
-public class RegisteredSubjectEntityMapper : IEntityMapper<RegisteredSubjectEntity>
+public class RegisteredSubjectEntityMapper : IEntityMapper<EnrolledSubjectEntity>
 {
-    public void MapToExistingEntity(RegisteredSubjectEntity existingEntity, RegisteredSubjectEntity newEntity)
+    public void MapToExistingEntity(EnrolledSubjectEntity existingEntity, EnrolledSubjectEntity newEntity)
     {
         existingEntity.Year = newEntity.Year;
         existingEntity.StudentId = newEntity.StudentId;

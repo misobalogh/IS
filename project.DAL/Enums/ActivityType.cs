@@ -2,6 +2,7 @@
 {
     public enum ActivityType
     {
+        None,
         Lecture,
         Practice,
         Consultation,

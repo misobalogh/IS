@@ -10,6 +10,7 @@ namespace project.DAL.Entities
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public TitleAfter? TitleAfter { get; set; }
+        public required string Password { get; set; }
         public Uri? Image { get; set; }
 
         public ICollection<TeachingSubjectsEntity> Subjects { get; init; } = new List<TeachingSubjectsEntity>();
