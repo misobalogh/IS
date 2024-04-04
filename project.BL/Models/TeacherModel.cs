@@ -15,7 +15,6 @@ public record TeacherModel : ModelBase
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public TitleAfter? TitleAfter { get; set; }
-    public required string Login { get; set; }
     public required string Password { get; set; }
     public Uri? PhotoUrl { get; set; }
     public required string Email { get; set; }
@@ -28,7 +27,6 @@ public record TeacherModel : ModelBase
         Id = Guid.Empty,
         FirstName = string.Empty,
         LastName = string.Empty,
-        Login = string.Empty,
         Password = string.Empty,
         Email = string.Empty
     };

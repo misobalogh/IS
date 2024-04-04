@@ -6,7 +6,6 @@
         string FirstName { get; set; }
         string LastName { get; set; }
         Uri? Image { get; set; }
-        string Login { get; set; }
         string Password { get; set; }
     }
 
