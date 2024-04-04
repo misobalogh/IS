@@ -5,7 +5,7 @@ namespace project.BL.Models;
 public record ClassificationModel : ModelBase
 {
     public required string SemesterName { get; set; }
-    public ObservableCollection<ActivityPointsModel> ActivityPoints { get; set; } = new();
+    public ObservableCollection<ActivityListModel> ActivityPoints { get; set; } = new();
 
     public static ClassificationModel Empty => new()
     {

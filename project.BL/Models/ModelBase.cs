@@ -15,7 +15,6 @@ namespace project.BL.Models
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        //TODO: Idk, jestli to zde bude, protože se nepoužívá, ale bylo to v kuchařce
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
