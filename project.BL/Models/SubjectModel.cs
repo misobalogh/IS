@@ -5,7 +5,6 @@ namespace project.BL.Models;
 
 public record SubjectModel : ModelBase
 {
-    public required Guid SubjectId { get; set; }
     public required string SubjectName { get; set; }
     public required string SubjectTag { get; set; }
     public DateTime Year { get; set; }

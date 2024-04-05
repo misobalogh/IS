@@ -9,7 +9,6 @@ namespace project.BL.Models;
 
 public record StudentModel : ModelBase
 {
-    public required Guid StudentId { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public Uri? PhotoUrl { get; set; }

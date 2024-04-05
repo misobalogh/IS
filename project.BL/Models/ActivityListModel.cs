@@ -4,7 +4,6 @@ namespace project.BL.Models;
 
 public record ActivityListModel : ModelBase
 {
-    public required Guid ActivityModelId { get; set; }
     public required string ActivityName { get; set; }
     public required string SubjectName { get; set; }
     public required DateTime Start { get; set; }

@@ -10,7 +10,6 @@ namespace project.BL.Models;
 
 public record TeacherListModel : ModelBase
 {
-    public required Guid TeacherId { get; set; }
     public TitleBefore? TitleBefore { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
