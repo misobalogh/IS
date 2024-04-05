@@ -10,7 +10,6 @@ public record SubjectListModel : ModelBase
 
     public static SubjectListModel Empty => new()
     {
-        SubjectId = Guid.Empty,
         SubjectName = string.Empty,
         SubjectTag = string.Empty,
     };

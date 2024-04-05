@@ -10,7 +10,6 @@ public record EnrolledSubjectsListModel : ModelBase
 
     public static EnrolledSubjectsListModel Empty => new()
     {
-        SubjectId = Guid.Empty,
         SubjectName = string.Empty,
         Points = 0,
         Mark = Mark.None

@@ -17,7 +17,6 @@ public record ActivityModel : ModelBase
 
     public static ActivityModel Empty => new()
     {
-        ActivityModelId = Guid.Empty,
         Id = Guid.Empty,
         Start = DateTime.Now,
         End = DateTime.Now,

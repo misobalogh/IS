@@ -22,7 +22,6 @@ public record SubjectModel : ModelBase
 
     public static SubjectModel Empty => new()
     {
-        SubjectId = Guid.Empty,
         SubjectName = string.Empty,
         SubjectTag = string.Empty,
     };

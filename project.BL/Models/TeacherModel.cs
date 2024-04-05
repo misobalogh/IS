@@ -22,7 +22,6 @@ public record TeacherModel : ModelBase
     
     public static TeacherModel Empty => new()
     {
-        TeacherId = Guid.Empty,
         Id = Guid.Empty,
         FirstName = string.Empty,
         LastName = string.Empty,

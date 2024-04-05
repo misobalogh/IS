@@ -21,7 +21,6 @@ public record StudentModel : ModelBase
     
     public static StudentModel Empty => new()
     {
-        StudentId = Guid.Empty,
         Id = Guid.Empty,
         FirstName = string.Empty,
         LastName = string.Empty,

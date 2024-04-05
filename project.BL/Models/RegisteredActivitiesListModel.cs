@@ -11,7 +11,6 @@ public record RegisteredActivitiesListModel : ModelBase
     public static RegisteredActivitiesListModel Empty => new()
     {
         Id = Guid.Empty,
-        ActivityId = Guid.Empty,
         ActivityName = string.Empty,
         Subject = SubjectModel.Empty,
         IsRegistered = false
