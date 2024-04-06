@@ -7,6 +7,7 @@
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string Password { get; set; }
+        public int Grade { get; set; }
         public Uri? Image { get; set; }
 
         public ICollection<EnrolledSubjectEntity> EnrolledSubjects { get; init; } =
@@ -14,5 +15,7 @@
 
         public ICollection<RegisteredActivitiesEntity> RegisteredActivities { get; init; } =
             new List<RegisteredActivitiesEntity>();
+
+        public ICollection<EvaluationEntity> Evaluations { get; init; } = new List<EvaluationEntity>();
     }
 }

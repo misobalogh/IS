@@ -2,18 +2,20 @@
 
 namespace project.BL.Models;
 
-public record EnrolledSubjectsListModel : ModelBase
+public record EnrolledSubjectsModel : ModelBase
 {
     public required Guid SubjectId { get; set; }
     public required string SubjectName { get; set; }
     public required int Points { get; set; }
     public required Mark Mark { get; set; }
+    public required DateTime Year { get; set; }
 
-    public static EnrolledSubjectsListModel Empty => new()
+    public static EnrolledSubjectsModel Empty => new()
     {
         SubjectId = Guid.Empty,
         SubjectName = string.Empty,
         Points = 0,
-        Mark = Mark.None
+        Mark = Mark.None,
+        Year = DateTime.Now
     };
 }

@@ -4,7 +4,8 @@ namespace project.BL.Models;
 
 public record ActivityListModel : ModelBase
 {
-    public required string ActivityName { get; set; }
+    public required Guid SubjectId { get; set; }
+    public required string Name { get; set; }
     public required string SubjectName { get; set; }
     public required DateTime Start { get; set; }
     public required DateTime End { get; set; }
@@ -14,9 +15,10 @@ public record ActivityListModel : ModelBase
     public static ActivityListModel Empty => new()
     {
         Id = Guid.Empty,
+        SubjectId = Guid.Empty,
         Start = DateTime.Now,
         End = DateTime.Now,
-        ActivityName = string.Empty,
+        Name = string.Empty,
         SubjectName = string.Empty,
         Room = Room.None,
         Points = 0
