@@ -11,17 +11,19 @@ public record StudentModel : ModelBase
 {
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
-    public Uri? PhotoUrl { get; set; }
+    public Uri? Image { get; set; }
     public required string Email { get; set; }
+    public required string Password { get; set; }
     //Grade means year of study
     public required int Grade { get; set; }
     public ObservableCollection<EnrolledSubjectsListModel> EnrolledSubjects { get; set; } = new();
     public ObservableCollection<RegisteredActivitiesListModel> RegisteredActivities { get; set; } = new();
-    public ObservableCollection<ClassificationModel> Classification { get; set; } = new();
+    public ObservableCollection<EvaluationListModel> Evaluation { get; set; } = new();
     
     public static StudentModel Empty => new()
     {
         Id = Guid.Empty,
+        Password = string.Empty,
         FirstName = string.Empty,
         LastName = string.Empty,
         Grade = 0,

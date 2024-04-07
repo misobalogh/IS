@@ -5,9 +5,8 @@ namespace project.BL.Models;
 
 public record SubjectModel : ModelBase
 {
-    public required string SubjectName { get; set; }
-    public required string SubjectTag { get; set; }
-    public DateTime Year { get; set; }
+    public required string Name { get; set; }
+    public required string Tag { get; set; }
     public Semester Semester { get; set; }
     public double TotalPoints { get; set; }
     public string? SubjectDescription { get; set;}
@@ -18,11 +17,9 @@ public record SubjectModel : ModelBase
     public string? LecturePlan { get; set;}
     public string? ProjectInfo { get; set;}
 
-    public ObservableCollection<ActivityListModel> Activities { get; set; } = new();
-
     public static SubjectModel Empty => new()
     {
-        SubjectName = string.Empty,
-        SubjectTag = string.Empty,
+        Name = string.Empty,
+        Tag = string.Empty,
     };
 };

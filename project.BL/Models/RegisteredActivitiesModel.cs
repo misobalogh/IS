@@ -1,13 +1,11 @@
-﻿using project.DAL.Enums;
+﻿namespace project.BL.Models;
 
-namespace project.BL.Models;
-
-public record RegisteredActivitiesListModel : ModelBase
+public record RegisteredActivitiesModel : ModelBase
 {
     public required Guid ActivityId { get; set; }
     public required string ActivityName { get; set; }
 
-    public static RegisteredActivitiesListModel Empty => new()
+    public static RegisteredActivitiesModel Empty => new()
     {
         Id = Guid.Empty,
         ActivityId = Guid.Empty,

@@ -40,13 +40,13 @@ public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemo
         if (seedDemoData)
         {
             SubjectSeeds.Seed(modelBuilder);
-            StudentSeeds.Seed(modelBuilder);
-            EvaluationSeeds.Seed(modelBuilder);
             TeacherSeeds.Seed(modelBuilder);
             TeachingSubjectsSeeds.Seed(modelBuilder);
             RegisteredSubjectsSeeds.Seed(modelBuilder);
-            ActivitySeeds.Seed(modelBuilder);
             RegisteredActivitiesSeeds.Seed(modelBuilder);
+            StudentSeeds.Seed(modelBuilder);
+            ActivitySeeds.Seed(modelBuilder);
+            EvaluationSeeds.Seed(modelBuilder);
         }
     }
 }

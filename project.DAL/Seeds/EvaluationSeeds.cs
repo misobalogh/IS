@@ -11,10 +11,12 @@ public static class EvaluationSeeds
         Points = 10,
         Student = StudentSeeds.Xmrkva01,
         StudentId = StudentSeeds.Xmrkva01.Id,
+        ActivityId = ActivitySeeds.IFJMidterm.Id,
+        Activity = ActivitySeeds.IFJMidterm
     };
     
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<EvaluationEntity>().HasData(
-            IFJMidterm with { Student = null! }
+            IFJMidterm with { Student = null!, Activity = null! }
             );
 }

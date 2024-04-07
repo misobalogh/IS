@@ -15,6 +15,11 @@ public static class ActivitySeeds
         Room = Room.A01,
         SubjectId = SubjectSeeds.IJC.Id,
         Subject = SubjectSeeds.IJC,
+        Name = "IJC Consultation",
+        Capacity = 1,
+        MaxPoints = null,
+        TeacherId = TeacherSeeds.Chrobak.Id,
+        Teacher = TeacherSeeds.Chrobak,
     };
     
     public static readonly ActivityEntity IFJMidterm = new()
@@ -26,13 +31,17 @@ public static class ActivitySeeds
         Room = Room.C01,
         SubjectId = SubjectSeeds.IFJ.Id,
         Subject = SubjectSeeds.IFJ,
-        EvaluationId = EvaluationSeeds.IFJMidterm.Id,
-        Evaluation = EvaluationSeeds.IFJMidterm,
+        Name = "IFJ Midterm",
+        Capacity = 100,
+        MaxPoints = 10,
+        TeacherId = TeacherSeeds.Lienka.Id,
+        Teacher = TeacherSeeds.Lienka,
+
     };
     
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<ActivityEntity>().HasData(
-            IFJMidterm with { Subject = null!, Evaluation = null! },
-            IJCConsultation with { Subject = null!, Evaluation = null! }
+            IFJMidterm with { Subject = null!, Teacher = null! },
+            IJCConsultation with { Subject = null!, Teacher = null! }
         );
 }

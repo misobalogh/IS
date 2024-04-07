@@ -26,13 +26,20 @@ namespace project.DAL.Migrations
                     b.Property<int>("ActivityType")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Capacity")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("End")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("EvaluationId")
+                    b.Property<int?>("MaxPoints")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Room")
@@ -44,11 +51,14 @@ namespace project.DAL.Migrations
                     b.Property<Guid>("SubjectId")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid>("TeacherId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("EvaluationId");
-
                     b.HasIndex("SubjectId");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("Activities");
 
@@ -57,20 +67,26 @@ namespace project.DAL.Migrations
                         {
                             Id = new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"),
                             ActivityType = 4,
+                            Capacity = 100,
                             End = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
-                            EvaluationId = new Guid("18bbc9de-444a-4099-9a3b-f77e44162f4a"),
+                            MaxPoints = 10,
+                            Name = "IFJ Midterm",
                             Room = 5,
                             Start = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
-                            SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4")
+                            SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
+                            TeacherId = new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f")
                         },
                         new
                         {
                             Id = new Guid("21adbcf5-f96d-4943-8249-d73401395a06"),
                             ActivityType = 3,
+                            Capacity = 1,
                             End = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Name = "IJC Consultation",
                             Room = 1,
                             Start = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
-                            SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209")
+                            SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
+                            TeacherId = new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c")
                         });
                 });
 
@@ -79,6 +95,12 @@ namespace project.DAL.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Mark")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("INTEGER");
 
                     b.Property<Guid>("StudentId")
                         .HasColumnType("TEXT");
@@ -101,6 +123,8 @@ namespace project.DAL.Migrations
                         new
                         {
                             Id = new Guid("371a5d4a-c60d-4e45-b3a1-db2bca96b24e"),
+                            Mark = 0,
+                            Points = 0,
                             StudentId = new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"),
                             SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
                             Year = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local)
@@ -108,6 +132,8 @@ namespace project.DAL.Migrations
                         new
                         {
                             Id = new Guid("07671bf7-6690-42bc-8010-a94f66725f08"),
+                            Mark = 0,
+                            Points = 0,
                             StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"),
                             SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
                             Year = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local)
@@ -118,6 +144,9 @@ namespace project.DAL.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Note")
@@ -131,6 +160,8 @@ namespace project.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ActivityId");
+
                     b.HasIndex("StudentId");
 
                     b.ToTable("Evaluations");
@@ -139,6 +170,7 @@ namespace project.DAL.Migrations
                         new
                         {
                             Id = new Guid("18bbc9de-444a-4099-9a3b-f77e44162f4a"),
+                            ActivityId = new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"),
                             Points = 10,
                             StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
                         });
@@ -193,6 +225,9 @@ namespace project.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Grade")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Image")
                         .HasColumnType("TEXT");
 
@@ -214,6 +249,7 @@ namespace project.DAL.Migrations
                             Id = new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"),
                             Email = "xplagi00@email.com",
                             FirstName = "John",
+                            Grade = 0,
                             LastName = "Doe",
                             Password = "113dDSas6H"
                         },
@@ -222,6 +258,7 @@ namespace project.DAL.Migrations
                             Id = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"),
                             Email = "xmrkva01@email.com",
                             FirstName = "Jack",
+                            Grade = 0,
                             LastName = "Mrkva",
                             Password = "9n1d8as"
                         });
@@ -237,6 +274,9 @@ namespace project.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Semester")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Tag")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -250,12 +290,14 @@ namespace project.DAL.Migrations
                         {
                             Id = new Guid("6180b520-6119-4303-8496-ed568d684209"),
                             Name = "Jazyk C",
+                            Semester = 0,
                             Tag = "IJC"
                         },
                         new
                         {
                             Id = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
                             Name = "Formalitka Jednoducha",
+                            Semester = 0,
                             Tag = "IFJ"
                         });
                 });
@@ -356,19 +398,21 @@ namespace project.DAL.Migrations
 
             modelBuilder.Entity("project.DAL.Entities.ActivityEntity", b =>
                 {
-                    b.HasOne("project.DAL.Entities.EvaluationEntity", "Evaluation")
-                        .WithMany()
-                        .HasForeignKey("EvaluationId");
-
                     b.HasOne("project.DAL.Entities.SubjectEntity", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Evaluation");
+                    b.HasOne("project.DAL.Entities.TeacherEntity", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Subject");
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("project.DAL.Entities.EnrolledSubjectEntity", b =>
@@ -392,11 +436,19 @@ namespace project.DAL.Migrations
 
             modelBuilder.Entity("project.DAL.Entities.EvaluationEntity", b =>
                 {
-                    b.HasOne("project.DAL.Entities.StudentEntity", "Student")
+                    b.HasOne("project.DAL.Entities.ActivityEntity", "Activity")
                         .WithMany()
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("project.DAL.Entities.StudentEntity", "Student")
+                        .WithMany("Evaluations")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Activity");
 
                     b.Navigation("Student");
                 });
@@ -442,6 +494,8 @@ namespace project.DAL.Migrations
             modelBuilder.Entity("project.DAL.Entities.StudentEntity", b =>
                 {
                     b.Navigation("EnrolledSubjects");
+
+                    b.Navigation("Evaluations");
 
                     b.Navigation("RegisteredActivities");
                 });

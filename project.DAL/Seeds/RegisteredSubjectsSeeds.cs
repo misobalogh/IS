@@ -1,5 +1,6 @@
 ﻿using project.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using project.DAL.Enums;
 
 namespace project.DAL.Seeds;
 
@@ -12,7 +13,9 @@ public static class RegisteredSubjectsSeeds
         StudentId = StudentSeeds.Xplagi00.Id,
         Year = DateTime.Today,
         Subject = SubjectSeeds.IFJ,
-        Student = StudentSeeds.Xplagi00
+        Student = StudentSeeds.Xplagi00,
+        Points = 0,
+        Mark = Mark.None
     };
     
     public static readonly EnrolledSubjectEntity Xmrkva01IJC = new()
@@ -22,7 +25,9 @@ public static class RegisteredSubjectsSeeds
         StudentId = StudentSeeds.Xmrkva01.Id,
         Year = DateTime.Today,
         Subject = SubjectSeeds.IJC,
-        Student = StudentSeeds.Xmrkva01
+        Student = StudentSeeds.Xmrkva01,
+        Points = 0,
+        Mark = Mark.None
     };
     
     public static void Seed(this ModelBuilder modelBuilder) =>

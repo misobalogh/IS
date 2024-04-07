@@ -22,6 +22,7 @@ namespace project.DAL.Migrations
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
+                    Grade = table.Column<int>(type: "INTEGER", nullable: false),
                     Image = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -35,7 +36,8 @@ namespace project.DAL.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Tag = table.Column<string>(type: "TEXT", nullable: false)
+                    Tag = table.Column<string>(type: "TEXT", nullable: false),
+                    Semester = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,33 +63,15 @@ namespace project.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Evaluations",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Points = table.Column<int>(type: "INTEGER", nullable: false),
-                    Note = table.Column<string>(type: "TEXT", nullable: true),
-                    StudentId = table.Column<Guid>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Evaluations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Evaluations_Students_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RegisteredSubjects",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Year = table.Column<DateTime>(type: "TEXT", nullable: false),
                     StudentId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    SubjectId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    SubjectId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Points = table.Column<int>(type: "INTEGER", nullable: false),
+                    Mark = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,6 +86,39 @@ namespace project.DAL.Migrations
                         name: "FK_RegisteredSubjects_Subjects_SubjectId",
                         column: x => x.SubjectId,
                         principalTable: "Subjects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Activities",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Start = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    End = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Room = table.Column<int>(type: "INTEGER", nullable: false),
+                    Capacity = table.Column<int>(type: "INTEGER", nullable: false),
+                    ActivityType = table.Column<int>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    SubjectId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    TeacherId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    MaxPoints = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Activities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Activities_Subjects_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subjects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Activities_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -133,30 +150,28 @@ namespace project.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Activities",
+                name: "Evaluations",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Start = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    End = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Room = table.Column<int>(type: "INTEGER", nullable: false),
-                    ActivityType = table.Column<int>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    SubjectId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    EvaluationId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    Points = table.Column<int>(type: "INTEGER", nullable: false),
+                    Note = table.Column<string>(type: "TEXT", nullable: true),
+                    StudentId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ActivityId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Activities", x => x.Id);
+                    table.PrimaryKey("PK_Evaluations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Activities_Evaluations_EvaluationId",
-                        column: x => x.EvaluationId,
-                        principalTable: "Evaluations",
-                        principalColumn: "Id");
+                        name: "FK_Evaluations_Activities_ActivityId",
+                        column: x => x.ActivityId,
+                        principalTable: "Activities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Activities_Subjects_SubjectId",
-                        column: x => x.SubjectId,
-                        principalTable: "Subjects",
+                        name: "FK_Evaluations_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -188,20 +203,20 @@ namespace project.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "Id", "Email", "FirstName", "Image", "LastName", "Password" },
+                columns: new[] { "Id", "Email", "FirstName", "Grade", "Image", "LastName", "Password" },
                 values: new object[,]
                 {
-                    { new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"), "xplagi00@email.com", "John", null, "Doe", "113dDSas6H" },
-                    { new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"), "xmrkva01@email.com", "Jack", null, "Mrkva", "9n1d8as" }
+                    { new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"), "xplagi00@email.com", "John", 0, null, "Doe", "113dDSas6H" },
+                    { new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"), "xmrkva01@email.com", "Jack", 0, null, "Mrkva", "9n1d8as" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Subjects",
-                columns: new[] { "Id", "Name", "Tag" },
+                columns: new[] { "Id", "Name", "Semester", "Tag" },
                 values: new object[,]
                 {
-                    { new Guid("6180b520-6119-4303-8496-ed568d684209"), "Jazyk C", "IJC" },
-                    { new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), "Formalitka Jednoducha", "IFJ" }
+                    { new Guid("6180b520-6119-4303-8496-ed568d684209"), "Jazyk C", 0, "IJC" },
+                    { new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), "Formalitka Jednoducha", 0, "IFJ" }
                 });
 
             migrationBuilder.InsertData(
@@ -215,21 +230,20 @@ namespace project.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Activities",
-                columns: new[] { "Id", "ActivityType", "Description", "End", "EvaluationId", "Room", "Start", "SubjectId" },
-                values: new object[] { new Guid("21adbcf5-f96d-4943-8249-d73401395a06"), 3, null, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), null, 1, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), new Guid("6180b520-6119-4303-8496-ed568d684209") });
-
-            migrationBuilder.InsertData(
-                table: "Evaluations",
-                columns: new[] { "Id", "Note", "Points", "StudentId" },
-                values: new object[] { new Guid("18bbc9de-444a-4099-9a3b-f77e44162f4a"), null, 10, new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f") });
+                columns: new[] { "Id", "ActivityType", "Capacity", "Description", "End", "MaxPoints", "Name", "Room", "Start", "SubjectId", "TeacherId" },
+                values: new object[,]
+                {
+                    { new Guid("21adbcf5-f96d-4943-8249-d73401395a06"), 3, 1, null, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), null, "IJC Consultation", 1, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), new Guid("6180b520-6119-4303-8496-ed568d684209"), new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c") },
+                    { new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"), 4, 100, null, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), 10, "IFJ Midterm", 5, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f") }
+                });
 
             migrationBuilder.InsertData(
                 table: "RegisteredSubjects",
-                columns: new[] { "Id", "StudentId", "SubjectId", "Year" },
+                columns: new[] { "Id", "Mark", "Points", "StudentId", "SubjectId", "Year" },
                 values: new object[,]
                 {
-                    { new Guid("07671bf7-6690-42bc-8010-a94f66725f08"), new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"), new Guid("6180b520-6119-4303-8496-ed568d684209"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("371a5d4a-c60d-4e45-b3a1-db2bca96b24e"), new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { new Guid("07671bf7-6690-42bc-8010-a94f66725f08"), 0, 0, new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"), new Guid("6180b520-6119-4303-8496-ed568d684209"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("371a5d4a-c60d-4e45-b3a1-db2bca96b24e"), 0, 0, new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(
@@ -242,28 +256,33 @@ namespace project.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Activities",
-                columns: new[] { "Id", "ActivityType", "Description", "End", "EvaluationId", "Room", "Start", "SubjectId" },
-                values: new object[] { new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"), 4, null, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), new Guid("18bbc9de-444a-4099-9a3b-f77e44162f4a"), 5, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4") });
+                table: "Evaluations",
+                columns: new[] { "Id", "ActivityId", "Note", "Points", "StudentId" },
+                values: new object[] { new Guid("18bbc9de-444a-4099-9a3b-f77e44162f4a"), new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"), null, 10, new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f") });
 
             migrationBuilder.InsertData(
                 table: "RegisteredActivities",
                 columns: new[] { "Id", "ActivityId", "StudentId" },
                 values: new object[,]
                 {
-                    { new Guid("2a484e4f-c3d4-4a57-8f21-c8751cc16d2e"), new Guid("21adbcf5-f96d-4943-8249-d73401395a06"), new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f") },
-                    { new Guid("173e971f-b7a4-4eec-944d-c1ddea94c3c6"), new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"), new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380") }
+                    { new Guid("173e971f-b7a4-4eec-944d-c1ddea94c3c6"), new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"), new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380") },
+                    { new Guid("2a484e4f-c3d4-4a57-8f21-c8751cc16d2e"), new Guid("21adbcf5-f96d-4943-8249-d73401395a06"), new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f") }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Activities_EvaluationId",
-                table: "Activities",
-                column: "EvaluationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Activities_SubjectId",
                 table: "Activities",
                 column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Activities_TeacherId",
+                table: "Activities",
+                column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Evaluations_ActivityId",
+                table: "Evaluations",
+                column: "ActivityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluations_StudentId",
@@ -305,6 +324,9 @@ namespace project.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Evaluations");
+
+            migrationBuilder.DropTable(
                 name: "RegisteredActivities");
 
             migrationBuilder.DropTable(
@@ -317,16 +339,13 @@ namespace project.DAL.Migrations
                 name: "Activities");
 
             migrationBuilder.DropTable(
-                name: "Teachers");
-
-            migrationBuilder.DropTable(
-                name: "Evaluations");
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Subjects");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Teachers");
         }
     }
 }
