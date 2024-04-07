@@ -26,6 +26,7 @@ public class EvaluationModelMapper :
                 StudentId = entity.StudentId,
                 Id = entity.Id,
                 Note = entity.Note,
+                ActivityId = entity.ActivityId,
             };
 
     public override EvaluationEntity MapToEntity(EvaluationModel model)
@@ -35,6 +36,8 @@ public class EvaluationModelMapper :
             Points = model.Points,
             Student = null!,
             StudentId = model.StudentId,
-            Note = model.Note
+            Note = model.Note,
+            ActivityId = model.ActivityId,
+            Activity = null!
         };
 }

@@ -13,12 +13,12 @@ public class ActivityModelMapper :
             {
                 Id = entity.Id,
                 End = entity.End,
-                Points = entity.Points,
                 Room = entity.Room,
                 Start = entity.Start,
                 Name = entity.Name,
                 SubjectId = entity.SubjectId,
-                SubjectName = entity.Subject.Name
+                SubjectName = entity.Subject.Name,
+                Points = 0
             };
 
     //TODO: v kucharce se predavaji Id pres parametry, tak to udelat taky tak?
@@ -29,7 +29,6 @@ public class ActivityModelMapper :
             {
                 Id = entity.Id,
                 End = entity.End,
-                Points = entity.Points,
                 Room = entity.Room,
                 Start = entity.Start,
                 Name = entity.Name,
@@ -49,7 +48,6 @@ public class ActivityModelMapper :
             Id = model.Id,
             Capacity = model.Capacity,
             End = model.End,
-            Points = model.Points,
             Room = model.Room,
             Start = model.Start,
             Subject = null!,
@@ -57,7 +55,6 @@ public class ActivityModelMapper :
             MaxPoints = model.MaxPoints,
             Name = model.Name,
             ActivityType = model.ActivityType,
-            EvaluationId = evaluationId,
             SubjectId = subjectId,
             TeacherId = teacherId
         };

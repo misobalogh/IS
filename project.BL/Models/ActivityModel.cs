@@ -16,8 +16,6 @@ public record ActivityModel : ModelBase
     // MaxPoints == null means this activity has no points (e.g. lecture)
     public required int? MaxPoints { get; set; }
     // How many points student received
-    public required double Points { get; set; }
-
     public static ActivityModel Empty => new()
     {
         Id = Guid.Empty,
@@ -31,6 +29,5 @@ public record ActivityModel : ModelBase
         Room = Room.None,
         Capacity = 0,
         MaxPoints = 0,
-        Points = 0
     };
 }

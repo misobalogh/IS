@@ -16,6 +16,7 @@
         public ICollection<RegisteredActivitiesEntity> RegisteredActivities { get; init; } =
             new List<RegisteredActivitiesEntity>();
 
-        public ICollection<EvaluationEntity> Evaluations { get; init; } = new List<EvaluationEntity>();
+        public ICollection<EvaluationEntity> Evaluations { get; init; } = 
+            new List<EvaluationEntity>();
     }
 }
