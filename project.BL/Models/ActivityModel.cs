@@ -9,6 +9,7 @@ public record ActivityModel : ModelBase
     public required string Name { get; set; }
     public required ActivityType ActivityType { get; set; }
     public required string TeacherName { get; set; }
+    public required Guid TeacherId { get; set; }
     public required DateTime Start { get; set; }
     public required DateTime End { get; set; }
     public required Room Room { get; set; }
@@ -29,5 +30,6 @@ public record ActivityModel : ModelBase
         Room = Room.None,
         Capacity = 0,
         MaxPoints = 0,
+        TeacherId = Guid.Empty,
     };
 }

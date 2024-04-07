@@ -3,6 +3,7 @@ using project.BL.Models;
 using project.Common.Tests;
 using project.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
+using project.DAL.Enums;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -37,5 +38,87 @@ public sealed class SubjectFacadeTests : FacadeTestsBase
         var subject = subjects.Single(i => i.Id == SubjectSeeds.IJC.Id);
 
         DeepAssert.Equal(SubjectModelMapper.MapToListModel(SubjectSeeds.IJC), subject);
+    }
+    
+    [Fact]
+    public async Task GetById_SeededSubject()
+    {
+        var subject = await _subjectFacadeSUT.GetAsync(SubjectSeeds.IJC.Id);
+
+        DeepAssert.Equal(SubjectModelMapper.MapToDetailModel(SubjectSeeds.IJC), subject);
+    }
+    
+    [Fact]
+    public async Task GetById_NonExistent()
+    {
+        var subject = await _subjectFacadeSUT.GetAsync(SubjectSeeds.EmptySubject.Id);
+    
+        Assert.Null(subject);
+    }
+    
+    [Fact]
+    public async Task SeededIJC_DeleteById_Deleted()
+    {
+        await _subjectFacadeSUT.DeleteAsync(SubjectSeeds.IJC.Id);
+
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        Assert.False(await dbxAssert.Subjects.AnyAsync(i => i.Id == SubjectSeeds.IJC.Id));
+    }
+    
+    // [Fact]
+    // public async Task Delete_SubjectThatStudentHasEnrolled_Throws()
+    // {
+    //     //Act & Assert
+    //     await Assert.ThrowsAsync<InvalidOperationException>(async () => await _subjectFacadeSUT.DeleteAsync(SubjectSeeds.IFJ.Id));
+    // }
+    
+    [Fact]
+    public async Task NewSubject_InsertOrUpdate_SubjectAdded()
+    {
+        //Arrange
+        var subject = new SubjectModel()
+        {
+            Id = Guid.Empty,
+            Name = "Subject Name",
+            Tag = "ISN",
+            LectureHours = null,
+            LecturePlan = null,
+            ProjectHours = 20,
+            ProjectInfo = "Project Informations",
+            Semester = Semester.Winter,
+            SubjectDescription = null,
+            TotalPoints = 49.5
+        };
+    
+        //Act
+        subject = await _subjectFacadeSUT.SaveAsync(subject);
+    
+        //Assert
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        var subjectFromDb = await dbxAssert.Subjects.SingleAsync(i => i.Id == subject.Id);
+        DeepAssert.Equal(subject, SubjectModelMapper.MapToDetailModel(subjectFromDb));
+    }
+    
+    [Fact]
+    public async Task SeededIFJ_InsertOrUpdate_SubjectUpdated()
+    {
+        //Arrange
+        var subject = new SubjectModel()
+        {
+            Id = SubjectSeeds.IFJ.Id,
+            Name = SubjectSeeds.IFJ.Name,
+            Tag = SubjectSeeds.IFJ.Tag,
+            Semester = SubjectSeeds.IFJ.Semester,
+        };
+        subject.Name += "updated";
+        subject.Tag += "updated";
+
+        //Act
+        await _subjectFacadeSUT.SaveAsync(subject);
+
+        //Assert
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        var ingredientFromDb = await dbxAssert.Subjects.SingleAsync(i => i.Id == subject.Id);
+        DeepAssert.Equal(subject, SubjectModelMapper.MapToDetailModel(ingredientFromDb));
     }
 }

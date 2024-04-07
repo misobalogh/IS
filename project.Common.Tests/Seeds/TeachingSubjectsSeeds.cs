@@ -25,6 +25,16 @@ public static class TeachingSubjectsSeeds
         Teacher = TeacherSeeds.Lienka
     };
     
+    public static TeachingSubjectsEntity TeacherEntity = new()
+    {
+        Id = Guid.Parse(input: "60b189ce-34fe-4260-b36b-6adefa4e1f2d"),
+        SubjectId = SubjectSeeds.IFJ.Id,
+        TeacherId = TeacherSeeds.TeacherEntity.Id,
+        Year = DateTime.Today,
+        Subject = SubjectSeeds.IFJ,
+        Teacher = TeacherSeeds.TeacherEntity
+    };
+    
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<TeachingSubjectsEntity>().HasData(
             ChrobakIJC with { Subject = null!, Teacher = null! },

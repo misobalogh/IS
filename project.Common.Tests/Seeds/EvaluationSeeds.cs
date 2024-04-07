@@ -12,8 +12,21 @@ public static class EvaluationSeeds
         Student = StudentSeeds.Xmrkva01,
         StudentId = StudentSeeds.Xmrkva01.Id,
         ActivityId = ActivitySeeds.IFJMidterm.Id,
-        Activity = ActivitySeeds.IFJMidterm
+        Activity = ActivitySeeds.IFJMidterm,
+        Note = "note"
     };
+    
+    public static readonly EvaluationEntity EmptyEvaluation = new()
+    {
+        Id = default,
+        Points = default!,
+        Student = default!,
+        StudentId = default,
+        ActivityId = default,
+        Activity = default!
+    };
+    
+    
     
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<EvaluationEntity>().HasData(

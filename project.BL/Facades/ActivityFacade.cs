@@ -1,4 +1,5 @@
-﻿using project.BL.Mappers;
+﻿using project.BL.Facades.Interfaces;
+using project.BL.Mappers;
 using project.BL.Models;
 using project.DAL.Entities;
 using project.DAL.Mappers;
@@ -10,9 +11,9 @@ namespace project.BL.Facades;
 public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelMapper activityModelMapper) 
     : FacadeBase<ActivityEntity, ActivityListModel, ActivityModel, ActivityEntityMapper>(unitOfWorkFactory, activityModelMapper), IActivityFacade
 {
-    public async Task SaveAsync(ActivityModel model, Guid evaluationId, Guid subjectId, Guid teachearId)
+    public async Task SaveAsync(ActivityModel model, Guid subjectId, Guid teacherId)
     {
-        ActivityEntity entity = activityModelMapper.MapToEntity(model, evaluationId, subjectId, teachearId);
+        ActivityEntity entity = activityModelMapper.MapToEntity(model, subjectId, teacherId);
 
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
         IRepository<ActivityEntity> repository =

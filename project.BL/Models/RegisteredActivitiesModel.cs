@@ -1,9 +1,12 @@
-﻿namespace project.BL.Models;
+﻿using System.Collections.ObjectModel;
+
+namespace project.BL.Models;
 
 public record RegisteredActivitiesModel : ModelBase
 {
     public required Guid ActivityId { get; set; }
     public required string ActivityName { get; set; }
+    
 
     public static RegisteredActivitiesModel Empty => new()
     {

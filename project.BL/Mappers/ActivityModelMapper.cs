@@ -37,12 +37,13 @@ public class ActivityModelMapper :
                 SubjectName = entity.Subject.Name,
                 Capacity = entity.Capacity,
                 TeacherName = entity.Teacher.LastName, //TODO: nejakou metodu na ziskani celeho jmena i s tituly?
-                MaxPoints = entity.MaxPoints
+                MaxPoints = entity.MaxPoints,
+                TeacherId = entity.TeacherId
             };
     public override ActivityEntity MapToEntity(ActivityModel model)
         => throw new NotImplementedException("This method is unsupported. Use the other overload.");
     
-    public ActivityEntity MapToEntity(ActivityModel model, Guid evaluationId, Guid subjectId, Guid teacherId)
+    public ActivityEntity MapToEntity(ActivityModel model, Guid subjectId, Guid teacherId)
         => new()
         {
             Id = model.Id,

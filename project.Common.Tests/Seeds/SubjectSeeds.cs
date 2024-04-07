@@ -1,5 +1,7 @@
-﻿using project.DAL.Entities;
+﻿using System.Data.Common;
+using project.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using project.DAL.Enums;
 
 namespace project.Common.Tests.Seeds;
 
@@ -19,11 +21,18 @@ public static class SubjectSeeds
         Tag = "IFJ"
     };
 
-    
+    public static readonly SubjectEntity EmptySubject = new()
+    {
+        Id = default, 
+        Name = default!, 
+        Tag = default!
+    };
     
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<SubjectEntity>().HasData(
             IJC,
             IFJ
         );
+
+
 }

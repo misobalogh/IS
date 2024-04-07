@@ -8,7 +8,7 @@ public static class ActivitySeeds
 {
     public static readonly ActivityEntity IJCConsultation = new()
     {
-        Id = Guid.Parse("21adbcf5-f96d-4943-8249-d73401395a00"),
+        Id = Guid.Parse("21adbcf5-f96d-4943-8249-d73991395a00"),
         ActivityType = ActivityType.Consultation,
         Start = DateTime.Today,
         End = DateTime.Today,
@@ -38,6 +38,23 @@ public static class ActivitySeeds
         Teacher = TeacherSeeds.Lienka,
 
     };
+    
+    public static readonly ActivityEntity EmptyActivity = new()
+    {
+        Id = default,
+        Name = default!,
+        Start = default,
+        End = default,
+        Room = default,
+        Capacity = default,
+        ActivityType = default,
+        SubjectId = default,
+        TeacherId = default,
+        MaxPoints = default,
+        Subject = default!,
+        Teacher = default!
+    };
+
     
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<ActivityEntity>().HasData(

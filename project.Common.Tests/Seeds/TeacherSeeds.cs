@@ -22,11 +22,21 @@ public static class TeacherSeeds
         Email = "lienka@email.com",
         Password = "#ASDld10981"
     };
-    
-    
+
+    public static TeacherEntity TeacherEntity = new()
+    {
+        Email = "test@email.cz",
+        FirstName = "Honza",
+        LastName = "Novák",
+        Id = Guid.Parse(input: "60b189ce-34fe-4260-b36b-6adefa4e0f2d"),
+        Password = "secret_hard_password."
+    };
+
+
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<TeacherEntity>().HasData(
             Chrobak,
-            Lienka
+            Lienka,
+            TeacherEntity
         );
 }
