@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using project.DAL.Entities;
+using project.DAL.Seeds;
 
 namespace project.DAL;
 
 public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemoData = false)
     : DbContext(contextOptions)
 {
+    
     public DbSet<ActivityEntity> Activities => Set<ActivityEntity>();
     public DbSet<EvaluationEntity> Evaluations => Set<EvaluationEntity>();
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
@@ -33,5 +35,18 @@ public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemo
             .HasMany(i => i.Subjects)
             .WithOne(i => i.Teacher)
             .OnDelete(DeleteBehavior.Cascade);
+
+        seedDemoData = true;
+        if (seedDemoData)
+        {
+            SubjectSeeds.Seed(modelBuilder);
+            StudentSeeds.Seed(modelBuilder);
+            EvaluationSeeds.Seed(modelBuilder);
+            TeacherSeeds.Seed(modelBuilder);
+            TeachingSubjectsSeeds.Seed(modelBuilder);
+            RegisteredSubjectsSeeds.Seed(modelBuilder);
+            ActivitySeeds.Seed(modelBuilder);
+            RegisteredActivitiesSeeds.Seed(modelBuilder);
+        }
     }
 }
