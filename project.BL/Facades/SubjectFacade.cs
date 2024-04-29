@@ -7,21 +7,19 @@ using project.DAL.UnitOfWork;
 
 namespace project.BL.Facades;
 
-public class SubjectFacade(IUnitOfWorkFactory unitOfWorkFactory, SubjectModelMapper subjectModelMapper) 
-    : FacadeBase<SubjectEntity, SubjectListModel, SubjectModel, SubjectEntityMapper>(unitOfWorkFactory, subjectModelMapper), ISubjectFacade
+public class SubjectFacade(IUnitOfWorkFactory unitOfWorkFactory, SubjectModelMapper subjectModelMapper)
+    : FacadeBase<SubjectEntity, SubjectListModel, SubjectModel, SubjectEntityMapper>(unitOfWorkFactory,
+        subjectModelMapper), ISubjectFacade
 {
-    //public async Task SaveAsync(SubjectModel model)
-    //{
-    //    SubjectEntity entity = subjectModelMapper.MapToEntity(model);
+    public async Task<List<SubjectListModel>> SearchSubject(string searchTerm)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+        var repository = unitOfWork.GetRepository<SubjectEntity, SubjectEntityMapper>();
 
-    //    await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-    //    IRepository<SubjectEntity> repository =
-    //        unitOfWork.GetRepository<SubjectEntity, SubjectEntityMapper>();
+        IQueryable<SubjectEntity> query = repository.Get()
+            .Where(entity => entity.Tag.ToLower().Contains(searchTerm.ToLower()) || entity.Name.ToLower().Contains(searchTerm.ToLower()));
+        //TODO: bude lepší startWith(searchTerm) nebo toto?
 
-    //    if (await repository.ExistsAsync(entity))
-    //    {
-    //        await repository.UpdateAsync(entity);
-    //        await unitOfWork.CommitAsync();
-    //    }
-    //}
+        return query.AsEnumerable().Select(subjectModelMapper.MapToListModel).ToList();
+    }
 }

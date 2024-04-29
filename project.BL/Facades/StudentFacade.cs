@@ -12,18 +12,15 @@ namespace project.BL.Facades;
 public class StudentFacade(IUnitOfWorkFactory unitOfWorkFactory, StudentModelMapper studentModelMapper) 
     : FacadeBase<StudentEntity, StudentListModel, StudentModel, StudentEntityMapper>(unitOfWorkFactory, studentModelMapper), IStudentFacade
 {
-    // public async Task SaveAsync(StudentModel model, Guid studentId)
-    // {
-    //     StudentEntity entity = studentModelMapper.MapToEntity(model);
-    //
-    //     await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-    //     IRepository<StudentEntity> repository =
-    //         unitOfWork.GetRepository<StudentEntity, StudentEntityMapper>();
-    //
-    //     if (await repository.ExistsAsync(entity))
-    //     {
-    //         await repository.UpdateAsync(entity);
-    //         await unitOfWork.CommitAsync();
-    //     }
-    // }
+    public async Task<List<StudentListModel>> SearchStudent(string searchTerm)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+        var repository = unitOfWork.GetRepository<StudentEntity, StudentEntityMapper>();
+
+        IQueryable<StudentEntity> query = repository.Get()
+            .Where(entity => entity.FirstName.ToLower().Contains(searchTerm.ToLower()) || entity.LastName.ToLower().Contains(searchTerm.ToLower()));
+        //TODO: bude lepší startWith(searchTerm) nebo toto?
+
+        return query.AsEnumerable().Select(studentModelMapper.MapToListModel).ToList();
+    }
 }
