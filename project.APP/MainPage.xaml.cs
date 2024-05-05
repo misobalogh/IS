@@ -1,4 +1,4 @@
-﻿namespace project.APP
+﻿namespace project.App
 {
     public partial class MainPage : ContentPage
     {
