@@ -3,8 +3,6 @@ using System.Reflection;
 using project.BL.Facades.Interfaces;
 using project.BL.Mappers;
 using project.BL.Models;
-using project.BL.Services;
-using project.DAL;
 using project.DAL.Entities;
 using project.DAL.Mappers;
 using project.DAL.Repositories;
@@ -52,7 +50,12 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
         var repository = unitOfWork.GetRepository<ActivityEntity, ActivityEntityMapper>();
-        var activities = await repository.Get().ToListAsync();
+        var activities = await repository.Get()
+            .Include(a => a.Subject)
+            .Include(a => a.Teacher)
+            .ToListAsync();
+
+        var activityModels = activities.Select(activityModelMapper.MapToListModel).ToList();
 
         PropertyInfo? propInfo = typeof(ActivityListModel).GetProperty(sortBy);
         if (propInfo == null)
@@ -61,9 +64,9 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
         }
 
         var sortedActivities = descending
-            ? activities.OrderByDescending(a => propInfo.GetValue(a, null))
-            : activities.OrderBy(a => propInfo.GetValue(a, null));
+            ? activityModels.OrderByDescending(a => propInfo.GetValue(a, null))
+            : activityModels.OrderBy(a => propInfo.GetValue(a, null));
 
-        return sortedActivities.Select(activityModelMapper.MapToListModel).ToList();
+        return sortedActivities.ToList();
     }
 }

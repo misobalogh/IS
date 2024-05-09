@@ -2,7 +2,6 @@
 using project.BL.Models;
 using project.DAL.Entities;
 using project.DAL.Mappers;
-using project.DAL.Repositories;
 using project.DAL.UnitOfWork;
 
 namespace project.BL.Facades;
@@ -18,7 +17,6 @@ public class SubjectFacade(IUnitOfWorkFactory unitOfWorkFactory, SubjectModelMap
 
         IQueryable<SubjectEntity> query = repository.Get()
             .Where(entity => entity.Tag.ToLower().Contains(searchTerm.ToLower()) || entity.Name.ToLower().Contains(searchTerm.ToLower()));
-        //TODO: bude lepší startWith(searchTerm) nebo toto?
 
         return query.AsEnumerable().Select(subjectModelMapper.MapToListModel).ToList();
     }
