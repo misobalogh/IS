@@ -61,4 +61,41 @@ public static class ActivitySeeds
             IFJMidterm with { Subject = null!, Teacher = null! },
             IJCConsultation with { Subject = null!, Teacher = null! }
         );
+
+    public static void SeedActivitiesForTesting()
+    {
+        var activities = new List<ActivityEntity>
+        {
+            new ActivityEntity
+            {
+                Id = Guid.NewGuid(),
+                Name = "Math Lecture",
+                Start = new DateTime(2024, 5, 10, 9, 0, 0),
+                End = new DateTime(2024, 5, 10, 11, 0, 0),
+                Room = Room.B01,
+                Capacity = 30,
+                ActivityType = ActivityType.Lecture,
+                MaxPoints = null,
+                SubjectId = SubjectSeeds.IFJ.Id,
+                Subject = SubjectSeeds.IFJ,
+                TeacherId = TeacherSeeds.Lienka.Id,
+                Teacher = TeacherSeeds.Lienka,
+            },
+            new ActivityEntity
+            {
+                Id = Guid.NewGuid(),
+                Name = "History Seminar",
+                Start = new DateTime(2024, 5, 15, 14, 0, 0),
+                End = new DateTime(2024, 5, 15, 16, 0, 0),
+                Room = Room.B02,
+                Capacity = 20,
+                ActivityType = ActivityType.Lecture,
+                MaxPoints = 5,
+                SubjectId = SubjectSeeds.IFJ.Id,
+                Subject = SubjectSeeds.IFJ,
+                TeacherId = TeacherSeeds.Lienka.Id,
+                Teacher = TeacherSeeds.Lienka,
+            }
+        };
+    }
 }

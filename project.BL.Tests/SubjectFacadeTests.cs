@@ -3,6 +3,7 @@ using project.BL.Models;
 using project.Common.Tests;
 using project.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
+using project.DAL.Entities;
 using project.DAL.Enums;
 using Xunit;
 using Xunit.Abstractions;
@@ -120,5 +121,36 @@ public sealed class SubjectFacadeTests : FacadeTestsBase
         await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
         var ingredientFromDb = await dbxAssert.Subjects.SingleAsync(i => i.Id == subject.Id);
         DeepAssert.Equal(subject, SubjectModelMapper.MapToDetailModel(ingredientFromDb));
+    }
+
+    [Theory]
+    [InlineData("math")]
+    [InlineData("History")]
+    [InlineData("bio")] 
+    public async Task SearchSubject_ReturnsFilteredSubjects(string searchTerm)
+    {
+        // Arrange
+        var seededSubjects = new List<SubjectEntity>
+        {
+            new SubjectEntity { Id = Guid.NewGuid(), Name = "Mathematics", Tag = "MATH101" },
+            new SubjectEntity { Id = Guid.NewGuid(), Name = "History", Tag = "HIST202" },
+            new SubjectEntity { Id = Guid.NewGuid(), Name = "Biology", Tag = "BIO303" }
+        };
+
+        await using (var dbx = await DbContextFactory.CreateDbContextAsync())
+        {
+            dbx.Subjects.AddRange(seededSubjects);
+            await dbx.SaveChangesAsync();
+        }
+
+        // Act
+        var results = await _subjectFacadeSUT.SearchSubject(searchTerm);
+
+        // Assert
+        Assert.NotEmpty(results);
+        Assert.All(results, subject => Assert.True(
+            subject.SubjectName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+            subject.SubjectTag.Contains(searchTerm, StringComparison.OrdinalIgnoreCase),
+            $"SearchTerm: {searchTerm}"));
     }
 }

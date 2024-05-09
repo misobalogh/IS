@@ -6,5 +6,5 @@ namespace project.BL.Facades;
 
 public interface ISubjectFacade : IFacade<SubjectEntity, SubjectListModel, SubjectModel>
 {
-    //Task SaveAsync(SubjectModel model);
+    Task<List<SubjectListModel>> SearchSubject(string searchTerm);
 }
