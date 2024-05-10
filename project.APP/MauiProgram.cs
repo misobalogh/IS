@@ -2,6 +2,10 @@
 using project.App.ViewModels;
 using project.App.Views.StudentViews;
 using project.App.Views.LoginViews;
+using project.BL;
+using CookBook.DAL.Options;
+using Microsoft.Extensions.Configuration;
+using CookBook.DAL;
 
 namespace project.App
 {
@@ -22,6 +26,10 @@ namespace project.App
     		builder.Logging.AddDebug();
 #endif
 
+            builder.Services
+                .AddDALServices(GetDALOptions(builder.Configuration))
+                //TODO: .AddAppServices()
+                .AddBLServices();
 
             Routing.RegisterRoute(nameof(StudentClassificationView), typeof(StudentClassificationView));
             Routing.RegisterRoute(nameof(StudentRegistrationView), typeof(StudentRegistrationView));
@@ -30,6 +38,16 @@ namespace project.App
             Routing.RegisterRoute(nameof(StudentTestsView), typeof(StudentTestsView));
 
             return builder.Build();
+        }
+
+        private static DALOptions GetDALOptions(IConfiguration configuration)
+        {
+            DALOptions dalOptions = new()
+            {
+                DatabaseDirectory = FileSystem.AppDataDirectory
+            };
+            configuration.GetSection("CookBook:DAL").Bind(dalOptions);
+            return dalOptions;
         }
     }
 }

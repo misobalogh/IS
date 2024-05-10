@@ -1,11 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using project.App.Views.StudentViews;
+using project.BL.Facades;
+using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class StudentSubjectsViewModel : ViewModelBase
+public partial class StudentSubjectsViewModel(ISubjectFacade subjectFacade) : ViewModelBase
 {    //TODO NOT IMPLEMENTED
+
+    public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
+
+        Subjects = await subjectFacade.GetAsync();
+    }
 
     [RelayCommand]
     async Task GoToSchedule()

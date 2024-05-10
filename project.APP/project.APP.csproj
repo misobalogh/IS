@@ -57,12 +57,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="ContentPageBase.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\avatar_placeholder.png" />
 	  <None Remove="Resources\Images\empty_pfp.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Include="Views\ContentPageBase.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />

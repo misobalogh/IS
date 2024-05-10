@@ -1,8 +1,6 @@
 ﻿using project.BL.Mappers;
 using project.BL.Models;
 using project.DAL.Entities;
-using project.BL.Models;
-using project.BL.Mappers;
 using project.DAL.Mappers;
 using project.DAL.Repositories;
 using project.DAL.UnitOfWork;
