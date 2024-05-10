@@ -3,9 +3,10 @@ using project.App.ViewModels;
 using project.App.Views.StudentViews;
 using project.App.Views.LoginViews;
 using project.BL;
-using CookBook.DAL.Options;
+using project.DAL.Options;
 using Microsoft.Extensions.Configuration;
-using CookBook.DAL;
+using project.DAL;
+using System.Reflection;
 
 namespace project.App
 {
@@ -26,6 +27,8 @@ namespace project.App
     		builder.Logging.AddDebug();
 #endif
 
+            ConfigureAppSettings(builder);
+
             builder.Services
                 .AddDALServices(GetDALOptions(builder.Configuration))
                 //TODO: .AddAppServices()
@@ -40,13 +43,29 @@ namespace project.App
             return builder.Build();
         }
 
+        private static void ConfigureAppSettings(MauiAppBuilder builder)
+        {
+            var configurationBuilder = new ConfigurationBuilder();
+
+            var assembly = Assembly.GetExecutingAssembly();
+            const string appSettingsFilePath = "project.App.appsettings.json";
+            using var appSettingsStream = assembly.GetManifestResourceStream(appSettingsFilePath);
+            if (appSettingsStream is not null)
+            {
+                configurationBuilder.AddJsonStream(appSettingsStream);
+            }
+
+            var configuration = configurationBuilder.Build();
+            builder.Configuration.AddConfiguration(configuration);
+        }
+
         private static DALOptions GetDALOptions(IConfiguration configuration)
         {
             DALOptions dalOptions = new()
             {
                 DatabaseDirectory = FileSystem.AppDataDirectory
             };
-            configuration.GetSection("CookBook:DAL").Bind(dalOptions);
+            configuration.GetSection("project:DAL").Bind(dalOptions);
             return dalOptions;
         }
     }

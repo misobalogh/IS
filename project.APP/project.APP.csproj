@@ -66,14 +66,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Include="Views\ContentPageBase.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -96,6 +92,9 @@
 	  <Compile Update="Shells\AppShell.xaml.cs">
 	    <DependentUpon>AppShell.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ContentPageBase.xaml.cs">
+	    <DependentUpon>ContentPageBase.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\StudentViews\StudentScheduleView.xaml.cs">
 	    <DependentUpon>StudentScheduleView.xaml</DependentUpon>
 	  </Compile>
@@ -103,6 +102,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\LoginViews\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentPageBase.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentViews\StudentClassificationView.xaml">

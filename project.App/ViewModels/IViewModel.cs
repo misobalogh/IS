@@ -1,4 +1,4 @@
-﻿namespace CookBook.App.ViewModels;
+﻿namespace project.App.ViewModels;
 
 public interface IViewModel
 {

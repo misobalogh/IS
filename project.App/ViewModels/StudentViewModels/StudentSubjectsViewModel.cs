@@ -6,17 +6,17 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class StudentSubjectsViewModel(ISubjectFacade subjectFacade) : ViewModelBase
+public partial class StudentSubjectsViewModel() : ViewModelBase
 {    //TODO NOT IMPLEMENTED
 
-    public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+    //public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
 
-    protected override async Task LoadDataAsync()
-    {
-        await base.LoadDataAsync();
+    //protected override async Task LoadDataAsync()
+    //{
+    //    await base.LoadDataAsync();
 
-        Subjects = await subjectFacade.GetAsync();
-    }
+    //    Subjects = await subjectFacade.GetAsync();
+    //}
 
     [RelayCommand]
     async Task GoToSchedule()

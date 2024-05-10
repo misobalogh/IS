@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
-using CookBook.App.ViewModels;
+using project.App.ViewModels;
 using project.App.Shells;
 using project.App.ViewModels;
 using project.App.Views;

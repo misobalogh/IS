@@ -1,16 +1,13 @@
-﻿using CookBook.DAL.Factories;
-using CookBook.DAL.Mappers;
-using CookBook.DAL.Migrator;
-using CookBook.DAL.Options;
+﻿using project.DAL.Factories;
+using project.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using project.DAL;
-using project.DAL.Factories;
-using project.DAL.Mappers;
+using project.DAL.Options;
 
-namespace CookBook.DAL;
+namespace project.DAL;
 
 public static class DALInstaller
 {
@@ -31,13 +28,18 @@ public static class DALInstaller
         {
             throw new InvalidOperationException($"{nameof(options.DatabaseDirectory)} is not set");
         }
-        if (string.IsNullOrEmpty(options.DatabaseName))
-        {
-            throw new InvalidOperationException($"{nameof(options.DatabaseName)} is not set");
-        }
+        //TODO: pokusit se to udelat jako v kucharce, nejde to
+        //if (string.IsNullOrEmpty(options.DatabaseName))
+        //{
+        //    throw new InvalidOperationException($"{nameof(options.DatabaseName)} is not set");
+        //}
 
+        //services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(_ =>
+        //    new DbContextSqLiteFactory(options.DatabaseFilePath, options?.SeedDemoData ?? false));
+
+        //TODO: seedTestingData pred produkci na false
         services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(_ =>
-            new DbContextSqLiteFactory(options.DatabaseFilePath, options?.SeedDemoData ?? false));
+            new DbContextSqLiteFactory("project.db", true));
 
         services.AddSingleton<ActivityEntityMapper>();
         services.AddSingleton<EnrolledSubjectEntityMapper>();
