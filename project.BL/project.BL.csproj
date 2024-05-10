@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PropertyChanged.Fody" PrivateAssets="All" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\project.DAL\project.DAL.csproj" />
   </ItemGroup>
 

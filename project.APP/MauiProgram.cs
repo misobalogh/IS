@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using project.App.ViewModels;
+using project.App.Views.StudentViews;
+using project.App.Views.LoginViews;
 
 namespace project.App
 {
@@ -18,6 +21,13 @@ namespace project.App
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+
+            Routing.RegisterRoute(nameof(StudentClassificationView), typeof(StudentClassificationView));
+            Routing.RegisterRoute(nameof(StudentRegistrationView), typeof(StudentRegistrationView));
+            Routing.RegisterRoute(nameof(StudentScheduleView), typeof(StudentScheduleView));
+            Routing.RegisterRoute(nameof(StudentSubjectsView), typeof(StudentSubjectsView));
+            Routing.RegisterRoute(nameof(StudentTestsView), typeof(StudentTestsView));
 
             return builder.Build();
         }
