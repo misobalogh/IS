@@ -1,12 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using project.App.Services;
 using project.App.Views.StudentViews;
 using project.BL.Models;
 using project.DAL.Enums;
 
 namespace project.App.ViewModels;
 
-public partial class StudentRegistrationViewModel : ViewModelBase
+public partial class StudentRegistrationViewModel(IMessengerService messengerService) : ViewModelBase(messengerService)
 {    //TODO NOT IMPLEMENTED
 
     private static ActivityModel _ac1 => new()

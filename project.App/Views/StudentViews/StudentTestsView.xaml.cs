@@ -1,8 +1,10 @@
+﻿using project.App.ViewModels;
+
 namespace project.App.Views.StudentViews;
 
-public partial class StudentTestsView : ContentPage
+public partial class StudentTestsView   
 {
-	public StudentTestsView()
+	public StudentTestsView(StudentTestsViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
 	}

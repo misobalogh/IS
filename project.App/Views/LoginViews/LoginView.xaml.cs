@@ -2,10 +2,10 @@
 
 namespace project.App.Views.LoginViews;
 
-public partial class LoginView : ContentPage
+public partial class LoginView
 {
-	public LoginView()
+	public LoginView(LoginViewModel viewModel) : base(viewModel)
 	{
-		InitializeComponent();
+        InitializeComponent();
 	}
 }

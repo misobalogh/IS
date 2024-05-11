@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="project.App.Views.StudentViews.StudentSubjectsView"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:views="clr-namespace:project.App.Views"
+             x:DataType="viewModels:StudentSubjectsViewModel"
              >
-    <ContentPage.BindingContext>
-        <viewModels:StudentSubjectsViewModel/>
-    </ContentPage.BindingContext>
-
-    <!--TODO this view is not finished-->
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
@@ -52,4 +49,4 @@
 
         </Grid>
     </Grid>
-</ContentPage>
+</views:ContentPageBase>

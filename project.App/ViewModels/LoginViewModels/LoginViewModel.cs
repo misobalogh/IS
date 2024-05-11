@@ -1,11 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using project.App.Views.StudentViews;
+using project.App.Services;
 using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class LoginViewModel : ViewModelBase
+public partial class LoginViewModel(IMessengerService messengerService) : ViewModelBase(messengerService)
 {
     public StudentModel model { get; set; } = StudentModel.Empty;
     public string? LoginCredential { get; set; }
