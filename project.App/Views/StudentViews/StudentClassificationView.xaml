@@ -52,19 +52,40 @@
 
 
             <ListView Grid.Column="1" ItemsSource="{Binding EnrolledSubjects}">
+                <ListView.Header>
+                    <Grid Padding="10" BackgroundColor="#ab93e3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Subject" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                        <Label Text="Points" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                        <Label Text="Mark" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                    </Grid>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="10">
-                                <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
-                                <Label Text="{Binding Points}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />
-                                <BoxView BackgroundColor="White" WidthRequest="1" VerticalOptions="FillAndExpand" Margin="5,0" />
-                                <Label Text="{Binding Mark, Converter={StaticResource MarkToString}}" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Padding="5,0" />
-                            </StackLayout>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Points}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                <Label Text="{Binding Mark, Converter={StaticResource MarkToString}}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
             </ListView>
+
+
+
+
         </Grid>
     </Grid>
 </ContentPage>
