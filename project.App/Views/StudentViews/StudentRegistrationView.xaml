@@ -48,8 +48,48 @@
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
             <!--ENTER PAGE CONTENT HERE-->
-
-
+            <ListView Grid.Column="1" ItemsSource="{Binding Activity}">
+                <ListView.Header>
+                    <Grid Padding="10" BackgroundColor="#ab93e3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Subject" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                        <Label Text="Tag" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                        <Label Text="Teacher" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
+                        <Label Text="Capacity" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
+                        <Label Text="Registered" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                                <Label Text="{Binding Name}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                                <Label Text="{Binding TeacherName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
+                                <Label Text="{Binding Capacity}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
+                                <!--<Label Text="OK/NOK" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"/>-->
+                                <Button Text="Register" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"
+                                        Command="{Binding RegisterCommand}"
+                                        CommandParameter="{Binding PropertyToPass}"/>
+                                
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </ContentPage>
