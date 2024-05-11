@@ -13,7 +13,7 @@
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
         <!--header-->
-        <Label Text="App - SUBJECTS VIEW" 
+        <Label Text="Subjects" 
                FontSize="40"
                Padding="40"/>
         <HorizontalStackLayout Grid.Column="3"
