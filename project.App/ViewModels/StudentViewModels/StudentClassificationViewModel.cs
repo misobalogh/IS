@@ -1,61 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using project.App.Views.StudentViews;
+using project.App.Services;
+using project.BL.Facades;
 using project.BL.Models;
-using project.DAL.Enums;
+using CommunityToolkit.Mvvm.Messaging;
 
-namespace project.App.ViewModels.StudentViewModels;
+namespace project.App.ViewModels;
 
-public partial class StudentClassificationViewModel : ViewModelBase
+public partial class StudentClassificationViewModel(
+    IEnrolledSubjectsFacade enrolledSubjectsFacade,
+    IMessengerService messengerService) : ViewModelBase(messengerService)
 {
-    private static EnrolledSubjectsModel _es1 => new()
+    public EnrolledSubjectsModel? EnrolledSubjects { get; 
+        private set; }
+    protected override async Task LoadDataAsync()
     {
-        SubjectId = Guid.Parse("d7ebd9e9-95a6-4a67-b43f-c16c0475f735"),
-        SubjectName = "IDM",
-        Points = 49,
-        Mark = Mark.F,
-        Year = DateTime.Now
-    };
-
-    private static EnrolledSubjectsModel _es2 => new()
-    {
-        SubjectId = Guid.Empty,
-        SubjectName = "IDS",
-        Points = 99,
-        Mark = Mark.A,
-        Year = DateTime.Now
-    };
-
-    private static EnrolledSubjectsModel _es3 => new()
-    {
-        SubjectId = Guid.Empty,
-        SubjectName = "ICS",
-        Points = 0,
-        Mark = Mark.None,
-        Year = DateTime.Now
-    };
-
-
-    private static EnrolledSubjectsModel _es4 => new()
-    {
-        SubjectId = Guid.Empty,
-        SubjectName = "IPP",
-        Points = 30,
-        Mark = Mark.None,
-        Year = DateTime.Now
-    };
-
-    public List<EnrolledSubjectsModel> _enrolledSubjects =
-    [
-        _es1,
-        _es2,
-        _es3,
-        _es4,
-    ];
-
-    public List<EnrolledSubjectsModel> EnrolledSubjects
-    {
-        get => _enrolledSubjects;
-        set => SetProperty(ref _enrolledSubjects, value);
+        await base.LoadDataAsync();
+        EnrolledSubjects = await enrolledSubjectsFacade.GetAsync(Guid.Parse("371a5d4a-c60d-4e45-b3a1-db2bca96b24e"));
     }
 
     [RelayCommand]

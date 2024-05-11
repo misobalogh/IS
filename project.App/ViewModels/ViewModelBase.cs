@@ -1,21 +1,20 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using project.App.Services;
 
-
-//TODO temporary implementation of ViewModelBase, will have add messages like in cockmagasine
 namespace project.App.ViewModels;
 
-
-public abstract class ViewModelBase : ObservableObject//INotifyPropertyChanged
+public abstract class ViewModelBase : ObservableRecipient, IViewModel
 {
-    //public event PropertyChangedEventHandler? PropertyChanged;
-    //protected virtual void OnPropertyChanged ([CallerMemberName] string propertyName = null)
-    //{
-    //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); 
-    //}
-
     private bool _isRefreshRequired = true;
+
+    protected readonly IMessengerService MessengerService;
+
+    protected ViewModelBase(IMessengerService messengerService)
+        : base(messengerService.Messenger)
+    {
+        MessengerService = messengerService;
+        IsActive = true;
+    }
 
     public async Task OnAppearingAsync()
     {
@@ -30,4 +29,3 @@ public abstract class ViewModelBase : ObservableObject//INotifyPropertyChanged
     protected virtual Task LoadDataAsync()
         => Task.CompletedTask;
 }
-
