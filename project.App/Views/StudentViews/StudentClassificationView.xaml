@@ -4,7 +4,8 @@
              x:Class="project.App.Views.StudentViews.StudentClassificationView"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
              xmlns:converters="clr-namespace:project.App.Converters"
-             xmlns:studentViewModels="clr-namespace:project.App.ViewModels.StudentViewModels">
+             xmlns:studentViewModels="clr-namespace:project.App.ViewModels.StudentViewModels"
+             x:Name="Page">
     <ContentPage.BindingContext>
         <studentViewModels:StudentClassificationViewModel/>
     </ContentPage.BindingContext>
@@ -73,6 +74,11 @@
                                     <ColumnDefinition Width="1*" />
                                     <ColumnDefinition Width="1*" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowSubjectDetailsCommand, Source={x:Reference Page}}"
+                                          CommandParameter="{Binding .}"
+                                          NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
                                 <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
                                 <Label Text="{Binding Points}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
                                 <Label Text="{Binding Mark, Converter={StaticResource MarkToString}}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
