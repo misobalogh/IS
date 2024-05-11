@@ -9,7 +9,7 @@ public partial class StudentClassificationViewModel : ViewModelBase
 {
     private static EnrolledSubjectsModel _es1 => new()
     {
-        SubjectId = Guid.Empty,
+        SubjectId = Guid.Parse("d7ebd9e9-95a6-4a67-b43f-c16c0475f735"),
         SubjectName = "IDM",
         Points = 49,
         Mark = Mark.F,
@@ -56,6 +56,14 @@ public partial class StudentClassificationViewModel : ViewModelBase
     {
         get => _enrolledSubjects;
         set => SetProperty(ref _enrolledSubjects, value);
+    }
+
+    [RelayCommand]
+    async Task ShowSubjectDetails(EnrolledSubjectsModel subject)
+    {
+        if (subject == null) return;
+        var route = $"{nameof(StudentClassificationSubjectDetailView)}?subjectId={subject.SubjectId}";
+        await Shell.Current.GoToAsync(route);
     }
 
     [RelayCommand]

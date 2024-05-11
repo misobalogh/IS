@@ -41,6 +41,7 @@ namespace project.App
             Routing.RegisterRoute(nameof(StudentScheduleView), typeof(StudentScheduleView));
             Routing.RegisterRoute(nameof(StudentSubjectsView), typeof(StudentSubjectsView));
             Routing.RegisterRoute(nameof(StudentTestsView), typeof(StudentTestsView));
+            Routing.RegisterRoute(nameof(StudentClassificationSubjectDetailView), typeof(StudentClassificationSubjectDetailView));
 
             return builder.Build();
         }

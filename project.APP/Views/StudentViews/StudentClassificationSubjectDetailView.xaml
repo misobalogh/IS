@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="project.App.Views.StudentViews.StudentClassificationSubjectDetailView"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:converters="clr-namespace:project.App.Converters"
+             xmlns:studentViewModels="clr-namespace:project.App.ViewModels.StudentViewModels"
+             x:Name="Page">
+    <ContentPage.BindingContext>
+        <studentViewModels:StudentClassificationSubjectDetailViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <converters:MarkToString x:Key="MarkToString"/>
+    </ContentPage.Resources>
+
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!--header-->
+        <Label Text="Student Classification" 
+               FontSize="40"
+               Padding="40"/>
+        <HorizontalStackLayout Grid.Column="3"
+                               Padding="20"
+                               Spacing="20"
+                               HorizontalOptions="End">
+            <Label Text="Name" FontSize="25"/>
+            <Label Text="Surname" FontSize="25"/>
+            <ImageButton Source="avatar_placeholder.png"
+                         BackgroundColor="Transparent"/>
+        </HorizontalStackLayout>
+
+        <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions=".15*,.85*">
+            <!--navigation menu-->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="schedule" Command="{Binding GoToScheduleCommand}"/>
+                <Button TextColor="White" Background="#6E6E6E"     FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="classification" Command="{Binding GoToClassificationCommand}" IsEnabled="False"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="tests" Command="{Binding GoToTestsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="registration" Command="{Binding GoToRegistrationCommand}"/>
+            </VerticalStackLayout>
+            <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+
+
+            <ListView Grid.Column="1" ItemsSource="{Binding enrolledSubject}">
+                <ListView.Header>
+                    <Grid Padding="10" BackgroundColor="#ab93e3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding SubjectId}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                        <Label Text="Points" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                        <Label Text="Mark" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                               
+                                <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Points}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                <Label Text="{Binding Mark, Converter={StaticResource MarkToString}}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </Grid>
+    </Grid>
+</ContentPage>
