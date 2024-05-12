@@ -6,6 +6,7 @@ using project.DAL.Options;
 using Microsoft.Extensions.Configuration;
 using project.DAL;
 using System.Reflection;
+using project.DAL.Migrator;
 
 namespace project.App;
 
@@ -43,7 +44,8 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(StudentTestsView), typeof(StudentTestsView));
         Routing.RegisterRoute(nameof(StudentClassificationSubjectDetailView), typeof(StudentClassificationSubjectDetailView));
         
-        // MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
+        MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
+
         return app;
     }
 
@@ -73,5 +75,5 @@ public static class MauiProgram
         return dalOptions;
     }
     
-    // private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
+    private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
 }
