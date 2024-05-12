@@ -2,6 +2,7 @@
 using project.App.ViewModels;
 using project.App.Shells;
 using project.App.Views;
+using project.App.Services;
 
 namespace project.App;
 
@@ -11,7 +12,10 @@ public static class AppInstaller
     {
         services.AddSingleton<AppShell>();
 
-        //TODO: messengerService, alertService, pokud bude potreba
+        services.AddSingleton<IMessenger>(_ => StrongReferenceMessenger.Default);
+        services.AddSingleton<IMessengerService, MessengerService>();
+
+        services.AddSingleton<IAlertService, AlertService>();
 
         services.Scan(selector => selector
             .FromAssemblyOf<App>()

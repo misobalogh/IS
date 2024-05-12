@@ -7,17 +7,17 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class StudentSubjectsViewModel(IMessengerService messengerService) : ViewModelBase(messengerService)
+public partial class StudentSubjectsViewModel(ISubjectFacade subjectFacade, IMessengerService messengerService) : ViewModelBase(messengerService)
 {    //TODO NOT IMPLEMENTED
 
-    //public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+    public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
 
-    //protected override async Task LoadDataAsync()
-    //{
-    //    await base.LoadDataAsync();
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
 
-    //    Subjects = await subjectFacade.GetAsync();
-    //}
+        Subjects = await subjectFacade.GetAsync();
+    }
 
     [RelayCommand]
     async Task GoToSchedule()
