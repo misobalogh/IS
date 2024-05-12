@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-
              xmlns:views="clr-namespace:project.App.Views"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              x:Class="project.App.Views.StudentViews.StudentRegistrationView"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
              x:DataType="viewModels:StudentRegistrationViewModel"
@@ -46,7 +46,7 @@
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
             <!--ENTER PAGE CONTENT HERE-->
-            <ListView Grid.Column="1" ItemsSource="{Binding Activity}">
+            <ListView Grid.Column="1" ItemsSource="{Binding Activities}">
                 <ListView.Header>
                     <Grid Padding="10" BackgroundColor="#ab93e3">
                         <Grid.ColumnDefinitions>
@@ -64,7 +64,8 @@
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <!--Do item tamplate detailny model (ActivityModel) a do viewModel dat ActivityListModel-->
+                    <DataTemplate x:DataType="m:ActivityModel">
                         <ViewCell>
                             <Grid Padding="10">
                                 <Grid.ColumnDefinitions>
@@ -74,9 +75,16 @@
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Activity}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
-                               
-                                
+                                <!--pro předávání databáze je problém u modelů, buď přes Activity nebo přes Subject, ale Activity nemá jak se dostat k informaci, jestli je registrovaná nebo ne a Subject zase nemá jak se dostat k informaci, kdo předmět učí, otázka je, co má v téhle tabulce reálně být-->
+                                <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                                <Label Text="{Binding Name}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                                <Label Text="{Binding TeacherName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
+                                <Label Text="{Binding Capacity}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
+                                <Label Text="OK/NOK" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"/>
+                                <!--<Button Text="Register" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"-->
+                                <!--Command="{Binding RegisterCommand}"-->
+                                <!--         CommandParameter="{Binding PropertyToPass}"/>-->
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
