@@ -56,14 +56,12 @@
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <MauiXaml Remove="ContentPageBase.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\Images\avatar_placeholder.png" />
-    <None Remove="Resources\Images\empty_pfp.png" />
-  </ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Images\avatar_placeholder.png" />
+	  <None Remove="Resources\Images\empty_pfp.png" />
+	  <None Remove="Resources\Images\logo_1.png" />
+	  <None Remove="Resources\Images\profile.png" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
@@ -127,5 +125,28 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
   </ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Views\LoginViews\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentViews\StudentClassificationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentViews\StudentProfileView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentViews\StudentRegistrationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentViews\StudentScheduleView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentViews\StudentSubjectsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentViews\StudentTestsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
 
 </Project>

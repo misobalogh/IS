@@ -21,7 +21,7 @@
             <Label Text="Name" FontSize="25"/>
             <Label Text="Surname" FontSize="25"/>
             <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent"/>
+                         BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
         </HorizontalStackLayout>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>

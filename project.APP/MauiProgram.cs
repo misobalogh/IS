@@ -43,7 +43,9 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(StudentSubjectsView), typeof(StudentSubjectsView));
         Routing.RegisterRoute(nameof(StudentTestsView), typeof(StudentTestsView));
         Routing.RegisterRoute(nameof(StudentClassificationSubjectDetailView), typeof(StudentClassificationSubjectDetailView));
-        
+        Routing.RegisterRoute(nameof(StudentProfileView), typeof(StudentProfileView));
+
+
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
 
         return app;

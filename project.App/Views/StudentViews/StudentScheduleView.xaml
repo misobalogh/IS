@@ -8,12 +8,12 @@
              >
 
 
-    <!--TODO this view is not finished-->
+    <!--TODO load data from db-->
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
         <!--header-->
-        <Label Text="App - SCHEDULE VIEW" 
+        <Label Text="SCHEDULE" 
                FontSize="40"
                Padding="40"/>
         <HorizontalStackLayout Grid.Column="3"
@@ -23,7 +23,7 @@
             <Label Text="Name" FontSize="25"/>
             <Label Text="Surname" FontSize="25"/>
             <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent"/>
+                         BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
         </HorizontalStackLayout>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
@@ -48,8 +48,85 @@
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             
             <!--ENTER PAGE CONTENT HERE-->
-            
 
+            <!-- Separator -->
+            <BoxView Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Color="#404040"
+                 HeightRequest="3"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="End"/>
+            <!-- Layout Grid -->
+            <ScrollView Grid.Row="1"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+                <Grid HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  ColumnDefinitions="80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80"
+                  RowDefinitions="60, 50, 50, 50, 50, 50"
+                  ColumnSpacing="1">
+
+                    <!-- Time headers -->
+                    <Label HorizontalOptions="Center" Text="Time/Day" Grid.Column="0" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="7:00&#x0a;-&#x0a;7:50" Grid.Column="1" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="8:00&#x0a;-&#x0a;8:50" Grid.Column="2" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="9:00&#x0a;-&#x0a;9:50" Grid.Column="3" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="10:00&#x0a;-&#x0a;10:50" Grid.Column="4" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="11:00&#x0a;-&#x0a;11:50" Grid.Column="5" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="12:00&#x0a;-&#x0a;12:50" Grid.Column="6" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="13:00&#x0a;-&#x0a;13:50" Grid.Column="7" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="14:00&#x0a;-&#x0a;14:50" Grid.Column="8" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="15:00&#x0a;-&#x0a;15:50" Grid.Column="9" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="16:00&#x0a;-&#x0a;16:50" Grid.Column="10" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="17:00&#x0a;-&#x0a;17:50" Grid.Column="11" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="18:00&#x0a;-&#x0a;18:50" Grid.Column="12" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="19:00&#x0a;-&#x0a;19:50" Grid.Column="13" Grid.Row="0"/>
+                    <!-- Add the rest of the times similarly -->
+
+                    <!-- Day headers -->
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Monday" Grid.Column="0" Grid.Row="1"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Tuesday" Grid.Column="0" Grid.Row="2"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Wednesday" Grid.Column="0" Grid.Row="3"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Thursday" Grid.Column="0" Grid.Row="4"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Friday" Grid.Column="0" Grid.Row="5"/>
+                    <!-- Add the rest of the days similarly -->
+
+                    <!-- Dynamic content loaded here -->
+                    <!-- You need to bind each ContentView to a specific part of your model representing the schedule -->
+                    <!--<ContentView Grid.Column="1" Grid.Row="1" Content="{Binding Schedule[Monday][FirstSlot]}"/>-->
+                    <!--<ContentView Grid.Column="2" Grid.Row="1" Content="{Binding Schedule[Monday][SecondSlot]}"/>-->
+                    <!-- Continue binding for each slot -->
+
+                    <!-- Vertical lines -->
+                    <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="Start"/>
+                    <BoxView Color="White" Grid.Column="0" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="1" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="2" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="3" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="4" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="5" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="6" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="7" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="8" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="9" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="10" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="11" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="12" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="13" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <!-- Add more vertical lines for each column -->
+
+                    <!-- Horizontal lines -->
+                    <BoxView Color="White" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="14" HeightRequest="2" VerticalOptions="Start"/>
+                    <BoxView Color="White" Grid.Row="0" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="1" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="2" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="3" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="4" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="5" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <!-- Add more horizontal lines for each row -->
+                </Grid>
+            </ScrollView>
         </Grid>
     </Grid>
 </views:ContentPageBase>

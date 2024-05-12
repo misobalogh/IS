@@ -21,6 +21,11 @@ public partial class StudentRegistrationViewModel(IActivityFacade activityFacade
     }
 
     [RelayCommand]
+    async Task GoToStudentProfile()
+    {
+        await Shell.Current.GoToAsync(nameof(StudentProfileView));
+    }
+    [RelayCommand]
     async Task GoToSchedule()
     {
         await Shell.Current.GoToAsync(nameof(StudentScheduleView));

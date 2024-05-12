@@ -20,6 +20,11 @@ public partial class StudentSubjectsViewModel(ISubjectFacade subjectFacade, IMes
     }
 
     [RelayCommand]
+    async Task GoToStudentProfile()
+    {
+        await Shell.Current.GoToAsync(nameof(StudentProfileView));
+    }
+    [RelayCommand]
     async Task GoToSchedule()
     {
         await Shell.Current.GoToAsync(nameof(StudentScheduleView));
