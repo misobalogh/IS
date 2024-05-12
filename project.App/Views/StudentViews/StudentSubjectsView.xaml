@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="project.App.Views.StudentViews.StudentSubjectsView"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:views="clr-namespace:project.App.Views"
+             x:DataType="viewModels:StudentSubjectsViewModel"
              >
-    <ContentPage.BindingContext>
-        <viewModels:StudentSubjectsViewModel/>
-    </ContentPage.BindingContext>
-
-    <!--TODO this view is not finished-->
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
@@ -48,8 +46,35 @@
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
             <!--ENTER PAGE CONTENT HERE-->
+            <ListView Grid.Column="1" ItemsSource="{Binding Subjects}">
+                <ListView.Header>
+                    <Grid Padding="10" BackgroundColor="#ab93e3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Name" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                        <Label Text="Tag" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="m:SubjectListModel">
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                                <Label Text="{Binding SubjectTag}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
 
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
         </Grid>
     </Grid>
-</ContentPage>
+</views:ContentPageBase>

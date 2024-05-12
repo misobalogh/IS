@@ -1,8 +1,10 @@
-﻿namespace project.App.Views.StudentViews;
+﻿using project.App.ViewModels;
 
-public partial class StudentScheduleView : ContentPage
+namespace project.App.Views.StudentViews;
+
+public partial class StudentScheduleView
 {
-	public StudentScheduleView()
+	public StudentScheduleView(StudentScheduleViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
 	}

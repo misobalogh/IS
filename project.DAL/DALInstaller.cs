@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using project.DAL;
 using project.DAL.Options;
+using project.DAL.Migrator;
 
 namespace project.DAL;
 
@@ -40,6 +41,8 @@ public static class DALInstaller
         //TODO: seedTestingData pred produkci na false
         services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(_ =>
             new DbContextSqLiteFactory("project.db", true));
+
+        services.AddSingleton<IDbMigrator, DbMigrator>();
 
         services.AddSingleton<ActivityEntityMapper>();
         services.AddSingleton<EnrolledSubjectEntityMapper>();

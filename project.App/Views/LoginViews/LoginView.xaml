@@ -1,11 +1,11 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="project.App.Views.LoginViews.LoginView"
+             xmlns:views="clr-namespace:project.App.Views"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             x:DataType="viewModels:LoginViewModel"
              >
-    <ContentPage.BindingContext>
-        <viewModels:LoginViewModel/>
-    </ContentPage.BindingContext>
+   
 
     <Grid ColumnDefinitions="0.35*,0.3*,0.35*"
           RowDefinitions="*"
@@ -29,4 +29,4 @@
         </VerticalStackLayout>
     </Grid>
 
-</ContentPage>
+</views:ContentPageBase>

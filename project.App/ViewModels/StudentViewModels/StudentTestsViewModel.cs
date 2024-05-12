@@ -1,10 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using project.App.Services;
 using project.App.Views.StudentViews;
 
 namespace project.App.ViewModels;
 
-public partial class StudentTestsViewModel : ViewModelBase
+public partial class StudentTestsViewModel(IMessengerService messengerService) : ViewModelBase(messengerService)
 {    //TODO NOT IMPLEMENTED
 
     [RelayCommand]

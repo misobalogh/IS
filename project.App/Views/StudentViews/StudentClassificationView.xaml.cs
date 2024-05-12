@@ -1,8 +1,10 @@
-﻿namespace project.App.Views.StudentViews;
+﻿using project.App.ViewModels;
 
-public partial class StudentClassificationView : ContentPage
+namespace project.App.Views.StudentViews;
+
+public partial class StudentClassificationView
 {
-	public StudentClassificationView()
+	public StudentClassificationView(StudentClassificationViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
 	}
