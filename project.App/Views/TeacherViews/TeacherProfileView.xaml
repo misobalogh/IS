@@ -40,13 +40,13 @@
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="schedule" Command="{Binding GoToScheduleCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="schedule" Command="{Binding GoToClassificationCommand}"/>
+                        Text="classification" Command="{Binding GoToClassificationCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="tests" Command="{Binding GoToTestsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="students" Command="{Binding GoToStudentsCommand}"/>
+                    Text="students" Command="{Binding GoToStudentsCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
