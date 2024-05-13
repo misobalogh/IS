@@ -8,6 +8,7 @@ using project.DAL.Entities;
 using project.DAL.Mappers;
 using project.DAL.Repositories;
 using project.DAL.UnitOfWork;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace project.BL.Facades;
 
@@ -43,11 +44,13 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     public virtual async Task<TDetailModel?> GetAsync(Guid id)
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+
         IQueryable<TEntity> query = unitOfWork.GetRepository<TEntity, TEntityMapper>().Get();
         if (IncludesNavigationPathDetail.Count > 0)
         {
             IncludesNavigationPathDetail.ForEach(i => query = query.Include(i));
         }
+
         TEntity? entity = await query.SingleOrDefaultAsync(e => e.Id == id);
 
         return entity is null ? null : ModelMapper.MapToDetailModel(entity);
@@ -57,10 +60,14 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     public virtual async Task<IEnumerable<TListModel>> GetAsync()
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-        List<TEntity> entities = await unitOfWork
-            .GetRepository<TEntity, TEntityMapper>()
-            .Get()
-            .ToListAsync();
+
+        IQueryable<TEntity> query = unitOfWork.GetRepository<TEntity, TEntityMapper>().Get();
+        if (IncludesNavigationPathDetail.Count > 0)
+        {
+            IncludesNavigationPathDetail.ForEach(i => query = query.Include(i));
+        }
+
+        List<TEntity> entities = await query.ToListAsync();
 
         return ModelMapper.MapToListModel(entities);
     }

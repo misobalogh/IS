@@ -78,12 +78,10 @@
                                 <!--pro předávání databáze je problém u modelů, buď přes Activity nebo přes Subject, ale Activity nemá jak se dostat k informaci, jestli je registrovaná nebo ne a Subject zase nemá jak se dostat k informaci, kdo předmět učí, otázka je, co má v téhle tabulce reálně být-->
                                 <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
                                 <Label Text="{Binding Name}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-                                <Label Text="{Binding TeacherName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
                                 <Label Text="{Binding Capacity}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
-                                <Label Text="OK/NOK" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"/>
-                                <!--<Button Text="Register" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"-->
-                                <!--Command="{Binding RegisterCommand}"-->
-                                <!--         CommandParameter="{Binding PropertyToPass}"/>-->
+                                <Button Text="Register" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"
+                                    Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
+                                    CommandParameter="{Binding .}"/>
 
                             </Grid>
                         </ViewCell>

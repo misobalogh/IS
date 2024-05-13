@@ -21,6 +21,12 @@ public partial class StudentRegistrationViewModel(IActivityFacade activityFacade
     }
 
     [RelayCommand]
+    async Task Register(ActivityModel activity)
+    {
+        //TODO
+    }
+
+    [RelayCommand]
     async Task GoToStudentProfile()
     {
         await Shell.Current.GoToAsync(nameof(StudentProfileView));
