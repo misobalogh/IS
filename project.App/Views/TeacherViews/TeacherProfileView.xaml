@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="project.App.Views.TeacherViews.TeacherProfileView"
+                       xmlns:viewModels="clr-namespace:project.App.ViewModels"
+                       xmlns:views="clr-namespace:project.App.Views"
+                       xmlns:converters="clr-namespace:project.App.Converters"
+                       x:DataType="viewModels:TeacherProfileViewModel"
+                       >
+
+    <ContentPage.Resources>
+        <converters:MarkToString x:Key="MarkToString"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!--header-->
+        <Label Text="TEACHER INFO" 
+           FontSize="40"
+           Padding="40"/>
+        <!--<Image Width="50" Height="50" Source="logo_1.png"></Image>-->
+        <HorizontalStackLayout Grid.Column="3"
+                           Padding="20"
+                           Spacing="20"
+                           HorizontalOptions="End">
+            <Label Text="Name" FontSize="25"/>
+            <Label Text="Surname" FontSize="25"/>
+            <ImageButton Source="avatar_placeholder.png"
+                     BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}" IsEnabled="False"/>
+        </HorizontalStackLayout>
+
+        <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <!--ENTER -->
+        <Grid Grid.Row="1"
+          Grid.Column="0"
+          Grid.ColumnSpan="3"
+          ColumnDefinitions=".15*,.85*">
+            <!--navigation menu-->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                    Text="schedule" Command="{Binding GoToScheduleCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="schedule" Command="{Binding GoToClassificationCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                    Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                    Text="tests" Command="{Binding GoToTestsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="students" Command="{Binding GoToStudentsCommand}"/>
+            </VerticalStackLayout>
+            <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+
+            <!-- Data Display Area -->
+            <StackLayout Grid.Column="1"
+                         Padding="50">
+                <Label Text="Name:" FontSize="20"/>
+                <!--<Label Text="{Binding Name}" FontSize="20"/>-->
+                <Label Text="Surname:" FontSize="20"/>
+                <!--<Label Text="{Binding Surname}" FontSize="20"/>-->
+                <Label Text="Email:" FontSize="20"/>
+                <!--<Label Text="{Binding Email}" FontSize="20"/>-->
+                <Label Text="Subjects:" FontSize="20"/>
+                <!--<Label Text="{Binding Subjects}" FontSize="20"/>-->
+            </StackLayout>
+
+            <!-- Profile Image in the rightmost column -->
+            <Image Source="profile.png"
+                   WidthRequest="250"
+                   HeightRequest="250"
+                   HorizontalOptions="End"
+                   VerticalOptions="Start"
+                   Margin="0, 50, 100, 10"
+                   Grid.Column="2"/>
+
+            <!--<Button Text="Change Image"-->
+                    <!--WidthRequest="200"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="0, 0, 125, 50"
+                    Grid.Column="2"
+                    Command="{Binding ChangeImage}"/>-->
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

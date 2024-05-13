@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using project.DAL;
 using System.Reflection;
 using project.DAL.Migrator;
+using project.App.Views.TeacherViews;
 
 namespace project.App;
 
@@ -45,6 +46,13 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(StudentClassificationSubjectDetailView), typeof(StudentClassificationSubjectDetailView));
         Routing.RegisterRoute(nameof(StudentProfileView), typeof(StudentProfileView));
 
+        Routing.RegisterRoute(nameof(TeacherClassificationView), typeof(TeacherClassificationView));
+        Routing.RegisterRoute(nameof(TeacherStudentsView), typeof(TeacherStudentsView));
+        Routing.RegisterRoute(nameof(TeacherScheduleView), typeof(TeacherScheduleView));
+        Routing.RegisterRoute(nameof(TeacherSubjectsView), typeof(TeacherSubjectsView));
+        Routing.RegisterRoute(nameof(TeacherTestsView), typeof(TeacherTestsView));
+        Routing.RegisterRoute(nameof(TeacherClassificationSubjectDetailView), typeof(TeacherClassificationSubjectDetailView));
+        Routing.RegisterRoute(nameof(TeacherProfileView), typeof(TeacherProfileView));
 
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
 

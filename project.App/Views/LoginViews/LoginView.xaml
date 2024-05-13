@@ -22,10 +22,12 @@
 
             <Label Text="{Binding model.Email}"
                    FontSize="20"/>
-            
+
             <Button Text="login"
                     Command="{Binding loginCommand}"/>
-            
+            <Button Text="login as teacher"
+                    Command="{Binding teacherLoginCommand}"/>
+
         </VerticalStackLayout>
     </Grid>
 

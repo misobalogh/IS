@@ -78,9 +78,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="ViewModels\AdminViewModels\" />
-    <Folder Include="ViewModels\TeacherViewModels\" />
     <Folder Include="Views\AdminViews\" />
-    <Folder Include="Views\TeacherViews\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -96,6 +94,27 @@
     </Compile>
     <Compile Update="Views\StudentViews\StudentScheduleView.xaml.cs">
       <DependentUpon>StudentScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TeacherViews\TeacherClassificationSubjectDetailView.xaml.cs">
+      <DependentUpon>TeacherClassificationSubjectDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TeacherViews\TeacherClassificationView.xaml.cs">
+      <DependentUpon>TeacherClassificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TeacherViews\TeacherProfileView.xaml.cs">
+      <DependentUpon>TeacherProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TeacherViews\TeacherStudentsView.xaml.cs">
+      <DependentUpon>TeacherStudentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TeacherViews\TeacherSubjectsView.xaml.cs">
+      <DependentUpon>TeacherSubjectsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TeacherViews\TeacherTestsView.xaml.cs">
+      <DependentUpon>TeacherTestsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TeacherViews\TeacherScheduleView.xaml.cs">
+      <DependentUpon>TeacherScheduleView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -145,6 +164,27 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentViews\StudentTestsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherClassificationSubjectDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherClassificationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherProfileView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherStudentsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherSubjectsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherTestsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherScheduleView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="project.App.Views.TeacherViews.TeacherStudentsView"
+             xmlns:views="clr-namespace:project.App.Views"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             x:DataType="viewModels:TeacherStudentsViewModel"
+             >
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!--header-->
+        <Label Text="TEACHER students page" 
+               FontSize="40"
+               Padding="40"/>
+        <HorizontalStackLayout Grid.Column="3"
+                               Padding="20"
+                               Spacing="20"
+                               HorizontalOptions="End">
+            <Label Text="Name" FontSize="25"/>
+            <Label Text="Surname" FontSize="25"/>
+            <ImageButton Source="avatar_placeholder.png"
+                         BackgroundColor="Transparent"  Command="{Binding GoToProfileCommand}"/>
+        </HorizontalStackLayout>
+
+        <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <!--ENTER -->
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions=".15*,.85*">
+            <!--navigation menu-->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="schedule" Command="{Binding GoToScheduleCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="classification" Command="{Binding GoToClassificationCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="tests" Command="{Binding GoToTestsCommand}"/>
+                <Button TextColor="White" Background="#6E6E6E"     FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="students" Command="{Binding GoToStudentsCommand}" IsEnabled="False"/>
+            </VerticalStackLayout>
+            <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+
+            <!--ENTER PAGE CONTENT HERE-->
+            <!--TODO Students page-->
+            
+            
+            
+            
+        </Grid>
+    </Grid>
+</views:ContentPageBase>
