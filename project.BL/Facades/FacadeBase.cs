@@ -23,7 +23,7 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper = modelMapper;
     protected readonly IUnitOfWorkFactory UnitOfWorkFactory = unitOfWorkFactory;
 
-    protected virtual string IncludesNavigationPathDetail => string.Empty;
+    protected virtual List<string> IncludesNavigationPathDetail => [];
 
     public async Task DeleteAsync(Guid id)
     {
@@ -44,9 +44,10 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
         IQueryable<TEntity> query = unitOfWork.GetRepository<TEntity, TEntityMapper>().Get();
-        if (string.IsNullOrWhiteSpace(IncludesNavigationPathDetail) is false)
-            query = query.Include(IncludesNavigationPathDetail);
-
+        if (IncludesNavigationPathDetail.Count > 0)
+        {
+            IncludesNavigationPathDetail.ForEach(i => query = query.Include(i));
+        }
         TEntity? entity = await query.SingleOrDefaultAsync(e => e.Id == id);
 
         return entity is null ? null : ModelMapper.MapToDetailModel(entity);
