@@ -11,6 +11,7 @@ public record ActivityListModel : ModelBase
     public required DateTime End { get; set; }
     public required Room Room { get; set; }
     public required double Points { get; set; }
+    public required int Capacity { get; set; }
 
     public static ActivityListModel Empty => new()
     {
@@ -21,6 +22,7 @@ public record ActivityListModel : ModelBase
         Name = string.Empty,
         SubjectName = string.Empty,
         Room = Room.None,
+        Capacity = 0,
         Points = 0
     };
 }

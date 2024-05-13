@@ -233,8 +233,8 @@ namespace project.DAL.Migrations
                 columns: new[] { "Id", "ActivityType", "Capacity", "Description", "End", "MaxPoints", "Name", "Room", "Start", "SubjectId", "TeacherId" },
                 values: new object[,]
                 {
-                    { new Guid("21adbcf5-f96d-4943-8249-d73401395a06"), 3, 1, null, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), null, "IJC Consultation", 1, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), new Guid("6180b520-6119-4303-8496-ed568d684209"), new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c") },
-                    { new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"), 4, 100, null, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), 10, "IFJ Midterm", 5, new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f") }
+                    { new Guid("21adbcf5-f96d-4943-8249-d73401395a06"), 3, 1, null, new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local), null, "IJC Consultation", 1, new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local), new Guid("6180b520-6119-4303-8496-ed568d684209"), new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c") },
+                    { new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"), 4, 100, null, new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local), 10, "IFJ Midterm", 5, new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f") }
                 });
 
             migrationBuilder.InsertData(
@@ -242,8 +242,8 @@ namespace project.DAL.Migrations
                 columns: new[] { "Id", "Mark", "Points", "StudentId", "SubjectId", "Year" },
                 values: new object[,]
                 {
-                    { new Guid("07671bf7-6690-42bc-8010-a94f66725f08"), 0, 0, new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"), new Guid("6180b520-6119-4303-8496-ed568d684209"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("371a5d4a-c60d-4e45-b3a1-db2bca96b24e"), 0, 0, new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { new Guid("07671bf7-6690-42bc-8010-a94f66725f08"), 0, 0, new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"), new Guid("6180b520-6119-4303-8496-ed568d684209"), new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("371a5d4a-c60d-4e45-b3a1-db2bca96b24e"), 0, 0, new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(
@@ -251,8 +251,8 @@ namespace project.DAL.Migrations
                 columns: new[] { "Id", "SubjectId", "TeacherId", "Year" },
                 values: new object[,]
                 {
-                    { new Guid("323f2144-de33-4185-b20e-53764ff39956"), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("8c76cfde-f278-459b-8354-15f9c6dc68e1"), new Guid("6180b520-6119-4303-8496-ed568d684209"), new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c"), new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { new Guid("323f2144-de33-4185-b20e-53764ff39956"), new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"), new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f"), new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("8c76cfde-f278-459b-8354-15f9c6dc68e1"), new Guid("6180b520-6119-4303-8496-ed568d684209"), new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c"), new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(

@@ -11,12 +11,12 @@ public partial class StudentClassificationViewModel(
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService) : ViewModelBase(messengerService)
 {
-    public EnrolledSubjectsModel? EnrolledSubjects { get; 
+    public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; 
         private set; }
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        EnrolledSubjects = await enrolledSubjectsFacade.GetAsync(Guid.Parse("371a5d4a-c60d-4e45-b3a1-db2bca96b24e"));
+        EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
     }
 
     [RelayCommand]

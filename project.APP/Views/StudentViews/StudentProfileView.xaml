@@ -2,15 +2,15 @@
 <views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="project.App.Views.StudentViews.StudentProfileView"
+                       xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
                        xmlns:viewModels="clr-namespace:project.App.ViewModels"
                        xmlns:views="clr-namespace:project.App.Views"
-                       xmlns:converters="clr-namespace:project.App.Converters"
                        x:DataType="viewModels:StudentProfileViewModel"
 >
 
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <converters:MarkToString x:Key="MarkToString"/>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
@@ -50,18 +50,50 @@
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
+            
             <!-- Data Display Area -->
-            <StackLayout Grid.Column="1"
-                         Padding="50">
-                <Label Text="Name:" FontSize="20"/>
-                <!--<Label Text="{Binding Name}" FontSize="20"/>-->
-                <Label Text="Surname:" FontSize="20"/>
-                <!--<Label Text="{Binding Surname}" FontSize="20"/>-->
-                <Label Text="Email:" FontSize="20"/>
-                <!--<Label Text="{Binding Email}" FontSize="20"/>-->
-                <Label Text="Subjects:" FontSize="20"/>
-                <!--<Label Text="{Binding Subjects}" FontSize="20"/>-->
-            </StackLayout>
+            <VerticalStackLayout Grid.Column="1"
+                                 Grid.Row="0"
+                                 Padding="50"
+                                 Spacing="20">
+                <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                    <Label.Text>
+                        <Binding Path="Students.FirstName" StringFormat="Name: {0}" />
+                    </Label.Text>
+                </Label>
+                <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                    <Label.Text>
+                        <Binding Path="Students.LastName" StringFormat="Surname: {0}" />
+                    </Label.Text>
+                </Label>
+                <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                    <Label.Text>
+                        <Binding Path="Students.Email" StringFormat="Email: {0}" />
+                    </Label.Text>
+                </Label>
+
+                <!--TODO: vypsat studentovi předměty-->
+                <!--<CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:SubjectListModel">
+                        <HorizontalStackLayout>
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding SubjectName}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="A"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>-->
+
+                <!--<Label Text="Subjects:" FontSize="20"/>-->
+                <!--<Label Text="{Binding SubjectName}" FontSize="20"/>-->
+            </VerticalStackLayout>
+            
+
 
             <!-- Profile Image in the rightmost column -->
             <Image Source="profile.png"
