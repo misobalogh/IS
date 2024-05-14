@@ -11,20 +11,14 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class StudentScheduleViewModel : StudentNavigationSideBar, INotifyPropertyChanged
+public partial class StudentScheduleViewModel(
+    IRegisteredActivitiesFacade registeredActivitiesFacade,
+    IMessengerService messengerService, 
+    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
 {
-    private readonly IRegisteredActivitiesFacade registeredActivitiesFacade;
-
-    public StudentScheduleViewModel(IRegisteredActivitiesFacade registeredActivitiesFacade, IMessengerService messengerService, StudentDataService studentDataService)
-        : base(messengerService, studentDataService)
-    {
-        this.registeredActivitiesFacade = registeredActivitiesFacade;
-        Schedule = new List<string>();
-    }
-
     public IEnumerable<RegisteredActivitiesListModel> Activities { get; set; } = null!;
 
-    private List<string> schedule;
+    private List<string> schedule = null!;
     public List<string> Schedule
     {
         get => schedule;
@@ -57,20 +51,12 @@ public partial class StudentScheduleViewModel : StudentNavigationSideBar, INotif
                 }
                 else
                 {
-                    scheduleList.Add("Volno");
+                    scheduleList.Add("-");
                 }
             }
         }
 
         return scheduleList;
     }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
 }
 

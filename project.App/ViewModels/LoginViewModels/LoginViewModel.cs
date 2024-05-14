@@ -31,8 +31,8 @@ public partial class LoginViewModel(
     [RelayCommand]
     async Task Login()
     {
-        await Shell.Current.GoToAsync(nameof(StudentScheduleView));
-        return;
+        //await Shell.Current.GoToAsync(nameof(StudentScheduleView));
+        //return;
         if (string.IsNullOrEmpty(LoginCredential))
         {
             // Notify user

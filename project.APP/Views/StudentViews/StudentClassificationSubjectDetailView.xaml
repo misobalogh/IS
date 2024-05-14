@@ -23,8 +23,8 @@
                                Padding="20"
                                Spacing="20"
                                HorizontalOptions="End">
-            <Label Text="Name" FontSize="25"/>
-            <Label Text="Surname" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
             <ImageButton Source="avatar_placeholder.png"
                          BackgroundColor="Transparent" Command="{Binding GoToStudentProfileCommand}"/>
         </HorizontalStackLayout>

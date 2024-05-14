@@ -67,17 +67,17 @@
                                  Spacing="20">
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <Binding Path="Students.FirstName" StringFormat="Name: {0}" />
+                        <Binding Path="loggedUser.FirstName" StringFormat="Name: {0}" />
                     </Label.Text>
                 </Label>
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <Binding Path="Students.LastName" StringFormat="Surname: {0}" />
+                        <Binding Path="loggedUser.LastName" StringFormat="Surname: {0}" />
                     </Label.Text>
                 </Label>
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <Binding Path="Students.Email" StringFormat="Email: {0}" />
+                        <Binding Path="loggedUser.Email" StringFormat="Email: {0}" />
                     </Label.Text>
                 </Label>
 

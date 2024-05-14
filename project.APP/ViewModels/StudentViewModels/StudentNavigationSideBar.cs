@@ -2,11 +2,20 @@
 using project.App.Views.StudentViews;
 using project.App.Services;
 using project.App.Views.LoginViews;
+using project.BL.Models;
+using project.BL.Facades;
 
 namespace project.App.ViewModels;
 
 public partial class StudentNavigationSideBar(IMessengerService messengerService, StudentDataService studentDataService) : ViewModelBase(messengerService)
 {
+    public StudentModel? loggedUser { get; set; }
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
+        loggedUser = studentDataService.CurrentStudent;
+    }
+
     [RelayCommand]
     async Task GoToStudentProfile()
     {
