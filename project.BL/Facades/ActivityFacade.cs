@@ -11,6 +11,9 @@ namespace project.BL.Facades;
 public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelMapper activityModelMapper) 
     : FacadeBase<ActivityEntity, ActivityListModel, ActivityModel, ActivityEntityMapper>(unitOfWorkFactory, activityModelMapper), IActivityFacade
 {
+    protected override List<string> IncludesNavigationPathDetail =>
+        [$"{nameof(ActivityEntity.Subject)}"];
+
     public async Task SaveAsync(ActivityModel model, Guid subjectId, Guid teacherId)
     {
         ActivityEntity entity = activityModelMapper.MapToEntity(model, subjectId, teacherId);

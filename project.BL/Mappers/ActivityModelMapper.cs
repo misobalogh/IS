@@ -18,7 +18,7 @@ public class ActivityModelMapper :
                 Name = entity.Name,
                 SubjectId = entity.SubjectId,
                 Capacity = entity.Capacity,
-                SubjectName =  "place holder", //entity.Subject.Name,
+                SubjectName =  entity.Subject.Name,
                 Points = 0
             };
 

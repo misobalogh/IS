@@ -64,8 +64,7 @@
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
-                    <!--Do item template detailny model (ActivityModel) a do viewModel dat ActivityListModel--> <!--TODO-->
-                    <DataTemplate x:DataType="m:ActivityModel">
+                    <DataTemplate x:DataType="m:ActivityListModel">
                         <ViewCell>
                             <Grid Padding="10">
                                 <Grid.ColumnDefinitions>
