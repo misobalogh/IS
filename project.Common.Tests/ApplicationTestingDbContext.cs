@@ -13,14 +13,7 @@ public class ApplicationTestingDbContext(DbContextOptions contextOptions, bool s
 
         if (seedTestingData)
         {
-            SubjectSeeds.Seed(modelBuilder);
-            TeacherSeeds.Seed(modelBuilder);
-            TeachingSubjectsSeeds.Seed(modelBuilder);
-            RegisteredSubjectsSeeds.Seed(modelBuilder);
-            RegisteredActivitiesSeeds.Seed(modelBuilder);
-            StudentSeeds.Seed(modelBuilder);
-            ActivitySeeds.Seed(modelBuilder);
-            EvaluationSeeds.Seed(modelBuilder);
+            
         }
     }
 }

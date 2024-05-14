@@ -15,15 +15,32 @@ public partial class StudentScheduleViewModel(IRegisteredActivitiesFacade regist
 
     //public List<string> mylist { get; set; } = new List<string>(new string[] { "IZU", "IDS" });
 
-    public Dictionary<string, string> Schedule { get; set; } = [];
+    public List<string> Schedule { get; set; } = ["IZU"];
 
     public string TestTODO { get; set; } = "ICS\nD0207";
 
     protected override async Task LoadDataAsync()
     {
-        Schedule.Add("2024-05-14T08:00:00", "IZU");
         await base.LoadDataAsync();
         Activities = await registeredActivitiesFacade.GetAsync();
+        CreateScheduleList();
+    }
+
+    public void CreateScheduleList()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 13; j++)
+            {
+                var activities = Activities.Where(a => (int)a.Start.DayOfWeek == i+1 && a.Start.Hour == 7 + j);
+                if (activities.Any()) {
+                    Schedule.Add(activities.First().ActivityName + "\n" + activities.First().Room.ToString());
+                } else
+                {
+                    Schedule.Add("Volno");
+                }
+            }
+        }
     }
 
 }
