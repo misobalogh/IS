@@ -1,14 +1,14 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿﻿namespace project.App.Services;
 
-namespace project.App.Services;
-
-public class MessengerService(IMessenger messenger) : IMessengerService
+public class AlertService : IAlertService
 {
-    public IMessenger Messenger { get; } = messenger;
-
-    public void Send<TMessage>(TMessage message)
-        where TMessage : class
+    public async Task DisplayAsync(string title, string message)
     {
-        Messenger.Send(message);
+        var displayAlert = Application.Current?.MainPage?.DisplayAlert(title, message, "OK");
+        
+        if (displayAlert is not null)
+        {
+            await displayAlert;
+        }
     }
 }

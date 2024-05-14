@@ -12,7 +12,8 @@ namespace project.App.ViewModels;
 public partial class StudentClassificationSubjectDetailViewModel(
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IActivityFacade activityFacade,
-    IMessengerService messengerService) : StudentNavigationSideBar(messengerService)
+    IMessengerService messengerService,
+    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
 {
     public string? SubjectId { get; set; }
 

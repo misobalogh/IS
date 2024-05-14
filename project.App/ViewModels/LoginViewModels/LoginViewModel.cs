@@ -7,7 +7,11 @@ using project.BL.Facades;
 
 namespace project.App.ViewModels;
 
-public partial class LoginViewModel(IStudentFacade studentFacade, ITeacherFacade teacherFacade, IMessengerService messengerService) : ViewModelBase(messengerService)
+public partial class LoginViewModel(
+    IStudentFacade studentFacade, 
+    ITeacherFacade teacherFacade, 
+    IMessengerService messengerService,
+    StudentDataService studentDataService) : ViewModelBase(messengerService)
 {
     public string? LoginCredential { get; set; }
     public string? PlaceholderText { get; set; } = "Enter your email";
@@ -41,6 +45,10 @@ public partial class LoginViewModel(IStudentFacade studentFacade, ITeacherFacade
         if (foundStudent != null)
         {
             LoggedStudent = await studentFacade.GetAsync(foundStudent.Id);
+            if (LoggedStudent == null) {
+                return;
+            }
+            studentDataService.SetCurrentUser(LoggedStudent);
             await Shell.Current.GoToAsync(nameof(StudentScheduleView));
         }
 

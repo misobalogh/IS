@@ -9,7 +9,10 @@ using project.DAL.Enums;
 
 namespace project.App.ViewModels;
 
-public partial class StudentRegistrationViewModel(IActivityFacade activityFacade, IMessengerService messengerService) : StudentNavigationSideBar(messengerService)
+public partial class StudentRegistrationViewModel(
+    IActivityFacade activityFacade, 
+    IMessengerService messengerService,
+    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
 {
 
     public IEnumerable<ActivityListModel> Activities { get; set; } = null!;

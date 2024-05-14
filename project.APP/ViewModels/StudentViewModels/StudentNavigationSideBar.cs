@@ -5,7 +5,7 @@ using project.App.Views.LoginViews;
 
 namespace project.App.ViewModels;
 
-public partial class StudentNavigationSideBar(IMessengerService messengerService) : ViewModelBase(messengerService)
+public partial class StudentNavigationSideBar(IMessengerService messengerService, StudentDataService studentDataService) : ViewModelBase(messengerService)
 {
     [RelayCommand]
     async Task GoToStudentProfile()
@@ -46,8 +46,10 @@ public partial class StudentNavigationSideBar(IMessengerService messengerService
     [RelayCommand]
     async Task Logout()
     {
+
         if (Application.Current?.MainPage?.Navigation != null)
         {
+            studentDataService.ClearCurrentUser();
             await Application.Current.MainPage.Navigation.PopToRootAsync();
         }
 

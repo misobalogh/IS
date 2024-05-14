@@ -15,8 +15,8 @@ public partial class StudentScheduleViewModel : StudentNavigationSideBar, INotif
 {
     private readonly IRegisteredActivitiesFacade registeredActivitiesFacade;
 
-    public StudentScheduleViewModel(IRegisteredActivitiesFacade registeredActivitiesFacade, IMessengerService messengerService)
-        : base(messengerService)
+    public StudentScheduleViewModel(IRegisteredActivitiesFacade registeredActivitiesFacade, IMessengerService messengerService, StudentDataService studentDataService)
+        : base(messengerService, studentDataService)
     {
         this.registeredActivitiesFacade = registeredActivitiesFacade;
         Schedule = new List<string>();

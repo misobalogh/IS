@@ -10,13 +10,11 @@ using project.DAL.Enums;
 
 namespace project.App.ViewModels;
 
-public partial class TeacherStudentsViewModel(IActivityFacade activityFacade, IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
+public partial class TeacherStudentsViewModel(IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
 {
-
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
     }
-    // TODO codebehind
 }
 

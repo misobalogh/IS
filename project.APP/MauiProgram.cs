@@ -8,6 +8,7 @@ using project.DAL;
 using System.Reflection;
 using project.DAL.Migrator;
 using project.App.Views.TeacherViews;
+using project.App.Services;
 
 namespace project.App;
 
@@ -34,7 +35,8 @@ public static class MauiProgram
         builder.Services
             .AddDALServices(GetDALOptions(builder.Configuration))
             .AddAppServices()
-            .AddBLServices();
+            .AddBLServices()
+            .AddSingleton<StudentDataService>();
         
         var app = builder.Build();
 
