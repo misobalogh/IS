@@ -11,7 +11,7 @@ using project.DAL;
 namespace project.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240513133103_InitialWithSeeds")]
+    [Migration("20240514192545_InitialWithSeeds")]
     partial class InitialWithSeeds
     {
         /// <inheritdoc />
@@ -71,11 +71,11 @@ namespace project.DAL.Migrations
                             Id = new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"),
                             ActivityType = 4,
                             Capacity = 100,
-                            End = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            End = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             MaxPoints = 10,
                             Name = "IFJ Midterm",
                             Room = 5,
-                            Start = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            Start = new DateTime(2024, 5, 13, 8, 0, 0, 0, DateTimeKind.Unspecified),
                             SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
                             TeacherId = new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f")
                         },
@@ -84,10 +84,10 @@ namespace project.DAL.Migrations
                             Id = new Guid("21adbcf5-f96d-4943-8249-d73401395a06"),
                             ActivityType = 3,
                             Capacity = 1,
-                            End = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            End = new DateTime(2024, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "IJC Consultation",
                             Room = 1,
-                            Start = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            Start = new DateTime(2024, 5, 14, 8, 0, 0, 0, DateTimeKind.Unspecified),
                             SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
                             TeacherId = new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c")
                         });
@@ -130,7 +130,7 @@ namespace project.DAL.Migrations
                             Points = 0,
                             StudentId = new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"),
                             SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
-                            Year = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -139,7 +139,7 @@ namespace project.DAL.Migrations
                             Points = 0,
                             StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"),
                             SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
-                            Year = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -388,14 +388,14 @@ namespace project.DAL.Migrations
                             Id = new Guid("8c76cfde-f278-459b-8354-15f9c6dc68e1"),
                             SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
                             TeacherId = new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c"),
-                            Year = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = new Guid("323f2144-de33-4185-b20e-53764ff39956"),
                             SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
                             TeacherId = new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f"),
-                            Year = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 

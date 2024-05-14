@@ -11,7 +11,7 @@ public class RegisteredActivitiesFacade(IUnitOfWorkFactory unitOfWorkFactory, Re
     : FacadeBase<RegisteredActivitiesEntity, RegisteredActivitiesListModel, RegisteredActivitiesModel, RegisteredActivitiesEntityMapper>(unitOfWorkFactory, registeredActivitiesModelMapper), IRegisteredActivitiesFacade
 {
     protected override List<string> IncludesNavigationPathDetail =>
-        [$"{nameof(RegisteredActivitiesEntity.Student)}"];
+        [$"{nameof(RegisteredActivitiesEntity.Student)}", $"{nameof(RegisteredActivitiesEntity.Activity)}"];
 
     public async Task SaveAsync(RegisteredActivitiesModel model, Guid studentId)
     {
