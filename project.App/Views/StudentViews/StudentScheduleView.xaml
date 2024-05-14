@@ -88,7 +88,71 @@
 
                     <!-- Dynamic content loaded here -->
                     <!-- You need to bind each ContentView to a specific part of your model representing the schedule -->
-                    <!--<ContentView Grid.Column="1" Grid.Row="1" Content="{Binding Schedule[Monday][FirstSlot]}"/>-->
+                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding TestTODO}" />
+                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="3" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="4" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="5" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="6" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="7" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="8" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="9" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="10" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="11" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="12" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="13" Grid.Row="1" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="2" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="3" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="4" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="5" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="6" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="7" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="8" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="9" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="10" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="11" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="12" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="13" Grid.Row="2" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="1" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="2" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="3" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="4" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="5" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="6" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="7" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="8" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="9" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="10" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="11" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="12" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="13" Grid.Row="3" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="1" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="2" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="3" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="4" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="5" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="6" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="7" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="8" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="9" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="10" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="11" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="12" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="13" Grid.Row="4" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="1" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="2" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="3" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="4" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="5" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="6" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="7" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="8" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="9" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="10" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="11" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="12" Grid.Row="5" Text="{Binding TestTODO}"/>
+                    <Label Grid.Column="13" Grid.Row="5" Text="{Binding TestTODO}"/>
                     <!--<ContentView Grid.Column="2" Grid.Row="1" Content="{Binding Schedule[Monday][SecondSlot]}"/>-->
                     <!-- Continue binding for each slot -->
 

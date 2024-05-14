@@ -13,8 +13,15 @@ public partial class StudentScheduleViewModel(IRegisteredActivitiesFacade regist
 {
     public IEnumerable<RegisteredActivitiesListModel> Activities { get; set; } = null!;
 
+    //public List<string> mylist { get; set; } = new List<string>(new string[] { "IZU", "IDS" });
+
+    public Dictionary<string, string> Schedule { get; set; } = [];
+
+    public string TestTODO { get; set; } = "ICS\nD0207";
+
     protected override async Task LoadDataAsync()
     {
+        Schedule.Add("2024-05-14T08:00:00", "IZU");
         await base.LoadDataAsync();
         Activities = await registeredActivitiesFacade.GetAsync();
     }
