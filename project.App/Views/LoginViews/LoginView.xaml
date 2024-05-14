@@ -1,34 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="project.App.Views.LoginViews.LoginView"
-             xmlns:views="clr-namespace:project.App.Views"
-             xmlns:viewModels="clr-namespace:project.App.ViewModels"
-             x:DataType="viewModels:LoginViewModel"
-             >
-   
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="project.App.Views.LoginViews.LoginView"
+                       xmlns:views="clr-namespace:project.App.Views"
+                       xmlns:viewModels="clr-namespace:project.App.ViewModels"
+                       x:DataType="viewModels:LoginViewModel">
 
     <Grid ColumnDefinitions="0.35*,0.3*,0.35*"
-          RowDefinitions="*"
-          >
-        <VerticalStackLayout
-            Grid.Column="1"
-            Spacing="20"
-            VerticalOptions="Center">
-            <Image WidthRequest="200" HeightRequest="200" Source="logo_1.png"></Image>
-            <Label Text="name"
-                   FontSize="25"/>
-            <Entry Placeholder="example@email.com"
-                   Text="{Binding model.Email}"/>
-
-            <Label Text="{Binding model.Email}"
-                   FontSize="20"/>
+          RowDefinitions="*">
+        <VerticalStackLayout Grid.Column="1"
+                             Spacing="20"
+                             VerticalOptions="Center">
+            <Image WidthRequest="200" 
+                   HeightRequest="200" 
+                   Source="logo_1.png" />
+            <Label Text="Login"
+                   FontSize="18" />
+            <Frame HasShadow="False"
+                   BorderColor="{Binding EntryBorderColor}"
+                   CornerRadius="5"
+                   Padding="0">
+                <Entry Placeholder="{Binding PlaceholderText}"
+                       Text="{Binding LoginCredential}"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       BackgroundColor="White"
+                       FontSize="18"
+                       Margin="0"
+                       />
+            </Frame>
 
             <Button Text="login"
-                    Command="{Binding loginCommand}"/>
-            <Button Text="login as teacher"
-                    Command="{Binding teacherLoginCommand}"/>
-
+                    Command="{Binding LoginCommand}" />
         </VerticalStackLayout>
     </Grid>
-
 </views:ContentPageBase>

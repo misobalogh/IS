@@ -14,12 +14,15 @@ public record TeacherListModel : ModelBase
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public TitleAfter? TitleAfter { get; set; }
+
+    public required string Email { get; set; }
     public Uri? PhotoUrl { get; set; }
     
     public static TeacherListModel Empty => new()
     {
         Id = Guid.Empty,
         FirstName = string.Empty,
-        LastName = string.Empty
+        LastName = string.Empty,
+        Email = string.Empty,
     };
 }
