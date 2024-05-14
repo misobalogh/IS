@@ -58,13 +58,13 @@
                         </Grid.ColumnDefinitions>
                         <Label Text="Subject" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
                         <Label Text="Tag" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-                        <Label Text="Teacher" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
+                        <Label Text="Start Time" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
                         <Label Text="Capacity" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
                         <Label Text="Registered" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"/>
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
-                    <!--Do item tamplate detailny model (ActivityModel) a do viewModel dat ActivityListModel-->
+                    <!--Do item template detailny model (ActivityModel) a do viewModel dat ActivityListModel--> <!--TODO-->
                     <DataTemplate x:DataType="m:ActivityModel">
                         <ViewCell>
                             <Grid Padding="10">
@@ -75,9 +75,9 @@
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
-                                <!--pro předávání databáze je problém u modelů, buď přes Activity nebo přes Subject, ale Activity nemá jak se dostat k informaci, jestli je registrovaná nebo ne a Subject zase nemá jak se dostat k informaci, kdo předmět učí, otázka je, co má v téhle tabulce reálně být-->
                                 <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
                                 <Label Text="{Binding Name}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                                <Label Text="{Binding Start, StringFormat='{0:dd.MM.yyyy HH:mm}'}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
                                 <Label Text="{Binding Capacity}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
                                 <Button Text="Register" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"
                                     Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
