@@ -28,6 +28,8 @@ public partial class LoginViewModel(IStudentFacade studentFacade, ITeacherFacade
     [RelayCommand]
     async Task Login()
     {
+        await Shell.Current.GoToAsync(nameof(StudentScheduleView));
+        return;
         if (string.IsNullOrEmpty(LoginCredential))
         {
             // Notify user
@@ -53,6 +55,13 @@ public partial class LoginViewModel(IStudentFacade studentFacade, ITeacherFacade
         // Notify user
         PlaceholderText = "Wrong email";
         EntryBorderColor = Colors.Red;
+    }
+
+    [RelayCommand]
+    async Task LoginTeacher()
+    {
+        await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
+        return;
     }
 }
 

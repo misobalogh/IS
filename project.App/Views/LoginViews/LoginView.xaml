@@ -30,8 +30,11 @@
                        />
             </Frame>
 
-            <Button Text="login"
+            <Button Text="Sign-in"
                     Command="{Binding LoginCommand}" />
+
+            <Button Text="Teacher"
+                    Command="{Binding LoginTeacherCommand}" />
         </VerticalStackLayout>
     </Grid>
 </views:ContentPageBase>
