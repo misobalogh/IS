@@ -16,7 +16,8 @@ public class TeacherModelMapper :
                 LastName = entity.LastName,
                 PhotoUrl = entity.Image,
                 TitleBefore = entity.TitleBefore,
-                TitleAfter = entity.TitleAfter
+                TitleAfter = entity.TitleAfter,
+                Email = entity.Email,
             };
 
     public override TeacherModel MapToDetailModel(TeacherEntity? entity)
