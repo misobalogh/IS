@@ -51,7 +51,7 @@ public partial class StudentScheduleViewModel(
                 }
                 else
                 {
-                    scheduleList.Add("Volno");
+                    scheduleList.Add("");
                 }
             }
         }
