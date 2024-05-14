@@ -4,7 +4,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:StudentViews="clr-namespace:project.App.Views.StudentViews"
-    xmlns:AdminViews="clr-namespace:project.App.Views.AdminViews"
     xmlns:TeacherViews="clr-namespace:project.App.Views.TeacherViews"
     xmlns:LoginViews="clr-namespace:project.App.Views.LoginViews"
     xmlns:local="clr-namespace:project.App.Shells"
@@ -15,13 +14,4 @@
         Title="Home"
         ContentTemplate="{DataTemplate LoginViews:LoginView}"
         Route="LoginView" />
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate StudentViews:StudentScheduleView}"
-        Route="StudentScheduleView" />
-    <ShellContent
-        Title="Home2"
-        ContentTemplate="{DataTemplate StudentViews:StudentRegistrationView}"
-        Route="StudentRegistrationView" />
-
 </Shell>
