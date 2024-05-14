@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:project.App.Views"
              x:Class="project.App.Views.StudentViews.StudentClassificationView"
-             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              xmlns:converters="clr-namespace:project.App.Converters"
              x:DataType="viewModels:StudentClassificationViewModel"
-             x:Name="Page">
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             >
 
     <ContentPage.Resources>
         <converters:MarkToString x:Key="MarkToString"/>
+        <converters:ItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
     </ContentPage.Resources>
 
 
@@ -50,8 +52,15 @@
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
-
+            <!--content-->
             <ListView Grid.Column="1" ItemsSource="{Binding EnrolledSubjects}">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        EventName="ItemTapped"
+                        Command="{Binding ShowSubjectDetailsCommand}"
+                        EventArgsConverter="{StaticResource ItemTappedConverter}">
+                    </behaviors:EventToCommandBehavior>
+                </ListView.Behaviors>
                 <ListView.Header>
                     <Grid Padding="10" BackgroundColor="#ab93e3">
                         <Grid.ColumnDefinitions>
@@ -77,23 +86,11 @@
                                 <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
                                 <Label Text="{Binding Points}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
                                 <Label Text="{Binding Mark, Converter={StaticResource MarkToString}}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
-
-
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowSubjectDetailsCommand, Source={x:Reference Page}}"
-                                          CommandParameter="{Binding .}"
-                                          NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
-
-
-
-
         </Grid>
     </Grid>
 </views:ContentPageBase>

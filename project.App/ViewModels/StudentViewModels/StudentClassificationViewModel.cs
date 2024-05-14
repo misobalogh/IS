@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm;
+using CommunityToolkit.Mvvm.Input;
 using project.App.Views.StudentViews;
 using project.App.Services;
 using project.BL.Facades;
@@ -10,11 +11,7 @@ public partial class StudentClassificationViewModel(
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService) : StudentNavigationSideBar(messengerService)
 {
-    public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects
-    {
-        get;
-        private set;
-    } = null!;
+    public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;
 
     protected override async Task LoadDataAsync()
     {
@@ -23,11 +20,16 @@ public partial class StudentClassificationViewModel(
     }
 
     [RelayCommand]
-    async Task ShowSubjectDetails(EnrolledSubjectsModel subject)
+    async Task ShowSubjectDetails(object clickedItem)
     {
-        if (subject == null) return;
-        var route = $"{nameof(StudentClassificationSubjectDetailView)}?subjectId={subject.SubjectId}";
-        await Shell.Current.GoToAsync(route);
+        if (clickedItem == null) { 
+            return; 
+        }
+
+        if (clickedItem is EnrolledSubjectsListModel subject) {
+            var route = $"{nameof(StudentClassificationSubjectDetailView)}?subjectId={subject.Id}";
+            await Shell.Current.GoToAsync(route);
+        }
     }
 }
 
