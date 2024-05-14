@@ -8,9 +8,6 @@
              x:DataType="viewModels:StudentScheduleViewModel"
              >
 
-
-    <!--TODO load data from db-->
-    
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
         <!--header-->
@@ -45,8 +42,6 @@
                         Text="registration" Command="{Binding GoToRegistrationCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-            
-            <!--ENTER PAGE CONTENT HERE-->
 
             <!-- Separator -->
             <BoxView Grid.Row="0"

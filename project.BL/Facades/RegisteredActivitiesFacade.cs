@@ -10,6 +10,9 @@ namespace project.BL.Facades;
 public class RegisteredActivitiesFacade(IUnitOfWorkFactory unitOfWorkFactory, RegisteredActivitiesModelMapper registeredActivitiesModelMapper) 
     : FacadeBase<RegisteredActivitiesEntity, RegisteredActivitiesListModel, RegisteredActivitiesModel, RegisteredActivitiesEntityMapper>(unitOfWorkFactory, registeredActivitiesModelMapper), IRegisteredActivitiesFacade
 {
+    protected override List<string> IncludesNavigationPathDetail =>
+        [$"{nameof(RegisteredActivitiesEntity.Student)}"];
+
     public async Task SaveAsync(RegisteredActivitiesModel model, Guid studentId)
     {
         RegisteredActivitiesEntity entity = registeredActivitiesModelMapper.MapToEntity(model, studentId);
