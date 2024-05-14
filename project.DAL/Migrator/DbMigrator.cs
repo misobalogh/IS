@@ -23,5 +23,5 @@ public class DbMigrator(IDbContextFactory<ApplicationDbContext> dbContextFactory
         // Application of migration later on may fail
         // If you want to use migrations, you should create database by calling  dbContext.Database.MigrateAsync(cancellationToken) instead
         await dbContext.Database.EnsureCreatedAsync(cancellationToken);
-    }
+        }
 }
