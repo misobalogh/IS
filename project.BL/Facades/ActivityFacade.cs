@@ -12,7 +12,8 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
     : FacadeBase<ActivityEntity, ActivityListModel, ActivityModel, ActivityEntityMapper>(unitOfWorkFactory, activityModelMapper), IActivityFacade
 {
     protected override List<string> IncludesNavigationPathDetail =>
-        [$"{nameof(ActivityEntity.Subject)}"];
+        [$"{nameof(ActivityEntity.Subject)}",
+            $"{nameof(ActivityEntity.Teacher)}"];
 
     public async Task SaveAsync(ActivityModel model, Guid subjectId, Guid teacherId)
     {

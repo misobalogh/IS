@@ -12,6 +12,9 @@ public record ActivityListModel : ModelBase
     public required Room Room { get; set; }
     public required double Points { get; set; }
     public required int Capacity { get; set; }
+    public required string Tag { get; set; }
+    public required ActivityType ActivityType { get; set; }
+    public required string TeacherName { get; set; }
 
     public static ActivityListModel Empty => new()
     {
@@ -23,6 +26,9 @@ public record ActivityListModel : ModelBase
         SubjectName = string.Empty,
         Room = Room.None,
         Capacity = 0,
+        Tag = string.Empty,
+        ActivityType = ActivityType.None,
+        TeacherName = string.Empty,
         Points = 0
     };
 }

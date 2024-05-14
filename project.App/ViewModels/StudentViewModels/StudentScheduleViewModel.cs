@@ -9,8 +9,15 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class StudentScheduleViewModel(IMessengerService messengerService) : StudentNavigationSideBar(messengerService)
-{    
-    //TODO NOT IMPLEMENTED
+public partial class StudentScheduleViewModel(IRegisteredActivitiesFacade registeredActivitiesFacade, IMessengerService messengerService) : StudentNavigationSideBar(messengerService)
+{
+    public IEnumerable<RegisteredActivitiesListModel> Activities { get; set; } = null!;
+
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
+        Activities = await registeredActivitiesFacade.GetAsync();
+    }
+
 }
 
