@@ -4,18 +4,17 @@
              x:Class="project.App.Views.StudentViews.StudentScheduleView"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
              xmlns:views="clr-namespace:project.App.Views"
+             xmlns:models="clr-namespace:project.BL.Models;assembly=project.BL"
              x:DataType="viewModels:StudentScheduleViewModel"
              >
 
 
     <!--TODO load data from db-->
-
+    
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
         <!--header-->
-        <Label Text="SCHEDULE" 
-               FontSize="40"
-               Padding="40"/>
+        <Image Width="50" Height="50" Source="logo_1.png"></Image>
         <HorizontalStackLayout Grid.Column="3"
                                Padding="20"
                                Spacing="20"

@@ -11,9 +11,7 @@
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
         <!--header-->
-        <Label Text="Subjects" 
-               FontSize="40"
-               Padding="40"/>
+        <Image Width="50" Height="50" Source="logo_1.png"></Image>
         <HorizontalStackLayout Grid.Column="3"
                                Padding="20"
                                Spacing="20"
