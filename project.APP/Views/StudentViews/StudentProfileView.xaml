@@ -23,11 +23,20 @@
                            Padding="20"
                            Spacing="20"
                            HorizontalOptions="End">
-            <Label Text="Name" FontSize="25"/>
-            <Label Text="Surname" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
             <ImageButton Source="avatar_placeholder.png"
                      BackgroundColor="Transparent" Command="{Binding GoToStudentProfileCommand}" IsEnabled="False"/>
         </HorizontalStackLayout>
+        <Label Grid.Column="2"
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Margin="0, 10, 100, 0"
+               Text="Logout" FontSize="20" TextColor="White">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
         <!--ENTER -->
@@ -58,17 +67,17 @@
                                  Spacing="20">
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <Binding Path="Students.FirstName" StringFormat="Name: {0}" />
+                        <Binding Path="loggedUser.FirstName" StringFormat="Name: {0}" />
                     </Label.Text>
                 </Label>
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <Binding Path="Students.LastName" StringFormat="Surname: {0}" />
+                        <Binding Path="loggedUser.LastName" StringFormat="Surname: {0}" />
                     </Label.Text>
                 </Label>
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <Binding Path="Students.Email" StringFormat="Email: {0}" />
+                        <Binding Path="loggedUser.Email" StringFormat="Email: {0}" />
                     </Label.Text>
                 </Label>
 

@@ -17,11 +17,20 @@
                                Padding="20"
                                Spacing="20"
                                HorizontalOptions="End">
-            <Label Text="Name" FontSize="25"/>
-            <Label Text="Surname" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
             <ImageButton Source="avatar_placeholder.png"
                          BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
         </HorizontalStackLayout>
+        <Label Grid.Column="2"
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Margin="0, 10, 100, 0"
+               Text="Logout" FontSize="20" TextColor="White">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
         <!--ENTER -->
@@ -57,7 +66,7 @@
                                     <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectName}" />
                                     <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Name}"/>
                                     <Label  Grid.Column="2" VerticalOptions="Center" Text="{Binding ActivityType}"/>
-                                    <Button Grid.Column="5" VerticalOptions="Center" Text="register" 
+                                    <Button Grid.Column="5" VerticalOptions="Center" Text="Register" x:Name="registerButton" Clicked="OnRegisterButtonClicked"
                                             Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
                                             CommandParameter="{Binding .}"/>
                                     <!--second row-->

@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using project.App.Views.StudentViews;
 using project.App.Services;
 using project.BL.Models;
@@ -8,7 +7,11 @@ using project.BL.Facades;
 
 namespace project.App.ViewModels;
 
-public partial class LoginViewModel(IStudentFacade studentFacade, ITeacherFacade teacherFacade, IMessengerService messengerService) : ViewModelBase(messengerService)
+public partial class LoginViewModel(
+    IStudentFacade studentFacade, 
+    ITeacherFacade teacherFacade, 
+    IMessengerService messengerService,
+    StudentDataService studentDataService) : ViewModelBase(messengerService)
 {
     public string? LoginCredential { get; set; }
     public string? PlaceholderText { get; set; } = "Enter your email";
@@ -28,8 +31,8 @@ public partial class LoginViewModel(IStudentFacade studentFacade, ITeacherFacade
     [RelayCommand]
     async Task Login()
     {
-        await Shell.Current.GoToAsync(nameof(StudentScheduleView));
-        return;
+        //await Shell.Current.GoToAsync(nameof(StudentScheduleView));
+        //return;
         if (string.IsNullOrEmpty(LoginCredential))
         {
             // Notify user
@@ -42,6 +45,10 @@ public partial class LoginViewModel(IStudentFacade studentFacade, ITeacherFacade
         if (foundStudent != null)
         {
             LoggedStudent = await studentFacade.GetAsync(foundStudent.Id);
+            if (LoggedStudent == null) {
+                return;
+            }
+            studentDataService.SetCurrentUser(LoggedStudent);
             await Shell.Current.GoToAsync(nameof(StudentScheduleView));
         }
 
