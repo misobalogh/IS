@@ -24,11 +24,41 @@ public static class StudentSeeds
         Password = "9n1d8as"
         
     };
+
+    public static readonly StudentEntity Xkolar51 = new()
+    {
+        Id = Guid.Parse("214af588-69ab-43b4-baa1-4973b1a6eda9"),
+        FirstName = "Karel",
+        LastName = "Kolar",
+        Email = "xkolar51@email.com",
+        Password = "random_pass"
+    };
+
+    public static readonly StudentEntity Xjozef01 = new()
+    {
+        Id = Guid.Parse("962dbc44-3ec6-41f1-9b27-ddd06016f0c6"),
+        FirstName = "Erik",
+        LastName = "Jozefcak",
+        Email = "xjozef01@email.com",
+        Password = "very_hard_123"
+    };
+
+    public static readonly StudentEntity Xstude00 = new()
+    {
+        Id = Guid.Parse("44ca97c3-1a70-42dd-9e37-0e3c74ef7301"),
+        FirstName = "Eva",
+        LastName = "Studena",
+        Email = "xstude00@email.com",
+        Password = "password123"
+    };
     
     
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<StudentEntity>().HasData(
             Xplagi00,
-            Xmrkva01
+            Xmrkva01,
+            Xkolar51,
+            Xjozef01,
+            Xstude00
         );
 }

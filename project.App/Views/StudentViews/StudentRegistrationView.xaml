@@ -77,9 +77,9 @@
                                 <Label Text="{Binding Start, StringFormat='{0:dd.MM.yyyy HH:mm}'}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
                                 <Label Text="{Binding Capacity}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
                                 <Button Text="Register" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"
-                                    Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
-                                    CommandParameter="{Binding .}"/>
-
+                                    Command="{Binding Path=BindingContext.Register, Source={x:Reference Page}}"
+                                    CommandParameter="{Binding .}">
+                                </Button>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

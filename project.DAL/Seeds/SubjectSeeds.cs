@@ -19,11 +19,25 @@ public static class SubjectSeeds
         Tag = "IFJ"
     };
 
-    
-    
+    public static readonly SubjectEntity IDS = new()
+    {
+        Id = Guid.Parse("d7e6fb03-6425-49f6-8667-6ecf862a6fcc"),
+        Name = "Databazove Systemy",
+        Tag = "IDS"
+    };
+
+    public static readonly SubjectEntity IIS = new()
+    {
+        Id = Guid.Parse("46e9b926-7e8d-4edc-a0c7-707dd7f26fac"),
+        Name = "Informacne Systemy",
+        Tag = "IIS"
+    };
+
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<SubjectEntity>().HasData(
             IJC,
-            IFJ
+            IFJ,
+            IDS,
+            IIS
         );
 }
