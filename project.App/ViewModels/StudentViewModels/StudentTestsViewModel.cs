@@ -8,9 +8,8 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class StudentTestsViewModel(IActivityFacade activityFacade, IMessengerService messengerService) : ViewModelBase(messengerService)
-{    //TODO NOT IMPLEMENTED
-
+public partial class StudentTestsViewModel(IActivityFacade activityFacade, IMessengerService messengerService) : StudentNavigationSideBar(messengerService)
+{    
     public IEnumerable<ActivityListModel> Activities { get; set; } = null!;
 
     protected override async Task LoadDataAsync()
@@ -29,37 +28,5 @@ public partial class StudentTestsViewModel(IActivityFacade activityFacade, IMess
     //{
     //    Console.WriteLine("kys\n");
     //}
-
-
-    [RelayCommand]
-    async Task GoToStudentProfile()
-    {
-        await Shell.Current.GoToAsync(nameof(StudentProfileView));
-    }
-    [RelayCommand]
-    async Task GoToSchedule()
-    {
-        await Shell.Current.GoToAsync(nameof(StudentScheduleView));
-    }
-    [RelayCommand]
-    async Task GoToClassification()
-    {
-        await Shell.Current.GoToAsync(nameof(StudentClassificationView));
-    }
-    [RelayCommand]
-    async Task GoToSubjects()
-    {
-        await Shell.Current.GoToAsync(nameof(StudentSubjectsView));
-    }
-    [RelayCommand]
-    async Task GoToTests()
-    {
-        await Shell.Current.GoToAsync(nameof(StudentTestsView));
-    }
-    [RelayCommand]
-    async Task GoToRegistration()
-    {
-        await Shell.Current.GoToAsync(nameof(StudentRegistrationView));
-    }
 }
 
