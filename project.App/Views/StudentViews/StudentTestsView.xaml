@@ -57,7 +57,6 @@
                                     <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectName}" />
                                     <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Name}"/>
                                     <Label  Grid.Column="2" VerticalOptions="Center" Text="{Binding ActivityType}"/>
-                                    <Label  Grid.Column="3" VerticalOptions="Center" Text="ActivityModel kinda not working, missing a lot of variables"/>
                                     <Button Grid.Column="5" VerticalOptions="Center" Text="register" 
                                             Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
                                             CommandParameter="{Binding .}"/>
