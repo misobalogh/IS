@@ -10,16 +10,21 @@ using project.DAL.Enums;
 
 namespace project.App.ViewModels;
 
+
 public partial class TeacherStudentsViewModel(
+    IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService) 
     : TeacherNavigationSideBar(messengerService)
 {
-
+    public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
+        EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
     }
+
+
     // TODO load students, go student by student, load attending classes and chcek if contains current class??
 }
 
