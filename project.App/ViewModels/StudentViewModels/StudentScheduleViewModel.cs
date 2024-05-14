@@ -43,7 +43,7 @@ public partial class StudentScheduleViewModel(
         {
             for (int j = 0; j < 13; j++) // 13 hours from 7 to 19
             {
-                var activities = Activities.Where(a => (int)a.Start.DayOfWeek == i + 2 && a.Start.Hour == 7 + j);
+                var activities = Activities.Where(a => (int)a.Start.DayOfWeek == i + 1 && a.Start.Hour == 7 + j);
                 if (activities.Any())
                 {
                     var activity = activities.First();
@@ -51,7 +51,7 @@ public partial class StudentScheduleViewModel(
                 }
                 else
                 {
-                    scheduleList.Add("-");
+                    scheduleList.Add("Volno");
                 }
             }
         }
