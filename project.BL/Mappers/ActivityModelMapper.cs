@@ -19,6 +19,9 @@ public class ActivityModelMapper :
                 SubjectId = entity.SubjectId,
                 Capacity = entity.Capacity,
                 SubjectName =  entity.Subject.Name,
+                Tag = entity.Subject.Tag,
+                ActivityType = entity.ActivityType,
+                TeacherName = entity.Teacher.LastName,
                 Points = 0
             };
 
