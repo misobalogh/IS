@@ -19,23 +19,22 @@
         <!--header-->
         <Image Width="50" Height="50" Source="logo_1.png"></Image>
         <HorizontalStackLayout Grid.Column="3"
-                               Padding="20"
-                               Spacing="20"
+                               Padding="10"
+                               Spacing="10"
                                HorizontalOptions="End">
             <Label Text="Name" FontSize="25"/>
-            <Label Text="Surname" FontSize="25"/>
+            <VerticalStackLayout>
+                <Label Text="Surname" FontSize="25"/>
+                <Label VerticalOptions="Center"
+                       Text="Logout" FontSize="20" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
             <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent"/>
+                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
         </HorizontalStackLayout>
-        <Label Grid.Column="2"
-               HorizontalOptions="End"
-               VerticalOptions="Center"
-               Margin="0, 10, 100, 0"
-               Text="Logout" FontSize="20" TextColor="White">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
         <Grid Grid.Row="1"
               Grid.Column="0"
