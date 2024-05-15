@@ -26,7 +26,31 @@ public static class RegisteredSubjectsSeeds
         Year = DateTime.Today,
         Subject = SubjectSeeds.IJC,
         Student = StudentSeeds.Xmrkva01,
-        Points = 0,
+        Points = 71,
+        Mark = Mark.C
+    };
+
+    public static readonly EnrolledSubjectEntity Xmrkva01IFJ = new()
+    {
+        Id = Guid.Parse("07671bf7-6690-42bc-8010-b94f66725f08"),
+        SubjectId = SubjectSeeds.IFJ.Id,
+        StudentId = StudentSeeds.Xmrkva01.Id,
+        Year = DateTime.Today,
+        Subject = SubjectSeeds.IFJ,
+        Student = StudentSeeds.Xmrkva01,
+        Points = 97,
+        Mark = Mark.A
+    };
+
+    public static readonly EnrolledSubjectEntity Xmrkva01IDS = new()
+    {
+        Id = Guid.Parse("07671bf7-6690-42bc-8010-a94f66721118"),
+        SubjectId = SubjectSeeds.IDS.Id,
+        StudentId = StudentSeeds.Xmrkva01.Id,
+        Year = DateTime.Today,
+        Subject = SubjectSeeds.IDS,
+        Student = StudentSeeds.Xmrkva01,
+        Points = 12,
         Mark = Mark.None
     };
 
