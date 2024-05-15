@@ -12,16 +12,10 @@ namespace project.App.ViewModels;
 
 
 public partial class TeacherStudentsViewModel(
-<<<<<<< Updated upstream
     IStudentFacade studentFacade,
-    //IEnrolledSubjectsFacade enrolledSubjectsFacade,
-    IMessengerService messengerService) 
-    : TeacherNavigationSideBar(messengerService)
-=======
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService, UserDataService userDataService) 
     : TeacherNavigationSideBar(messengerService, userDataService)
->>>>>>> Stashed changes
 {
     //TODO: pokud by se nekde mely zobrazovat studenti, ktere ucitel uci
     //public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;
