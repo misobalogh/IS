@@ -13,6 +13,9 @@ public class RegisteredActivitiesModelMapper :
             {
                 ActivityId = entity.ActivityId,
                 ActivityName = entity.Activity.Name,
+                End = entity.Activity.End,
+                Room = entity.Activity.Room,
+                Start = entity.Activity.Start,
                 Id = entity.Id
             };
 
@@ -23,6 +26,9 @@ public class RegisteredActivitiesModelMapper :
             {
                 ActivityId = entity.ActivityId,
                 ActivityName = entity.Activity.Name,
+                End = entity.Activity.End,
+                Room = entity.Activity.Room,
+                Start = entity.Activity.Start,
                 Id = entity.Id
             };
 

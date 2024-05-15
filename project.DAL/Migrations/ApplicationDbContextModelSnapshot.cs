@@ -66,27 +66,65 @@ namespace project.DAL.Migrations
                         new
                         {
                             Id = new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"),
-                            ActivityType = 4,
+                            ActivityType = 5,
                             Capacity = 100,
-                            End = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            End = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             MaxPoints = 10,
                             Name = "IFJ Midterm",
                             Room = 5,
-                            Start = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Start = new DateTime(2024, 5, 13, 8, 0, 0, 0, DateTimeKind.Unspecified),
                             SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
                             TeacherId = new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f")
                         },
                         new
                         {
                             Id = new Guid("21adbcf5-f96d-4943-8249-d73401395a06"),
-                            ActivityType = 3,
+                            ActivityType = 4,
                             Capacity = 1,
-                            End = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            End = new DateTime(2024, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "IJC Consultation",
                             Room = 1,
-                            Start = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Start = new DateTime(2024, 5, 14, 8, 0, 0, 0, DateTimeKind.Unspecified),
                             SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
                             TeacherId = new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c")
+                        },
+                        new
+                        {
+                            Id = new Guid("d43acf95-447d-4169-9de0-10df4fbf1222"),
+                            ActivityType = 3,
+                            Capacity = 10,
+                            End = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            MaxPoints = 100,
+                            Name = "IDS Project",
+                            Room = 8,
+                            Start = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            SubjectId = new Guid("d7e6fb03-6425-49f6-8667-6ecf862a6fcc"),
+                            TeacherId = new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c")
+                        },
+                        new
+                        {
+                            Id = new Guid("07d710b6-f888-4544-9699-1b8351b2f5ef"),
+                            ActivityType = 1,
+                            Capacity = 100,
+                            End = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            Name = "IIS Lecture",
+                            Room = 6,
+                            Start = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            SubjectId = new Guid("46e9b926-7e8d-4edc-a0c7-707dd7f26fac"),
+                            TeacherId = new Guid("49b9f640-99ec-446a-95a1-ba837dd18016")
+                        },
+                        new
+                        {
+                            Id = new Guid("fbade23f-82ee-4895-9ba3-cdad7de473c9"),
+                            ActivityType = 3,
+                            Capacity = 10,
+                            End = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            MaxPoints = 100,
+                            Name = "IIS Project",
+                            Room = 8,
+                            Start = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            SubjectId = new Guid("46e9b926-7e8d-4edc-a0c7-707dd7f26fac"),
+                            TeacherId = new Guid("49b9f640-99ec-446a-95a1-ba837dd18016")
                         });
                 });
 
@@ -127,7 +165,7 @@ namespace project.DAL.Migrations
                             Points = 0,
                             StudentId = new Guid("789a3e3a-0d52-4cc6-b5b2-6e5819594380"),
                             SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
-                            Year = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -136,7 +174,34 @@ namespace project.DAL.Migrations
                             Points = 0,
                             StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f"),
                             SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
-                            Year = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("269b4a0e-f07f-45ce-8586-81761dd599e0"),
+                            Mark = 0,
+                            Points = 10,
+                            StudentId = new Guid("214af588-69ab-43b4-baa1-4973b1a6eda9"),
+                            SubjectId = new Guid("d7e6fb03-6425-49f6-8667-6ecf862a6fcc"),
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("f6d72f38-f33e-4246-942a-ced94ba8b485"),
+                            Mark = 0,
+                            Points = 0,
+                            StudentId = new Guid("962dbc44-3ec6-41f1-9b27-ddd06016f0c6"),
+                            SubjectId = new Guid("46e9b926-7e8d-4edc-a0c7-707dd7f26fac"),
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("36f96027-6267-4342-ac10-f8d51c41c610"),
+                            Mark = 0,
+                            Points = 0,
+                            StudentId = new Guid("44ca97c3-1a70-42dd-9e37-0e3c74ef7301"),
+                            SubjectId = new Guid("d7e6fb03-6425-49f6-8667-6ecf862a6fcc"),
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -173,6 +238,20 @@ namespace project.DAL.Migrations
                             ActivityId = new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"),
                             Points = 10,
                             StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
+                        },
+                        new
+                        {
+                            Id = new Guid("50fcc755-0509-4869-9775-20cc913f956d"),
+                            ActivityId = new Guid("fbade23f-82ee-4895-9ba3-cdad7de473c9"),
+                            Points = 20,
+                            StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
+                        },
+                        new
+                        {
+                            Id = new Guid("2f7a84d3-bce6-46ad-88c0-252662c7d21f"),
+                            ActivityId = new Guid("d43acf95-447d-4169-9de0-10df4fbf1222"),
+                            Points = 30,
+                            StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
                         });
                 });
 
@@ -207,6 +286,24 @@ namespace project.DAL.Migrations
                         {
                             Id = new Guid("2a484e4f-c3d4-4a57-8f21-c8751cc16d2e"),
                             ActivityId = new Guid("21adbcf5-f96d-4943-8249-d73401395a06"),
+                            StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
+                        },
+                        new
+                        {
+                            Id = new Guid("eadf7a13-db18-4be6-bc2a-302a21df5bee"),
+                            ActivityId = new Guid("d43acf95-447d-4169-9de0-10df4fbf1222"),
+                            StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
+                        },
+                        new
+                        {
+                            Id = new Guid("397c4f82-dbfd-4687-8d40-720d79a0b678"),
+                            ActivityId = new Guid("fbade23f-82ee-4895-9ba3-cdad7de473c9"),
+                            StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
+                        },
+                        new
+                        {
+                            Id = new Guid("845aab54-8a3e-4d83-82b0-f83db7a41695"),
+                            ActivityId = new Guid("fc6e2571-362d-47fd-8a61-fc3dc08d486f"),
                             StudentId = new Guid("86b94a78-c900-473d-9e57-f1b93cc9819f")
                         });
                 });
@@ -261,6 +358,33 @@ namespace project.DAL.Migrations
                             Grade = 0,
                             LastName = "Mrkva",
                             Password = "9n1d8as"
+                        },
+                        new
+                        {
+                            Id = new Guid("214af588-69ab-43b4-baa1-4973b1a6eda9"),
+                            Email = "xkolar51@email.com",
+                            FirstName = "Karel",
+                            Grade = 0,
+                            LastName = "Kolar",
+                            Password = "random_pass"
+                        },
+                        new
+                        {
+                            Id = new Guid("962dbc44-3ec6-41f1-9b27-ddd06016f0c6"),
+                            Email = "xjozef01@email.com",
+                            FirstName = "Erik",
+                            Grade = 0,
+                            LastName = "Jozefcak",
+                            Password = "very_hard_123"
+                        },
+                        new
+                        {
+                            Id = new Guid("44ca97c3-1a70-42dd-9e37-0e3c74ef7301"),
+                            Email = "xstude00@email.com",
+                            FirstName = "Eva",
+                            Grade = 0,
+                            LastName = "Studena",
+                            Password = "password123"
                         });
                 });
 
@@ -299,6 +423,20 @@ namespace project.DAL.Migrations
                             Name = "Formalitka Jednoducha",
                             Semester = 0,
                             Tag = "IFJ"
+                        },
+                        new
+                        {
+                            Id = new Guid("d7e6fb03-6425-49f6-8667-6ecf862a6fcc"),
+                            Name = "Databazove Systemy",
+                            Semester = 0,
+                            Tag = "IDS"
+                        },
+                        new
+                        {
+                            Id = new Guid("46e9b926-7e8d-4edc-a0c7-707dd7f26fac"),
+                            Name = "Informacne Systemy",
+                            Semester = 0,
+                            Tag = "IIS"
                         });
                 });
 
@@ -353,6 +491,14 @@ namespace project.DAL.Migrations
                             FirstName = "Lenka",
                             LastName = "Lienka",
                             Password = "#ASDld10981"
+                        },
+                        new
+                        {
+                            Id = new Guid("49b9f640-99ec-446a-95a1-ba837dd18016"),
+                            Email = "honza@novak.cz",
+                            FirstName = "Honza",
+                            LastName = "Novák",
+                            Password = "secret_pass_hardcore123"
                         });
                 });
 
@@ -385,14 +531,28 @@ namespace project.DAL.Migrations
                             Id = new Guid("8c76cfde-f278-459b-8354-15f9c6dc68e1"),
                             SubjectId = new Guid("6180b520-6119-4303-8496-ed568d684209"),
                             TeacherId = new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c"),
-                            Year = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = new Guid("323f2144-de33-4185-b20e-53764ff39956"),
                             SubjectId = new Guid("e8b9f519-c2df-4c4c-8ce3-8dbfcf9557d4"),
                             TeacherId = new Guid("45083d2e-a91f-43a3-9ff4-a1d48a30e06f"),
-                            Year = new DateTime(2024, 4, 7, 0, 0, 0, 0, DateTimeKind.Local)
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("a6c9a9f0-64ce-4096-b5ba-3a2942c76aa6"),
+                            SubjectId = new Guid("d7e6fb03-6425-49f6-8667-6ecf862a6fcc"),
+                            TeacherId = new Guid("acce5c7a-2266-43ef-921b-c6b5e4c1390c"),
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("53efaa78-9c02-4139-b0df-e11264390bca"),
+                            SubjectId = new Guid("46e9b926-7e8d-4edc-a0c7-707dd7f26fac"),
+                            TeacherId = new Guid("49b9f640-99ec-446a-95a1-ba837dd18016"),
+                            Year = new DateTime(2024, 5, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 

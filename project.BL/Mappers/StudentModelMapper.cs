@@ -18,6 +18,7 @@ public class StudentModelMapper (
                 Grade = entity.Grade,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
+                Email = entity.Email,
                 PhotoUrl = entity.Image
             };
 

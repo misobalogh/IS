@@ -16,7 +16,8 @@ public class TeacherModelMapper :
                 LastName = entity.LastName,
                 PhotoUrl = entity.Image,
                 TitleBefore = entity.TitleBefore,
-                TitleAfter = entity.TitleAfter
+                TitleAfter = entity.TitleAfter,
+                Email = entity.Email,
             };
 
     public override TeacherModel MapToDetailModel(TeacherEntity? entity)
@@ -32,8 +33,6 @@ public class TeacherModelMapper :
                 PhotoUrl = entity.Image,
                 TitleBefore = entity.TitleBefore,
                 TitleAfter = entity.TitleAfter,
-                // TODO: TeachingSubjects = subjectModelMapper.MapToListModel(entity.Subjects)
-                //  .ToObservableCollection
             };
 
     public override TeacherEntity MapToEntity(TeacherModel model) 

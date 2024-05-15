@@ -89,28 +89,4 @@ public sealed class EvaluationFacadeTests : FacadeTestsBase
         var evaluationFromDb = await dbxAssert.Evaluations.SingleAsync(i => i.Id == evaluation.Id);
         DeepAssert.Equal(evaluation, EvaluationModelMapper.MapToDetailModel(evaluationFromDb));
     }
-    
-    // [Fact]
-    // public async Task SeededIFJMidterm_InsertOrUpdate_EvaluationUpdated()
-    // {
-    //     //Arrange
-    //     var evaluation = new EvaluationModel
-    //     {
-    //         Id = EvaluationSeeds.IFJMidterm.Id,
-    //         Points = EvaluationSeeds.IFJMidterm.Points,
-    //         StudentId = EvaluationSeeds.IFJMidterm.StudentId,
-    //         ActivityId = EvaluationSeeds.IFJMidterm.ActivityId,
-    //         Note = EvaluationSeeds.IFJMidterm.Note
-    //     };
-    //     evaluation.Points += 10;
-    //     evaluation.Note = "updated";
-    //
-    //     //Act
-    //     await _evalutationtFacadeSUT.SaveAsync(evaluation);
-    //
-    //     //Assert
-    //     await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
-    //     var evaluationFromDb = await dbxAssert.Evaluations.SingleAsync(i => i.Id == evaluation.Id);
-    //     DeepAssert.Equal(evaluation, EvaluationModelMapper.MapToDetailModel(evaluationFromDb));
-    // }
 }

@@ -17,11 +17,14 @@ public class ActivityModelMapper :
                 Start = entity.Start,
                 Name = entity.Name,
                 SubjectId = entity.SubjectId,
-                SubjectName = entity.Subject.Name,
+                Capacity = entity.Capacity,
+                SubjectName =  entity.Subject.Name,
+                Tag = entity.Subject.Tag,
+                ActivityType = entity.ActivityType,
+                TeacherName = entity.Teacher.LastName,
                 Points = 0
             };
 
-    //TODO: v kucharce se predavaji Id pres parametry, tak to udelat taky tak?
     public override ActivityModel MapToDetailModel(ActivityEntity? entity)
         => entity is null
             ? ActivityModel.Empty
@@ -36,7 +39,7 @@ public class ActivityModelMapper :
                 SubjectId = entity.SubjectId,
                 SubjectName = entity.Subject.Name,
                 Capacity = entity.Capacity,
-                TeacherName = entity.Teacher.LastName, //TODO: nejakou metodu na ziskani celeho jmena i s tituly?
+                TeacherName = entity.Teacher.LastName,
                 MaxPoints = entity.MaxPoints,
                 TeacherId = entity.TeacherId
             };

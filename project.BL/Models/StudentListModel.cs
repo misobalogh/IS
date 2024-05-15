@@ -11,6 +11,7 @@ public record StudentListModel : ModelBase
 {
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
+    public required string Email { get; set; }
     public Uri? PhotoUrl { get; set; }
     //Grade means year of study
     public required int Grade { get; set; }
@@ -20,6 +21,7 @@ public record StudentListModel : ModelBase
         Id = Guid.Empty,
         FirstName = string.Empty,
         LastName = string.Empty,
+        Email = string.Empty,
         Grade = 0
     };
 }

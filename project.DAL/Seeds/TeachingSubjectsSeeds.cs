@@ -24,10 +24,32 @@ public static class TeachingSubjectsSeeds
         Subject = SubjectSeeds.IFJ,
         Teacher = TeacherSeeds.Lienka
     };
+
+    public static readonly TeachingSubjectsEntity ChrobakIDS = new()
+    {
+        Id = Guid.Parse("a6c9a9f0-64ce-4096-b5ba-3a2942c76aa6"),
+        SubjectId = SubjectSeeds.IDS.Id,
+        TeacherId = TeacherSeeds.Chrobak.Id,
+        Year = DateTime.Today,
+        Subject = SubjectSeeds.IDS,
+        Teacher = TeacherSeeds.Chrobak
+    };
+
+    public static readonly TeachingSubjectsEntity NovakIIS = new()
+    {
+        Id = Guid.Parse("53efaa78-9c02-4139-b0df-e11264390bca"),
+        SubjectId = SubjectSeeds.IIS.Id,
+        TeacherId = TeacherSeeds.Novak.Id,
+        Year = DateTime.Today,
+        Subject = SubjectSeeds.IIS,
+        Teacher = TeacherSeeds.Novak
+    };
     
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<TeachingSubjectsEntity>().HasData(
             ChrobakIJC with { Subject = null!, Teacher = null! },
-            LienkaIFJ with { Subject = null!, Teacher = null! }
+            LienkaIFJ with { Subject = null!, Teacher = null! },
+            ChrobakIDS with { Subject = null!, Teacher = null! },
+            NovakIIS with { Subject = null!, Teacher = null! }
         );
 }

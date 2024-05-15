@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="project.App.Shells.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:StudentViews="clr-namespace:project.App.Views.StudentViews"
+    xmlns:TeacherViews="clr-namespace:project.App.Views.TeacherViews"
+    xmlns:LoginViews="clr-namespace:project.App.Views.LoginViews"
+    xmlns:local="clr-namespace:project.App.Shells"
+    Shell.FlyoutBehavior="Disabled"
+    Title="project.App">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate LoginViews:LoginView}"
+        Route="LoginView" />
+</Shell>

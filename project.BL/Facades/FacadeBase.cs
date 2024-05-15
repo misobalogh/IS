@@ -8,6 +8,7 @@ using project.DAL.Entities;
 using project.DAL.Mappers;
 using project.DAL.Repositories;
 using project.DAL.UnitOfWork;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace project.BL.Facades;
 
@@ -23,7 +24,7 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper = modelMapper;
     protected readonly IUnitOfWorkFactory UnitOfWorkFactory = unitOfWorkFactory;
 
-    protected virtual string IncludesNavigationPathDetail => string.Empty;
+    protected virtual List<string> IncludesNavigationPathDetail => [];
 
     public async Task DeleteAsync(Guid id)
     {
@@ -39,27 +40,32 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
         }
     }
 
-    //TODO: dodělat stránkování
     public virtual async Task<TDetailModel?> GetAsync(Guid id)
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+
         IQueryable<TEntity> query = unitOfWork.GetRepository<TEntity, TEntityMapper>().Get();
-        if (string.IsNullOrWhiteSpace(IncludesNavigationPathDetail) is false)
-            query = query.Include(IncludesNavigationPathDetail);
+        if (IncludesNavigationPathDetail.Count > 0)
+        {
+            IncludesNavigationPathDetail.ForEach(i => query = query.Include(i));
+        }
 
         TEntity? entity = await query.SingleOrDefaultAsync(e => e.Id == id);
 
         return entity is null ? null : ModelMapper.MapToDetailModel(entity);
     }
 
-    //TODO: dodělat stránkování
     public virtual async Task<IEnumerable<TListModel>> GetAsync()
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-        List<TEntity> entities = await unitOfWork
-            .GetRepository<TEntity, TEntityMapper>()
-            .Get()
-            .ToListAsync();
+
+        IQueryable<TEntity> query = unitOfWork.GetRepository<TEntity, TEntityMapper>().Get();
+        if (IncludesNavigationPathDetail.Count > 0)
+        {
+            IncludesNavigationPathDetail.ForEach(i => query = query.Include(i));
+        }
+
+        List<TEntity> entities = await query.ToListAsync();
 
         return ModelMapper.MapToListModel(entities);
     }
@@ -68,7 +74,6 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     {
         TDetailModel result;
 
-        //TODO: budeme to využívat, nebo máme jinak navrhnutou aplikaci?
         GuardCollectionsAreNotSet(model);
 
         TEntity entity = ModelMapper.MapToEntity(model);

@@ -1,5 +1,6 @@
 ﻿using project.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using project.DAL.Enums;
 
 namespace project.DAL.Seeds;
 
@@ -12,6 +13,8 @@ public static class TeacherSeeds
         LastName = "Chrobak",
         Email = "chrobak@email.com",
         Password = "asdm9m1dm901",
+        TitleBefore = TitleBefore.Ing,
+        TitleAfter = TitleAfter.Phd
     };
     
     public static readonly TeacherEntity Lienka = new()
@@ -20,13 +23,26 @@ public static class TeacherSeeds
         FirstName = "Lenka",
         LastName = "Lienka",
         Email = "lienka@email.com",
-        Password = "#ASDld10981"
+        Password = "#ASDld10981",
+        TitleBefore = TitleBefore.Ing,
+        TitleAfter = TitleAfter.Phd
     };
-    
-    
+
+    public static readonly TeacherEntity Novak = new()
+    {
+        Id = Guid.Parse("49b9f640-99ec-446a-95a1-ba837dd18016"),
+        FirstName = "Honza",
+        LastName = "Novák",
+        Email = "honza@novak.cz",
+        Password = "secret_pass_hardcore123",
+        TitleBefore = TitleBefore.Ing,
+        TitleAfter = TitleAfter.Phd
+    };
+
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<TeacherEntity>().HasData(
             Chrobak,
-            Lienka
+            Lienka,
+            Novak
         );
 }

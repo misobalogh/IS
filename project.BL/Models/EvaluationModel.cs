@@ -9,7 +9,6 @@ public record EvaluationModel : ModelBase
     public required Guid StudentId { get; set; }
     public required Guid ActivityId { get; set; }
     
-    //TODO: maybe StudentName
     public static EvaluationModel Empty => new()
     {
         Points = 0,

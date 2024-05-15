@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="project.App.Views.TeacherViews.TeacherScheduleView"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:views="clr-namespace:project.App.Views"
+             x:DataType="viewModels:TeacherScheduleViewModel"
+             >
+
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!--header-->
+        <Image Width="50" Height="50" Source="logo_1.png"></Image>
+        <HorizontalStackLayout Grid.Column="3"
+                               Padding="10"
+                               Spacing="10"
+                               HorizontalOptions="End">
+            <Label Text="{Binding loggedUser.TitleBefore, StringFormat='{}{0}.'}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
+            <VerticalStackLayout>
+                <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
+                <Label VerticalOptions="Center"
+                       Text="Logout" FontSize="20" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+            <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
+            <ImageButton Source="avatar_placeholder.png"
+                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+        </HorizontalStackLayout>
+        <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions=".15*,.85*">
+            <!--navigation menu-->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="schedule" Command="{Binding GoToScheduleCommand}" IsEnabled="False"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="classification" Command="{Binding GoToClassificationCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="tests" Command="{Binding GoToTestsCommand}"/>
+                <Button TextColor="White" Background="Transparent"     FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="students" Command="{Binding GoToStudentsCommand}"/>
+            </VerticalStackLayout>
+            <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+
+            <!-- Separator -->
+            <BoxView Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Color="#404040"
+                 HeightRequest="3"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="End"/>
+            <!-- Layout Grid -->
+            <ScrollView Grid.Row="1"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+                <Grid HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  ColumnDefinitions="80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80"
+                  RowDefinitions="60, 50, 50, 50, 50, 50"
+                  ColumnSpacing="1">
+
+                    <!-- Time headers -->
+                    <Label HorizontalOptions="Center" Text="Time/Day" Grid.Column="0" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="7:00&#x0a;-&#x0a;7:50" Grid.Column="1" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="8:00&#x0a;-&#x0a;8:50" Grid.Column="2" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="9:00&#x0a;-&#x0a;9:50" Grid.Column="3" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="10:00&#x0a;-&#x0a;10:50" Grid.Column="4" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="11:00&#x0a;-&#x0a;11:50" Grid.Column="5" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="12:00&#x0a;-&#x0a;12:50" Grid.Column="6" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="13:00&#x0a;-&#x0a;13:50" Grid.Column="7" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="14:00&#x0a;-&#x0a;14:50" Grid.Column="8" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="15:00&#x0a;-&#x0a;15:50" Grid.Column="9" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="16:00&#x0a;-&#x0a;16:50" Grid.Column="10" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="17:00&#x0a;-&#x0a;17:50" Grid.Column="11" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="18:00&#x0a;-&#x0a;18:50" Grid.Column="12" Grid.Row="0"/>
+                    <Label HorizontalOptions="Center" Text="19:00&#x0a;-&#x0a;19:50" Grid.Column="13" Grid.Row="0"/>
+
+                    <!-- Day headers -->
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Monday" Grid.Column="0" Grid.Row="1"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Tuesday" Grid.Column="0" Grid.Row="2"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Wednesday" Grid.Column="0" Grid.Row="3"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Thursday" Grid.Column="0" Grid.Row="4"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Friday" Grid.Column="0" Grid.Row="5"/>
+
+                    <!-- Dynamic content loaded here -->
+                    <!-- You need to bind each ContentView to a specific part of your model representing the schedule -->
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" Text="{Binding Schedule[0]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" Grid.Row="1" Text="{Binding Schedule[1]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Grid.Row="1" Text="{Binding Schedule[2]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4" Grid.Row="1" Text="{Binding Schedule[3]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="5" Grid.Row="1" Text="{Binding Schedule[4]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="6" Grid.Row="1" Text="{Binding Schedule[5]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="7" Grid.Row="1" Text="{Binding Schedule[6]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="8" Grid.Row="1" Text="{Binding Schedule[7]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="9" Grid.Row="1" Text="{Binding Schedule[8]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="10" Grid.Row="1" Text="{Binding Schedule[9]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="11" Grid.Row="1" Text="{Binding Schedule[10]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="12" Grid.Row="1" Text="{Binding Schedule[11]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="13" Grid.Row="1" Text="{Binding Schedule[12]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" Text="{Binding Schedule[13]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" Grid.Row="2" Text="{Binding Schedule[14]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Grid.Row="2" Text="{Binding Schedule[15]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4" Grid.Row="2" Text="{Binding Schedule[16]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="5" Grid.Row="2" Text="{Binding Schedule[17]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="6" Grid.Row="2" Text="{Binding Schedule[18]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="7" Grid.Row="2" Text="{Binding Schedule[19]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="8" Grid.Row="2" Text="{Binding Schedule[20]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="9" Grid.Row="2" Text="{Binding Schedule[21]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="10" Grid.Row="2" Text="{Binding Schedule[22]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="11" Grid.Row="2" Text="{Binding Schedule[23]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="12" Grid.Row="2" Text="{Binding Schedule[24]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="13" Grid.Row="2" Text="{Binding Schedule[25]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Grid.Row="3" Text="{Binding Schedule[26]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" Grid.Row="3" Text="{Binding Schedule[27]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Grid.Row="3" Text="{Binding Schedule[28]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4" Grid.Row="3" Text="{Binding Schedule[29]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="5" Grid.Row="3" Text="{Binding Schedule[30]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="6" Grid.Row="3" Text="{Binding Schedule[31]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="7" Grid.Row="3" Text="{Binding Schedule[32]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="8" Grid.Row="3" Text="{Binding Schedule[33]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="9" Grid.Row="3" Text="{Binding Schedule[34]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="10" Grid.Row="3" Text="{Binding Schedule[35]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="11" Grid.Row="3" Text="{Binding Schedule[36]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="12" Grid.Row="3" Text="{Binding Schedule[37]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="13" Grid.Row="3" Text="{Binding Schedule[38]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Grid.Row="4" Text="{Binding Schedule[39]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" Grid.Row="4" Text="{Binding Schedule[40]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Grid.Row="4" Text="{Binding Schedule[41]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4" Grid.Row="4" Text="{Binding Schedule[42]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="5" Grid.Row="4" Text="{Binding Schedule[43]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="6" Grid.Row="4" Text="{Binding Schedule[44]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="7" Grid.Row="4" Text="{Binding Schedule[45]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="8" Grid.Row="4" Text="{Binding Schedule[46]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="9" Grid.Row="4" Text="{Binding Schedule[47]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="10" Grid.Row="4" Text="{Binding Schedule[48]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="11" Grid.Row="4" Text="{Binding Schedule[49]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="12" Grid.Row="4" Text="{Binding Schedule[50]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="13" Grid.Row="4" Text="{Binding Schedule[51]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Grid.Row="5" Text="{Binding Schedule[52]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" Grid.Row="5" Text="{Binding Schedule[53]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3" Grid.Row="5" Text="{Binding Schedule[54]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4" Grid.Row="5" Text="{Binding Schedule[55]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="5" Grid.Row="5" Text="{Binding Schedule[56]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="6" Grid.Row="5" Text="{Binding Schedule[57]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="7" Grid.Row="5" Text="{Binding Schedule[58]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="8" Grid.Row="5" Text="{Binding Schedule[59]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="9" Grid.Row="5" Text="{Binding Schedule[60]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="10" Grid.Row="5" Text="{Binding Schedule[61]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="11" Grid.Row="5" Text="{Binding Schedule[62]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="12" Grid.Row="5" Text="{Binding Schedule[63]}" />
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="13" Grid.Row="5" Text="{Binding Schedule[64]}" />
+
+                    <!-- Vertical lines -->
+                    <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="Start"/>
+                    <BoxView Color="White" Grid.Column="0" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="1" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="2" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="3" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="4" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="5" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="6" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="7" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="8" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="9" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="10" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="11" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="12" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+                    <BoxView Color="White" Grid.Column="13" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
+
+                    <!-- Horizontal lines -->
+                    <BoxView Color="White" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="14" HeightRequest="2" VerticalOptions="Start"/>
+                    <BoxView Color="White" Grid.Row="0" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="1" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="2" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="3" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="4" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                    <BoxView Color="White" Grid.Row="5" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>
