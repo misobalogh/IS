@@ -65,13 +65,6 @@ public sealed class SubjectFacadeTests : FacadeTestsBase
         Assert.False(await dbxAssert.Subjects.AnyAsync(i => i.Id == SubjectSeeds.IJC.Id));
     }
     
-    // [Fact]
-    // public async Task Delete_SubjectThatStudentHasEnrolled_Throws()
-    // {
-    //     //Act & Assert
-    //     await Assert.ThrowsAsync<InvalidOperationException>(async () => await _subjectFacadeSUT.DeleteAsync(SubjectSeeds.IFJ.Id));
-    // }
-    
     [Fact]
     public async Task NewSubject_InsertOrUpdate_SubjectAdded()
     {

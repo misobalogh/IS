@@ -40,7 +40,6 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
         }
     }
 
-    //TODO: dodělat stránkování
     public virtual async Task<TDetailModel?> GetAsync(Guid id)
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
@@ -56,7 +55,6 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
         return entity is null ? null : ModelMapper.MapToDetailModel(entity);
     }
 
-    //TODO: dodělat stránkování
     public virtual async Task<IEnumerable<TListModel>> GetAsync()
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
@@ -76,7 +74,6 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     {
         TDetailModel result;
 
-        //TODO: budeme to využívat, nebo máme jinak navrhnutou aplikaci?
         GuardCollectionsAreNotSet(model);
 
         TEntity entity = ModelMapper.MapToEntity(model);

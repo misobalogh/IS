@@ -6,5 +6,5 @@ namespace project.BL.Facades;
 
 public interface ITeacherFacade : IFacade<TeacherEntity, TeacherListModel, TeacherModel>
 {
-    // Task SaveAsync(TeacherModel model);
+
 }

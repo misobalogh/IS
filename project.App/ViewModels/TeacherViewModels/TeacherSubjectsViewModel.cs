@@ -10,7 +10,6 @@ namespace project.App.ViewModels;
 
 public partial class TeacherSubjectsViewModel(ISubjectFacade subjectFacade, IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
 {    
-    //TODO NOT IMPLEMENTED
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
 
     protected override async Task LoadDataAsync()

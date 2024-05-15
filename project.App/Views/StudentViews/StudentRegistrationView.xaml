@@ -32,7 +32,6 @@
         </Label>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
-        <!--ENTER -->
         <Grid Grid.Row="1"
               Grid.Column="0"
               Grid.ColumnSpan="3"
@@ -51,8 +50,6 @@
                         Text="registration" Command="{Binding GoToRegistrationCommand}" IsEnabled="False"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-
-            <!--ENTER PAGE CONTENT HERE-->
             <ListView Grid.Column="1" ItemsSource="{Binding Activities}">
                 <ListView.Header>
                     <Grid Padding="10" BackgroundColor="#ab93e3">
@@ -88,7 +85,6 @@
                                 <Button x:Name="registerButton" Text="Register" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4" Clicked="OnRegisterButtonClicked"
                                     Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
                                     CommandParameter="{Binding .}"/>
-
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

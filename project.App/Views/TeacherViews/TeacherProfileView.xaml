@@ -37,7 +37,6 @@
         </Label>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
-        <!--ENTER -->
         <Grid Grid.Row="1"
           Grid.Column="0"
           Grid.ColumnSpan="3"

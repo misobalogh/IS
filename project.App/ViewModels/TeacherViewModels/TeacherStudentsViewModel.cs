@@ -23,8 +23,5 @@ public partial class TeacherStudentsViewModel(
         await base.LoadDataAsync();
         EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
     }
-
-
-    // TODO load students, go student by student, load attending classes and chcek if contains current class??
 }
 

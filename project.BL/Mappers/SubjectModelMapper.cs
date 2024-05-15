@@ -25,7 +25,6 @@ public class SubjectModelMapper :
                 Name = entity.Name,
                 Tag = entity.Tag,
                 Semester = entity.Semester,
-                //TODO: dodelat v entitach totalPoints, description, ...
             };
 
     public override SubjectEntity MapToEntity(SubjectModel model)

@@ -7,7 +7,6 @@
              x:DataType="viewModels:StudentTestsViewModel"
              xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              >
-    <!--TODO this view is not finished-->
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
@@ -33,7 +32,6 @@
         </Label>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
-        <!--ENTER -->
         <Grid Grid.Row="1"
               Grid.Column="0"
               Grid.ColumnSpan="3"
@@ -52,8 +50,6 @@
                         Text="registration" Command="{Binding GoToRegistrationCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-
-            <!--ENTER PAGE CONTENT HERE-->
             <ScrollView Grid.Column="1">
                 <CollectionView ItemsSource="{Binding Activities}">
                     <CollectionView.ItemTemplate>

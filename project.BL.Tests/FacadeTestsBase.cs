@@ -1,4 +1,4 @@
-using project.BL.Mappers;
+﻿using project.BL.Mappers;
 using project.Common.Tests;
 using project.Common.Tests.Factories;
 using project.DAL;
@@ -18,8 +18,6 @@ public class FacadeTestsBase : IAsyncLifetime
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
 
-        // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
-        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
         DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
 
         ActivityModelMapper = new ActivityModelMapper();

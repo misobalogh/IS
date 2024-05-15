@@ -32,7 +32,6 @@
         </Label>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
-        <!--ENTER -->
         <Grid Grid.Row="1"
               Grid.Column="0"
               Grid.ColumnSpan="3"
@@ -85,7 +84,6 @@
                     <Label HorizontalOptions="Center" Text="17:00&#x0a;-&#x0a;17:50" Grid.Column="11" Grid.Row="0"/>
                     <Label HorizontalOptions="Center" Text="18:00&#x0a;-&#x0a;18:50" Grid.Column="12" Grid.Row="0"/>
                     <Label HorizontalOptions="Center" Text="19:00&#x0a;-&#x0a;19:50" Grid.Column="13" Grid.Row="0"/>
-                    <!-- Add the rest of the times similarly -->
 
                     <!-- Day headers -->
                     <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Monday" Grid.Column="0" Grid.Row="1"/>
@@ -93,7 +91,6 @@
                     <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Wednesday" Grid.Column="0" Grid.Row="3"/>
                     <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Thursday" Grid.Column="0" Grid.Row="4"/>
                     <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Friday" Grid.Column="0" Grid.Row="5"/>
-                    <!-- Add the rest of the days similarly -->
 
                     <!-- Dynamic content loaded here -->
                     <!-- You need to bind each ContentView to a specific part of your model representing the schedule -->
@@ -163,9 +160,6 @@
                     <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="12" Grid.Row="5" Text="{Binding Schedule[63]}" />
                     <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="13" Grid.Row="5" Text="{Binding Schedule[64]}" />
 
-                    <!--<ContentView Grid.Column="2" Grid.Row="1" Content="{Binding Schedule[Monday][SecondSlot]}"/>-->
-                    <!-- Continue binding for each slot -->
-
                     <!-- Vertical lines -->
                     <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="Start"/>
                     <BoxView Color="White" Grid.Column="0" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
@@ -182,7 +176,6 @@
                     <BoxView Color="White" Grid.Column="11" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
                     <BoxView Color="White" Grid.Column="12" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
                     <BoxView Color="White" Grid.Column="13" Grid.RowSpan="6" WidthRequest="2" HorizontalOptions="End"/>
-                    <!-- Add more vertical lines for each column -->
 
                     <!-- Horizontal lines -->
                     <BoxView Color="White" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="14" HeightRequest="2" VerticalOptions="Start"/>
@@ -192,7 +185,6 @@
                     <BoxView Color="White" Grid.Row="3" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
                     <BoxView Color="White" Grid.Row="4" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
                     <BoxView Color="White" Grid.Row="5" Grid.ColumnSpan="15" HeightRequest="2" VerticalOptions="End"/>
-                    <!-- Add more horizontal lines for each row -->
                 </Grid>
             </ScrollView>
         </Grid>
