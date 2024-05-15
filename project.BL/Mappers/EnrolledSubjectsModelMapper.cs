@@ -16,6 +16,7 @@ public class EnrolledSubjectsModelMapper :
                 SubjectName = entity.Subject.Name,
                 Id = entity.Id,
                 SubjectId = entity.SubjectId,
+                StudentId = entity.StudentId,
             };
 
     public override EnrolledSubjectsModel MapToDetailModel(EnrolledSubjectEntity? entity)

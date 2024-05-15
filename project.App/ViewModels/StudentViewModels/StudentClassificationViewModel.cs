@@ -18,7 +18,10 @@ public partial class StudentClassificationViewModel(
     {
         await base.LoadDataAsync();
         EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
-        EnrolledSubjects = EnrolledSubjects.Where(subject => subject.SubjectId == loggedUser.Id);
+        if (loggedUser !=  null)
+        {
+            EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
+        }
     }
 
     [RelayCommand]
