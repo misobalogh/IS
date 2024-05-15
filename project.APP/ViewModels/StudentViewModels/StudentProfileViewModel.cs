@@ -8,7 +8,7 @@ public partial class StudentProfileViewModel(
     ISubjectFacade subjectFacade, 
     IStudentFacade studentFacade, 
     IMessengerService messengerService,
-    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
+    UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
 
     public StudentModel Students { get; set; } = null!;

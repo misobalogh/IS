@@ -14,7 +14,7 @@ namespace project.App.ViewModels;
 public partial class StudentScheduleViewModel(
     IRegisteredActivitiesFacade registeredActivitiesFacade,
     IMessengerService messengerService, 
-    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
+    UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
     public IEnumerable<RegisteredActivitiesListModel> Activities { get; set; } = null!;
 

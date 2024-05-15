@@ -1,6 +1,6 @@
 ﻿namespace project.App.Services;
 
-public interface IStudentDataService
+public interface IUserDataService
 {
     public void SetCurrentUser(object user);
     public void ClearCurrentUser();

@@ -8,7 +8,7 @@ using project.DAL.Enums;
 namespace project.App.ViewModels;
 
 [QueryProperty("SubjectId", "subjectId")]
-public partial class TeacherClassificationSubjectDetailViewModel(IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
+public partial class TeacherClassificationSubjectDetailViewModel(IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {
     public string? SubjectId { get; set; }
 }

@@ -17,9 +17,10 @@
                                Padding="10"
                                Spacing="10"
                                HorizontalOptions="End">
-            <Label Text="Name" FontSize="25"/>
+            <Label Text="{Binding loggedUser.TitleBefore, StringFormat='{}{0}.'}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
             <VerticalStackLayout>
-                <Label Text="Surname" FontSize="25"/>
+                <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
                 <Label VerticalOptions="Center"
                        Text="Logout" FontSize="20" TextColor="White">
                     <Label.GestureRecognizers>
@@ -27,6 +28,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </VerticalStackLayout>
+            <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
             <ImageButton Source="avatar_placeholder.png"
                          BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
         </HorizontalStackLayout>
@@ -50,35 +52,39 @@
                         Text="students" Command="{Binding GoToStudentsCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-            <ListView Grid.Column="1" ItemsSource="{Binding Subjects}">
-                <ListView.Header>
-                    <Grid Padding="10" BackgroundColor="#ab93e3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Name" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
-                        <Label Text="Tag" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-                    </Grid>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="m:SubjectListModel">
-                        <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
-                                <Label Text="{Binding SubjectTag}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,0.2*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
+                <Entry x:Name="subjectNameEntry" Grid.Row="1" Grid.Column="1" Placeholder="Entry subject name:" Margin="20,0,0,0"/>
+                <Button Grid.Row="1" Grid.Column="3" Text="search subject" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference subjectNameEntry}}" Margin="0,0,20,0"/>
 
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <ListView Grid.ColumnSpan="5" Grid.Row="3" ItemsSource="{Binding Subjects}">
+                    <ListView.Header>
+                        <Grid Padding="10" BackgroundColor="#ab93e3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Name" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                            <Label Text="Tag" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="m:SubjectListModel">
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
 
+                                    <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                                    <Label Text="{Binding SubjectTag}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </Grid>
     </Grid>
 </views:ContentPageBase>

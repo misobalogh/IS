@@ -11,7 +11,7 @@ public partial class LoginViewModel(
     IStudentFacade studentFacade, 
     ITeacherFacade teacherFacade, 
     IMessengerService messengerService,
-    StudentDataService studentDataService) : ViewModelBase(messengerService)
+    UserDataService userDataService) : ViewModelBase(messengerService)
 {
     public string? LoginCredential { get; set; }
     public string? PlaceholderText { get; set; } = "Enter your email";
@@ -48,7 +48,7 @@ public partial class LoginViewModel(
             if (LoggedStudent == null) {
                 return;
             }
-            studentDataService.SetCurrentUser(LoggedStudent);
+            userDataService.SetCurrentUser(LoggedStudent);
             await Shell.Current.GoToAsync(nameof(StudentScheduleView));
         }
 
@@ -56,6 +56,11 @@ public partial class LoginViewModel(
         if (foundTeacher != null)
         {
             LoggedTeacher = await teacherFacade.GetAsync(foundTeacher.Id);
+            if (LoggedTeacher == null)
+            {
+                return;
+            }
+            userDataService.SetCurrentUser(LoggedTeacher);
             await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
         }
 

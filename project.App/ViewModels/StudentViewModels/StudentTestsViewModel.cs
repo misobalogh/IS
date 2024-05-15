@@ -14,7 +14,7 @@ public partial class StudentTestsViewModel(
     IActivityFacade activityFacade,
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService,
-    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
+    UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<ActivityListModel> Activities { get; private set; } = null!;
     public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;

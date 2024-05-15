@@ -1,11 +1,20 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using project.App.Services;
 using project.App.Views.TeacherViews;
+using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class TeacherNavigationSideBar(IMessengerService messengerService) : ViewModelBase(messengerService)
+public partial class TeacherNavigationSideBar(IMessengerService messengerService, UserDataService userDataService) : ViewModelBase(messengerService)
 {
+    public TeacherModel? loggedUser { get; set; }
+
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
+        loggedUser = userDataService.CurrentTeacher;
+    }
+
     [RelayCommand]
     async Task GoToProfile()
     {
@@ -47,6 +56,7 @@ public partial class TeacherNavigationSideBar(IMessengerService messengerService
     {
         if (Application.Current?.MainPage?.Navigation != null)
         {
+            userDataService.ClearCurrentUser();
             await Application.Current.MainPage.Navigation.PopToRootAsync();
         }
 
