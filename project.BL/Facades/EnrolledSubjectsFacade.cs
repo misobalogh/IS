@@ -29,4 +29,17 @@ public class EnrolledSubjectsFacade(IUnitOfWorkFactory unitOfWorkFactory, Enroll
             await unitOfWork.CommitAsync();
         }
     }
+
+    public async Task<List<EnrolledSubjectsListModel>> SearchSubject(string searchTerm)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+        IRepository<EnrolledSubjectEntity> repository =
+            unitOfWork.GetRepository<EnrolledSubjectEntity, EnrolledSubjectEntityMapper>();
+
+        IQueryable<EnrolledSubjectEntity> query = repository.Get()
+            .Where(entity => entity.Subject.Tag.ToLower().Contains(searchTerm.ToLower()) ||
+                entity.Subject.Name.ToLower().Contains(searchTerm.ToLower()));
+
+        return query.AsEnumerable().Select(enrolledSubjectsModelMapper.MapToListModel).ToList();
+    }
 }

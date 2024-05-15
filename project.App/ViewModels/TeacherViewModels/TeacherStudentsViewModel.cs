@@ -12,16 +12,27 @@ namespace project.App.ViewModels;
 
 
 public partial class TeacherStudentsViewModel(
-    IEnrolledSubjectsFacade enrolledSubjectsFacade,
+    IStudentFacade studentFacade,
+    //IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService) 
     : TeacherNavigationSideBar(messengerService)
 {
-    public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;
+    //TODO: pokud by se nekde mely zobrazovat studenti, ktere ucitel uci
+    //public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;
+    public IEnumerable<StudentListModel> Students { get; set; } = null!;
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
+        //EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
+        Students = await studentFacade.GetAsync();
+    }
+
+    [RelayCommand]
+    async Task Search(string searchTerm)
+    {
+        Students = await studentFacade.SearchStudent(searchTerm);
+        //EnrolledSubjects = await enrolledSubjectsFacade.SearchSubject(searchTerm);
     }
 }
 
