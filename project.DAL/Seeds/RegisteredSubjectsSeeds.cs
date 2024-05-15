@@ -32,7 +32,7 @@ public static class RegisteredSubjectsSeeds
 
     public static readonly EnrolledSubjectEntity Xmrkva01IFJ = new()
     {
-        Id = Guid.Parse("07671bf7-6690-42bc-8010-b94f66725f08"),
+        Id = Guid.Parse("7f61e4ce-692d-4791-8609-c4c61c18988d"),
         SubjectId = SubjectSeeds.IFJ.Id,
         StudentId = StudentSeeds.Xmrkva01.Id,
         Year = DateTime.Today,
@@ -44,7 +44,7 @@ public static class RegisteredSubjectsSeeds
 
     public static readonly EnrolledSubjectEntity Xmrkva01IDS = new()
     {
-        Id = Guid.Parse("07671bf7-6690-42bc-8010-a94f66721118"),
+        Id = Guid.Parse("86ff751e-213a-42a0-9b3b-e52b20e11c98"),
         SubjectId = SubjectSeeds.IDS.Id,
         StudentId = StudentSeeds.Xmrkva01.Id,
         Year = DateTime.Today,
@@ -52,6 +52,30 @@ public static class RegisteredSubjectsSeeds
         Student = StudentSeeds.Xmrkva01,
         Points = 12,
         Mark = Mark.None
+    };
+
+    public static readonly EnrolledSubjectEntity Xmrkva01IMA = new()
+    {
+        Id = Guid.Parse("0f570c7e-3c81-4be0-9dc0-1e28ba71b916"),
+        SubjectId = SubjectSeeds.IMA.Id,
+        StudentId = StudentSeeds.Xmrkva01.Id,
+        Year = DateTime.Today,
+        Subject = SubjectSeeds.IMA,
+        Student = StudentSeeds.Xmrkva01,
+        Points = 18,
+        Mark = Mark.None
+    };
+
+    public static readonly EnrolledSubjectEntity Xmrkva01ICS = new()
+    {
+        Id = Guid.Parse("28e5dfaa-045a-4f04-a371-5067b0d1c06f"),
+        SubjectId = SubjectSeeds.ICS.Id,
+        StudentId = StudentSeeds.Xmrkva01.Id,
+        Year = DateTime.Today,
+        Subject = SubjectSeeds.ICS,
+        Student = StudentSeeds.Xmrkva01,
+        Points = 100,
+        Mark = Mark.A
     };
 
     public static readonly EnrolledSubjectEntity Xkolar51IDS = new()
@@ -94,6 +118,10 @@ public static class RegisteredSubjectsSeeds
         modelBuilder.Entity<EnrolledSubjectEntity>().HasData(
             Xplagi00IFJ with { Subject = null!, Student = null! },
             Xmrkva01IJC with { Subject = null!, Student = null! },
+            Xmrkva01IFJ with { Subject = null!, Student = null! },
+            Xmrkva01IDS with { Subject = null!, Student = null! },
+            Xmrkva01IMA with { Subject = null!, Student = null! },
+            Xmrkva01ICS with { Subject = null!, Student = null! },
             Xkolar51IDS with { Subject = null!, Student = null! },
             Xjozef01IIS with { Subject = null!, Student = null! },
             Xstude00IDS with { Subject = null!, Student = null! }

@@ -33,11 +33,27 @@ public static class SubjectSeeds
         Tag = "IIS"
     };
 
+    public static readonly SubjectEntity IMA = new()
+    {
+        Id = Guid.Parse("d0d17743-ec4c-468b-9f9c-081e3e92b887"),
+        Name = "Matematicka Analyza",
+        Tag = "IMA"
+    };
+
+    public static readonly SubjectEntity ICS = new()
+    {
+        Id = Guid.Parse("d0d694c8-3e24-47f8-bd8d-0041d68f3382"),
+        Name = "Seminar C# <3",
+        Tag = "ICS"
+    };
+
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<SubjectEntity>().HasData(
             IJC,
             IFJ,
             IDS,
-            IIS
+            IIS,
+            IMA,
+            ICS
         );
 }
