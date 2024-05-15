@@ -9,6 +9,8 @@ using project.BL.Tests;
 using project.Common.Tests;
 using Xunit;
 using Xunit.Abstractions;
+using project.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace project.BL.Tests;
 
@@ -89,5 +91,34 @@ public class StudentFacadeTests : FacadeTestsBase
                 evaluationModel.Points = evaluationDetailModel.Points;
             }
         }
+    }
+
+    private async Task SeedDatabaseAsync()
+    {
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        var students = new List<StudentEntity>
+        {
+            new StudentEntity {Id = Guid.NewGuid(), FirstName = "Jan", LastName = "Horák", Email = "jan@novak.cz", Password = "test_data"},
+            new StudentEntity {Id = Guid.NewGuid(), FirstName = "Marie", LastName = "Nováková", Email = "marie@novakova.cz", Password = "test_data"},
+            new StudentEntity {Id = Guid.NewGuid(), FirstName = "Jiří", LastName = "Novák", Email = "jiri@novak.cz", Password = "test_data"}
+        };
+        dbx.Students.AddRange(students);
+        await dbx.SaveChangesAsync();
+    }
+
+    [Theory]
+    [InlineData("jan", 1)]  // Assuming "Jan" is part of a student's name in the seeded data.
+    [InlineData("JAN", 1)]  // Case-insensitivity test.
+    [InlineData("novák", 2)]  // Last name part.
+    public async Task SearchStudent_ReturnsExpectedResults(string searchTerm, int expectedCount)
+    {
+        // Arrange
+        await SeedDatabaseAsync();  // Ensure the database is seeded before each test.
+
+        // Act
+        var results = await _studentFacadeSUT.SearchStudent(searchTerm);
+
+        // Assert
+        Assert.Equal(expectedCount, results.Count);
     }
 }

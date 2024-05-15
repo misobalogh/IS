@@ -6,5 +6,5 @@ namespace project.BL.Facades;
 
 public interface IStudentFacade : IFacade<StudentEntity, StudentListModel, StudentModel>
 {
-    // Task SaveAsync(StudentModel model);
+    Task<List<StudentListModel>> SearchStudent(string searchTerm);
 }
