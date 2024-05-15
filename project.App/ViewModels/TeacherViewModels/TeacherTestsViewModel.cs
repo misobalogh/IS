@@ -20,15 +20,5 @@ public partial class TeacherTestsViewModel(IActivityFacade activityFacade, IMess
         Activities = await activityFacade.GetAsync();
         //TODO filter activities that are only TESTS
     }
-
-    //[ObservableProperty]
-    //ObservableCollection<string> tests;
-
-    ////TODO temporary way to add new tests delete later
-    //[RelayCommand]
-    //void TempADD()
-    //{
-    //    Console.WriteLine("kys\n");
-    //}
 }
 

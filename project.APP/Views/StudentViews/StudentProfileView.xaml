@@ -5,19 +5,11 @@
                        xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
                        xmlns:viewModels="clr-namespace:project.App.ViewModels"
                        xmlns:views="clr-namespace:project.App.Views"
-                       x:DataType="viewModels:StudentProfileViewModel"
->
-
-    <!--<ContentPage.Resources>
-        <converters:MarkToString x:Key="MarkToString"/>
-    </ContentPage.Resources>-->
+                       x:DataType="viewModels:StudentProfileViewModel">
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
         <!--header-->
-        <!--<Label Text="STUDENT INFO" 
-           FontSize="40"
-           Padding="40"/>-->
         <Image Width="50" Height="50" Source="logo_1.png"></Image>
         <HorizontalStackLayout Grid.Column="3"
                            Padding="20"
@@ -38,9 +30,8 @@
             </Label.GestureRecognizers>
         </Label>
 
-        <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
-        <!--ENTER -->
-        <Grid Grid.Row="1"
+    <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+    <Grid Grid.Row="1"
           Grid.Column="0"
           Grid.ColumnSpan="3"
           ColumnDefinitions=".15*,.85*">
@@ -113,6 +104,7 @@
                    Margin="0, 50, 100, 10"
                    Grid.Column="2"/>
 
+            <!--TODO-->
             <!--<Button Text="Change Image"-->
                     <!--WidthRequest="200"
                     HorizontalOptions="End"

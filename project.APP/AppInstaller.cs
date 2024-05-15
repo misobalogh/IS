@@ -29,7 +29,7 @@ public static class AppInstaller
             .AsSelfWithInterfaces()
             .WithTransientLifetime());
 
-        //TODO: jestli je potreba services.AddTransient<INavigationService, NavigationService>();
+        //TODO: services.AddTransient<INavigationService, NavigationService>();
 
         return services;
     }

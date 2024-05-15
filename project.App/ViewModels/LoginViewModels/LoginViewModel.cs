@@ -31,7 +31,7 @@ public partial class LoginViewModel(
     [RelayCommand]
     async Task Login()
     {
-        //await Shell.Current.GoToAsync(nameof(StudentScheduleView));
+        //await Shell.Current.GoToAsync(nameof(StudentScheduleView)); // For testing purposes
         //return;
         if (string.IsNullOrEmpty(LoginCredential))
         {
@@ -64,11 +64,12 @@ public partial class LoginViewModel(
         EntryBorderColor = Colors.Red;
     }
 
-    [RelayCommand]
-    async Task LoginTeacher()
-    {
-        await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
-        return;
-    }
+    // For testing purposes
+    //[RelayCommand]
+    //async Task LoginTeacher()
+    //{
+    //    await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
+    //    return;
+    //}
 }
 

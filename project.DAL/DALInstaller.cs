@@ -14,10 +14,6 @@ public static class DALInstaller
 {
     public static IServiceCollection AddDALServices(this IServiceCollection services, DALOptions options)
     {
-        //TODO: dodelat Migrator jako z cookbooku?
-
-        //TODO: zkontrolovat DbContextSqLiteFactory oni pouzivali options
-        //TODO: a asi nepouzivat seedTestingData: true
         services.AddSingleton(options);
 
         if (options is null)
@@ -29,16 +25,8 @@ public static class DALInstaller
         {
             throw new InvalidOperationException($"{nameof(options.DatabaseDirectory)} is not set");
         }
-        //TODO: pokusit se to udelat jako v kucharce, nejde to
-        //if (string.IsNullOrEmpty(options.DatabaseName))
-        //{
-        //    throw new InvalidOperationException($"{nameof(options.DatabaseName)} is not set");
-        //}
 
-        //services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(_ =>
-        //    new DbContextSqLiteFactory(options.DatabaseFilePath, options?.SeedDemoData ?? false));
-
-        //TODO: seedTestingData pred produkci na false
+        //TODO: seedTestingData before release set to false
         services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(_ =>
             new DbContextSqLiteFactory("project.db", true));
 
