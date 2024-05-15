@@ -56,7 +56,7 @@
             <ScrollView Grid.Column="1">
                 <CollectionView ItemsSource="{Binding Activities}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="m:ActivityModel"> 
+                        <DataTemplate x:DataType="m:ActivityListModel"> 
                             <Frame Margin="40,30,40,0" BackgroundColor="{StaticResource Gray600}">
                                 <Grid ColumnDefinitions="0.15*,0.15*,0.15*,*,auto"
                                       RowDefinitions="auto,auto"
@@ -65,10 +65,11 @@
                                     <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectName}" />
                                     <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Name}"/>
                                     <Label  Grid.Column="2" VerticalOptions="Center" Text="{Binding ActivityType}"/>
-                                    <Label  Grid.Column="3" VerticalOptions="Center" Text="ActivityModel kinda not working, missing a lot of variables"/>
-                                    <Button Grid.Column="5" VerticalOptions="Center" Text="register" />
+                                    <Button Grid.Column="5" VerticalOptions="Center" Text="Register" x:Name="registerButton" Clicked="OnRegisterButtonClicked"
+                                            Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
+                                            CommandParameter="{Binding .}"/>        
                                     <!--second row-->
-                                    <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="tag"/>
+                                    <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="{Binding Tag}"/>
                                     <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding TeacherName}"/>
                                     <Label Grid.Row="1" Grid.Column="2" VerticalOptions="Center" Text="{Binding Room}"/>
                                     <Label Grid.Row="1" Grid.Column="5" VerticalOptions="Center" Text="{Binding Capacity}" HorizontalOptions="Center"/>

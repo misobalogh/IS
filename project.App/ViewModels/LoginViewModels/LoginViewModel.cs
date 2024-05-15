@@ -50,6 +50,10 @@ public partial class LoginViewModel(
             }
             userDataService.SetCurrentUser(LoggedStudent);
             await Shell.Current.GoToAsync(nameof(StudentScheduleView));
+            PlaceholderText = "Please enter your email";
+            LoginCredential = string.Empty;
+            EntryBorderColor = Colors.Transparent;
+            return;
         }
 
         TeacherListModel? foundTeacher = Teachers.FirstOrDefault(teacher => teacher.Email == LoginCredential);
@@ -62,6 +66,10 @@ public partial class LoginViewModel(
             }
             userDataService.SetCurrentUser(LoggedTeacher);
             await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
+            PlaceholderText = "Please enter your email";
+            LoginCredential = string.Empty;
+            EntryBorderColor = Colors.Transparent;
+            return;
         }
 
         // Notify user

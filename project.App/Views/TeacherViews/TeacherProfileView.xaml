@@ -61,17 +61,15 @@
                                  Spacing="20">
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <MultiBinding StringFormat="Jméno: {0}. {1}">
-                            <Binding Path="loggedUser.TitleBefore" />
+                        <MultiBinding StringFormat="Jméno: {0}">
                             <Binding Path="loggedUser.FirstName" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>
                 <Label FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                     <Label.Text>
-                        <MultiBinding StringFormat="Příjmení: {0} {1}.">
+                        <MultiBinding StringFormat="Příjmení: {0}">
                             <Binding Path="loggedUser.LastName" />
-                            <Binding Path="loggedUser.TitleAfter" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>

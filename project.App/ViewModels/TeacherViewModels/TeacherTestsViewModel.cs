@@ -9,9 +9,11 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class TeacherTestsViewModel(IActivityFacade activityFacade, IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
+public partial class TeacherTestsViewModel(
+    IActivityFacade activityFacade, 
+    IMessengerService messengerService, 
+    UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {    
-    //TODO NOT IMPLEMENTED
     public IEnumerable<ActivityListModel> Activities { get; set; } = null!;
 
     protected override async Task LoadDataAsync()
