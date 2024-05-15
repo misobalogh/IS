@@ -8,7 +8,10 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class TeacherSubjectsViewModel(ISubjectFacade subjectFacade, IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
+public partial class TeacherSubjectsViewModel(
+    ISubjectFacade subjectFacade, 
+    IMessengerService messengerService, 
+    UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
 
@@ -17,6 +20,12 @@ public partial class TeacherSubjectsViewModel(ISubjectFacade subjectFacade, IMes
         await base.LoadDataAsync();
 
         Subjects = await subjectFacade.GetAsync();
+    }
+
+    [RelayCommand]
+    async Task Search(string searchTerm)
+    {
+        Subjects = await subjectFacade.SearchSubject(searchTerm);
     }
 }
 
