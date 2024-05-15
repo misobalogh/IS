@@ -7,13 +7,13 @@ using project.BL.Facades;
 
 namespace project.App.ViewModels;
 
-public partial class StudentNavigationSideBar(IMessengerService messengerService, StudentDataService studentDataService) : ViewModelBase(messengerService)
+public partial class StudentNavigationSideBar(IMessengerService messengerService, UserDataService userDataService) : ViewModelBase(messengerService)
 {
     public StudentModel? loggedUser { get; set; }
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        loggedUser = studentDataService.CurrentStudent;
+        loggedUser = userDataService.CurrentStudent;
     }
 
     [RelayCommand]
@@ -58,7 +58,7 @@ public partial class StudentNavigationSideBar(IMessengerService messengerService
 
         if (Application.Current?.MainPage?.Navigation != null)
         {
-            studentDataService.ClearCurrentUser();
+            userDataService.ClearCurrentUser();
             await Application.Current.MainPage.Navigation.PopToRootAsync();
         }
 

@@ -10,7 +10,7 @@ namespace project.App.ViewModels;
 public partial class StudentSubjectsViewModel(
     ISubjectFacade subjectFacade, 
     IMessengerService messengerService,
-    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
+    UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
 

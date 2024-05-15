@@ -8,7 +8,7 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class TeacherSubjectsViewModel(ISubjectFacade subjectFacade, IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
+public partial class TeacherSubjectsViewModel(ISubjectFacade subjectFacade, IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
 

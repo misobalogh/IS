@@ -10,7 +10,7 @@ namespace project.App.ViewModels;
 public partial class StudentClassificationViewModel(
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService,
-    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
+    UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
     public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;
 
@@ -18,6 +18,10 @@ public partial class StudentClassificationViewModel(
     {
         await base.LoadDataAsync();
         EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
+        if (loggedUser !=  null)
+        {
+            EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
+        }
     }
 
     [RelayCommand]

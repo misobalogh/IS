@@ -10,7 +10,7 @@ namespace project.App.ViewModels;
 
 public partial class TeacherClassificationViewModel(
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
-    IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
+    IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {
     public EnrolledSubjectsModel? EnrolledSubjects { get; 
         private set; }

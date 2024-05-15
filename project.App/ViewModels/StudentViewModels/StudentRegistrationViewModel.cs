@@ -12,7 +12,7 @@ namespace project.App.ViewModels;
 public partial class StudentRegistrationViewModel(
     IActivityFacade activityFacade, 
     IMessengerService messengerService,
-    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
+    UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
 
     public IEnumerable<ActivityListModel> Activities { get; set; } = null!;

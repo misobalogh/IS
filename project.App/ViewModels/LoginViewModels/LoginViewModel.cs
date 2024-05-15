@@ -11,10 +11,11 @@ public partial class LoginViewModel(
     IStudentFacade studentFacade, 
     ITeacherFacade teacherFacade, 
     IMessengerService messengerService,
-    StudentDataService studentDataService) : ViewModelBase(messengerService)
+    UserDataService userDataService) : ViewModelBase(messengerService)
 {
     public string? LoginCredential { get; set; }
     public string? PlaceholderText { get; set; } = "Enter your email";
+    public string? WarningText { get; set; } = string.Empty;
     public Color EntryBorderColor { get; set; } = Colors.Transparent;
     public IEnumerable<StudentListModel> Students { get; private set; } = null!;
     public IEnumerable<TeacherListModel> Teachers { get; private set; } = null!;
@@ -31,13 +32,12 @@ public partial class LoginViewModel(
     [RelayCommand]
     async Task Login()
     {
-        //await Shell.Current.GoToAsync(nameof(StudentScheduleView)); // For testing purposes
-        //return;
         if (string.IsNullOrEmpty(LoginCredential))
         {
             // Notify user
             PlaceholderText = "Please enter your email";
             EntryBorderColor = Colors.Red;
+            LoginCredential = string.Empty;
             return;
         }
 
@@ -48,7 +48,7 @@ public partial class LoginViewModel(
             if (LoggedStudent == null) {
                 return;
             }
-            studentDataService.SetCurrentUser(LoggedStudent);
+            userDataService.SetCurrentUser(LoggedStudent);
             await Shell.Current.GoToAsync(nameof(StudentScheduleView));
         }
 
@@ -56,20 +56,18 @@ public partial class LoginViewModel(
         if (foundTeacher != null)
         {
             LoggedTeacher = await teacherFacade.GetAsync(foundTeacher.Id);
+            if (LoggedTeacher == null)
+            {
+                return;
+            }
+            userDataService.SetCurrentUser(LoggedTeacher);
             await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
         }
 
         // Notify user
         PlaceholderText = "Wrong email";
+        LoginCredential = string.Empty;
         EntryBorderColor = Colors.Red;
     }
-
-    // For testing purposes
-    //[RelayCommand]
-    //async Task LoginTeacher()
-    //{
-    //    await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
-    //    return;
-    //}
 }
 
