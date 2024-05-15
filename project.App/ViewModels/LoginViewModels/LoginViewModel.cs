@@ -15,6 +15,7 @@ public partial class LoginViewModel(
 {
     public string? LoginCredential { get; set; }
     public string? PlaceholderText { get; set; } = "Enter your email";
+    public string? WarningText { get; set; } = string.Empty;
     public Color EntryBorderColor { get; set; } = Colors.Transparent;
     public IEnumerable<StudentListModel> Students { get; private set; } = null!;
     public IEnumerable<TeacherListModel> Teachers { get; private set; } = null!;
@@ -31,13 +32,12 @@ public partial class LoginViewModel(
     [RelayCommand]
     async Task Login()
     {
-        //await Shell.Current.GoToAsync(nameof(StudentScheduleView)); // For testing purposes
-        //return;
         if (string.IsNullOrEmpty(LoginCredential))
         {
             // Notify user
             PlaceholderText = "Please enter your email";
             EntryBorderColor = Colors.Red;
+            LoginCredential = string.Empty;
             return;
         }
 
@@ -61,15 +61,8 @@ public partial class LoginViewModel(
 
         // Notify user
         PlaceholderText = "Wrong email";
+        LoginCredential = string.Empty;
         EntryBorderColor = Colors.Red;
     }
-
-    // For testing purposes
-    //[RelayCommand]
-    //async Task LoginTeacher()
-    //{
-    //    await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
-    //    return;
-    //}
 }
 

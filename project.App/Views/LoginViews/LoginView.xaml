@@ -4,7 +4,9 @@
                        x:Class="project.App.Views.LoginViews.LoginView"
                        xmlns:views="clr-namespace:project.App.Views"
                        xmlns:viewModels="clr-namespace:project.App.ViewModels"
-                       x:DataType="viewModels:LoginViewModel">
+                       x:DataType="viewModels:LoginViewModel"
+                       xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+                       >
 
     <Grid ColumnDefinitions="0.35*,0.3*,0.35*"
           RowDefinitions="*">
@@ -26,15 +28,15 @@
                        TextColor="Black"
                        BackgroundColor="White"
                        FontSize="18"
-                       Margin="0"
-                       />
+                       Margin="0">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="Completed"
+                                                          Command="{Binding LoginCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
             </Frame>
-
             <Button Text="Sign-in"
                     Command="{Binding LoginCommand}" />
-
-            <!--<Button Text="Teacher"
-                    Command="{Binding LoginTeacherCommand}" />-->
         </VerticalStackLayout>
     </Grid>
 </views:ContentPageBase>
