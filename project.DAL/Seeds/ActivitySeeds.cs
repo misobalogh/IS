@@ -38,6 +38,22 @@ public static class ActivitySeeds
         Teacher = TeacherSeeds.Lienka,
     };
 
+    public static readonly ActivityEntity IMAFinalExam = new()
+    {
+        Id = Guid.Parse("4450fe71-6bb0-4bd4-b328-19dee5b16d22"),
+        ActivityType = ActivityType.FinalExam,
+        Start = new DateTime(2024, 05, 13, 08, 00, 00),
+        End = new DateTime(2024, 05, 13, 09, 00, 00),
+        Room = Room.C01,
+        SubjectId = SubjectSeeds.IMA.Id,
+        Subject = SubjectSeeds.IMA,
+        Name = "Skuska prvy termin",
+        Capacity = 100,
+        MaxPoints = 80,
+        TeacherId = TeacherSeeds.Lienka.Id,
+        Teacher = TeacherSeeds.Lienka,
+    };
+
     public static readonly ActivityEntity IDSProject = new()
     {
         Id = Guid.Parse("d43acf95-447d-4169-9de0-10df4fbf1222"),
@@ -92,6 +108,7 @@ public static class ActivitySeeds
             IJCConsultation with { Subject = null!, Teacher = null! },
             IDSProject with { Subject = null!, Teacher = null! },
             IISLecture with { Subject = null!, Teacher = null! },
-            IISProject with { Subject = null!, Teacher = null! }
+            IISProject with { Subject = null!, Teacher = null! },
+            IMAFinalExam with { Subject = null!, Teacher = null! }
         );
 }
