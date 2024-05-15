@@ -19,9 +19,10 @@
                                Padding="10"
                                Spacing="10"
                                HorizontalOptions="End">
-            <Label Text="Name" FontSize="25"/>
+            <Label Text="{Binding loggedUser.TitleBefore, StringFormat='{}{0}.'}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
             <VerticalStackLayout>
-                <Label Text="Surname" FontSize="25"/>
+                <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
                 <Label VerticalOptions="Center"
                        Text="Logout" FontSize="20" TextColor="White">
                     <Label.GestureRecognizers>
@@ -29,6 +30,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </VerticalStackLayout>
+            <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
             <ImageButton Source="avatar_placeholder.png"
                          BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
         </HorizontalStackLayout>

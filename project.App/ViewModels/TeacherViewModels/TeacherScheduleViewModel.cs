@@ -11,7 +11,7 @@ using project.BL.Models;
 namespace project.App.ViewModels;
 
 public partial class TeacherScheduleViewModel(IRegisteredActivitiesFacade registeredActivitiesFacade,
-    IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
+    IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {
     public IEnumerable<RegisteredActivitiesListModel> Activities { get; set; } = null!;
 

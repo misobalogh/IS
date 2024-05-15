@@ -36,8 +36,7 @@ public static class MauiProgram
             .AddDALServices(GetDALOptions(builder.Configuration))
             .AddAppServices()
             .AddBLServices()
-            .AddSingleton<StudentDataService>();
-        
+            .AddSingleton<UserDataService>();
         var app = builder.Build();
 
         Routing.RegisterRoute(nameof(StudentClassificationView), typeof(StudentClassificationView));

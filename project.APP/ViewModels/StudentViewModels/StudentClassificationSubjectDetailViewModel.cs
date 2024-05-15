@@ -13,7 +13,7 @@ public partial class StudentClassificationSubjectDetailViewModel(
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IActivityFacade activityFacade,
     IMessengerService messengerService,
-    StudentDataService studentDataService) : StudentNavigationSideBar(messengerService, studentDataService)
+    UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
     public string? SubjectId { get; set; }
 

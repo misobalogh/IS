@@ -9,7 +9,7 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class TeacherTestsViewModel(IActivityFacade activityFacade, IMessengerService messengerService) : TeacherNavigationSideBar(messengerService)
+public partial class TeacherTestsViewModel(IActivityFacade activityFacade, IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {    
     //TODO NOT IMPLEMENTED
     public IEnumerable<ActivityListModel> Activities { get; set; } = null!;
