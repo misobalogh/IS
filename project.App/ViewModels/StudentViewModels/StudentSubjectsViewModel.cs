@@ -20,5 +20,11 @@ public partial class StudentSubjectsViewModel(
 
         Subjects = await subjectFacade.GetAsync();
     }
+
+    [RelayCommand]
+    async Task Search(string searchTerm)
+    {
+        Subjects = await subjectFacade.SearchSubject(searchTerm);
+    }
 }
 
