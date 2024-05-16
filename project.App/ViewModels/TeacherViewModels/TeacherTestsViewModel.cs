@@ -15,7 +15,6 @@ public partial class TeacherTestsViewModel(
     UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<ActivityListModel> Activities { get; set; } = null!;
-
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();

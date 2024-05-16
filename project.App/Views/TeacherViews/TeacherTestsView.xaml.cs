@@ -5,7 +5,7 @@ namespace project.App.Views.TeacherViews;
 public partial class TeacherTestsView
 {
     private bool isRegistered = false;
-    public TeacherTestsView(TeacherTestsViewModel viewModel) : base(viewModel)
+	public TeacherTestsView(TeacherTestsViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
 	}
