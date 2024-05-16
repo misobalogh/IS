@@ -25,6 +25,8 @@
                     </Label.GestureRecognizers>
                 </Label>
             </VerticalStackLayout>
+
+            <!--TOOD: získat obrázek z loggedUser.Image tak, aby pokud je null, zobrazilo se avatar_placeholder.png-->
             <ImageButton Source="avatar_placeholder.png"
                          BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
         </HorizontalStackLayout>
