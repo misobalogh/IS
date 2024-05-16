@@ -26,9 +26,15 @@ public partial class StudentClassificationSubjectDetailViewModel(
         {
             return;
         }
+
         await base.LoadDataAsync();
         EnrolledSubject = await enrolledSubjectsFacade.GetAsync(Guid.Parse(SubjectId));
         Activities = await activityFacade.GetAsync();
+
+        if (loggedUser != null && EnrolledSubject != null)
+        {
+            Activities = Activities.Where(activity => EnrolledSubject.SubjectId == activity.SubjectId);
+        }
     }
 }
 
