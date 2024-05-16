@@ -52,33 +52,6 @@
                         Text="students" Command="{Binding GoToStudentsCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-
-            <ScrollView Grid.Column="1">
-                <CollectionView ItemsSource="{Binding Activities}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="m:ActivityListModel"> 
-                            <Frame Margin="40,30,40,0" BackgroundColor="{StaticResource Gray600}">
-                                <Grid ColumnDefinitions="0.15*,0.15*,0.15*,*,auto"
-                                      RowDefinitions="auto,auto"
-                                      ColumnSpacing="20" RowSpacing="10">
-                                    <!--first row-->
-                                    <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectName}" />
-                                    <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Name}"/>
-                                    <Label  Grid.Column="2" VerticalOptions="Center" Text="{Binding ActivityType}"/>
-                                    <Button Grid.Column="5" VerticalOptions="Center" Text="Register" x:Name="registerButton" Clicked="OnRegisterButtonClicked"
-                                            Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
-                                            CommandParameter="{Binding .}"/>        
-                                    <!--second row-->
-                                    <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="{Binding Tag}"/>
-                                    <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding TeacherName}"/>
-                                    <Label Grid.Row="1" Grid.Column="2" VerticalOptions="Center" Text="{Binding Room}"/>
-                                    <Label Grid.Row="1" Grid.Column="5" VerticalOptions="Center" Text="{Binding Capacity}" HorizontalOptions="Center"/>
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
         </Grid>
     </Grid>
 </views:ContentPageBase>

@@ -7,6 +7,7 @@
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
              xmlns:converters="clr-namespace:project.App.Converters"
              x:DataType="viewModels:TeacherStudentsViewModel"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              >
 
 
@@ -55,7 +56,12 @@
             </VerticalStackLayout>
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,0.2*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
-                <Entry x:Name="studentNameEntry" Grid.Row="1" Grid.Column="1" Placeholder="Entry student name:" Margin="20,0,0,0"/>
+                <Entry x:Name="studentNameEntry" Grid.Row="1" Grid.Column="1" Placeholder="Enter student name" Margin="20,0,0,0">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Completed"
+                                      Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference studentNameEntry}}"/>
+                </Entry.Behaviors>
+                </Entry>
                 <Button Grid.Row="1" Grid.Column="3" Text="search student" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference studentNameEntry}}" Margin="0,0,20,0"/>
 
                 <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">

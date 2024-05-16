@@ -211,6 +211,4 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
             }
         }
     }
-    
-
 }

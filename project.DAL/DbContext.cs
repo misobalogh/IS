@@ -36,7 +36,6 @@ public class ApplicationDbContext(DbContextOptions contextOptions, bool seedDemo
             .WithOne(i => i.Teacher)
             .OnDelete(DeleteBehavior.Cascade);
 
-        seedDemoData = true;
         if (seedDemoData)
         {
             SubjectSeeds.Seed(modelBuilder);
