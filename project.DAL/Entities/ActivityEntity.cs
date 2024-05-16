@@ -17,8 +17,8 @@ namespace project.DAL.Entities
        
         // MaxPoints == null means this activity has no points (e.g. lecture)
         public required int? MaxPoints { get; set; }
-        public required SubjectEntity Subject { get; init; }
-        public required TeacherEntity Teacher { get; init; }
+        public SubjectEntity? Subject { get; init; }
+        public TeacherEntity? Teacher { get; init; }
     }
 }
 

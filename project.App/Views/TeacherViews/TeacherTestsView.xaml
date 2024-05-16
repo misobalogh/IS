@@ -52,32 +52,6 @@
                         Text="students" Command="{Binding GoToStudentsCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-
-            <ScrollView Grid.Column="1">
-                <CollectionView ItemsSource="{Binding Activities}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="m:ActivityModel"> 
-                            <Frame Margin="40,30,40,0" BackgroundColor="{StaticResource Gray600}">
-                                <Grid ColumnDefinitions="0.15*,0.15*,0.15*,*,auto"
-                                      RowDefinitions="auto,auto"
-                                      ColumnSpacing="20" RowSpacing="10">
-                                    <!--first row-->
-                                    <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectName}" />
-                                    <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Name}"/>
-                                    <Label  Grid.Column="2" VerticalOptions="Center" Text="{Binding ActivityType}"/>
-                                    <Label  Grid.Column="3" VerticalOptions="Center" Text="ActivityModel kinda not working, missing a lot of variables"/>
-                                    <Button Grid.Column="5" VerticalOptions="Center" Text="register" />
-                                    <!--second row-->
-                                    <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="tag"/>
-                                    <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding TeacherName}"/>
-                                    <Label Grid.Row="1" Grid.Column="2" VerticalOptions="Center" Text="{Binding Room}"/>
-                                    <Label Grid.Row="1" Grid.Column="5" VerticalOptions="Center" Text="{Binding Capacity}" HorizontalOptions="Center"/>
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
         </Grid>
     </Grid>
 </views:ContentPageBase>
