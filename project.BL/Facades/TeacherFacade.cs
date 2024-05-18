@@ -1,4 +1,5 @@
-﻿using project.BL.Mappers;
+﻿using Microsoft.EntityFrameworkCore;
+using project.BL.Mappers;
 using project.BL.Models;
 using project.DAL.Entities;
 using project.DAL.Mappers;
@@ -34,5 +35,15 @@ public class TeacherFacade(IUnitOfWorkFactory unitOfWorkFactory, TeacherModelMap
             .Where(entity => entity.FirstName.ToLower().Contains(searchTerm.ToLower()) || entity.LastName.ToLower().Contains(searchTerm.ToLower()));
 
         return query.AsEnumerable().Select(teacherModelMapper.MapToListModel).ToList();
+    }
+
+    public async Task<bool> EmailExistsAsync(string email)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+        var repository = unitOfWork.GetRepository<TeacherEntity, TeacherEntityMapper>();
+
+
+        IQueryable<TeacherEntity> query = repository.Get().Where(e => e.Email == email);
+        return query.AsEnumerable().Any();
     }
 }

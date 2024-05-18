@@ -33,7 +33,7 @@ public partial class AdminTeachersViewModel(
     [RelayCommand]
     async Task NewTeacher()
     {
-
+        await Shell.Current.GoToAsync(nameof(AdminNewTeacherView));
     }
 }
 

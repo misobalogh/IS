@@ -90,6 +90,9 @@
     <Compile Update="Views\AdminViews\AdminProfileView.xaml.cs">
       <DependentUpon>AdminProfileView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AdminViews\AdminNewTeacherView.xaml.cs">
+      <DependentUpon>AdminNewTeacherView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\AdminViews\AdminTeachersView.xaml.cs">
       <DependentUpon>AdminTeachersView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,9 @@
 
   <ItemGroup>
     <MauiXaml Update="Views\AdminViews\AdminProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminNewTeacherView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\AdminViews\AdminTeachersView.xaml">
