@@ -29,8 +29,13 @@
                 </Label>
             </VerticalStackLayout>
             <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
 
 
@@ -104,7 +109,7 @@
 
 
             <!-- Profile Image in the rightmost column -->
-            <Image Source="profile.png"
+            <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=profile.png}"
                    WidthRequest="250"
                    HeightRequest="250"
                    HorizontalOptions="End"
@@ -112,14 +117,13 @@
                    Margin="0, 50, 100, 10"
                    Grid.Column="2"/>
 
-            <!--TODO-->
-            <!--<Button Text="Change Image"-->
-            <!--WidthRequest="200"
+            <Button Text="Change Image"
+                    WidthRequest="200"
                     HorizontalOptions="End"
                     VerticalOptions="End"
                     Margin="0, 0, 125, 50"
                     Grid.Column="2"
-                    Command="{Binding ChangeImage}"/>-->
+                    Command="{Binding ChangeImageCommand}"/>
         </Grid>
     </Grid>
 </views:ContentPageBase>

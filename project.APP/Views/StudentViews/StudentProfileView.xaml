@@ -25,8 +25,13 @@
                     </Label.GestureRecognizers>
                 </Label>
             </VerticalStackLayout>
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.Image, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToStudentProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
     <Grid Grid.Row="1"
@@ -94,7 +99,7 @@
 
 
             <!-- Profile Image in the rightmost column -->
-            <Image Source="profile.png"
+            <Image Source="{Binding Path=loggedUser.Image, TargetNullValue=profile.png}"
                    WidthRequest="250"
                    HeightRequest="250"
                    HorizontalOptions="End"
@@ -102,14 +107,13 @@
                    Margin="0, 50, 100, 10"
                    Grid.Column="2"/>
 
-            <!--TODO-->
-            <!--<Button Text="Change Image"-->
-                    <!--WidthRequest="200"
+            <Button Text="Change Image"
+                    WidthRequest="200"
                     HorizontalOptions="End"
                     VerticalOptions="End"
                     Margin="0, 0, 125, 50"
                     Grid.Column="2"
-                    Command="{Binding ChangeImage}"/>-->
+                    Command="{Binding ChangeImageCommand}"/>
         </Grid>
     </Grid>
 </views:ContentPageBase>

@@ -11,7 +11,8 @@ public static class StudentSeeds
         FirstName = "John",
         LastName = "Doe",
         Email = "xplagi00@email.com",
-        Password = "113dDSas6H"
+        Password = "113dDSas6H",
+        Image = null
         
     };
     
@@ -21,8 +22,8 @@ public static class StudentSeeds
         FirstName = "Jack",
         LastName = "Mrkva",
         Email = "xmrkva01@email.com",
-        Password = "9n1d8as"
-        
+        Password = "9n1d8as",
+        Image = new Uri("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
     };
 
     public static readonly StudentEntity Xkolar51 = new()
@@ -31,7 +32,8 @@ public static class StudentSeeds
         FirstName = "Karel",
         LastName = "Kolar",
         Email = "xkolar51@email.com",
-        Password = "random_pass"
+        Password = "random_pass",
+        Image = null
     };
 
     public static readonly StudentEntity Xjozef01 = new()
@@ -40,7 +42,8 @@ public static class StudentSeeds
         FirstName = "Erik",
         LastName = "Jozefcak",
         Email = "xjozef01@email.com",
-        Password = "very_hard_123"
+        Password = "very_hard_123",
+        Image = null
     };
 
     public static readonly StudentEntity Xstude00 = new()
@@ -49,7 +52,8 @@ public static class StudentSeeds
         FirstName = "Eva",
         LastName = "Studena",
         Email = "xstude00@email.com",
-        Password = "password123"
+        Password = "password123",
+        Image = null
     };
     
     
