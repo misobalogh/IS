@@ -77,8 +77,6 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\AdminViewModels\" />
-    <Folder Include="Views\AdminViews\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,6 +86,15 @@
   <ItemGroup>
     <Compile Update="Shells\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminProfileView.xaml.cs">
+      <DependentUpon>AdminProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminTeachersView.xaml.cs">
+      <DependentUpon>AdminTeachersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminStudentsView.xaml.cs">
+      <DependentUpon>AdminStudentsView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ContentPageBase.xaml.cs">
       <DependentUpon>ContentPageBase.xaml</DependentUpon>
@@ -119,6 +126,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <MauiXaml Update="Views\AdminViews\AdminProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminTeachersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminStudentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Views\LoginViews\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

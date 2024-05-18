@@ -1,14 +1,15 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using project.App.Views.StudentViews;
-using project.BL;
-using project.DAL.Options;
 using Microsoft.Extensions.Configuration;
-using project.DAL;
 using System.Reflection;
-using project.DAL.Migrator;
+using project.App.Views.StudentViews;
+using project.App.Views.AdminViews;
 using project.App.Views.TeacherViews;
 using project.App.Services;
+using project.BL;
+using project.DAL;
+using project.DAL.Options;
+using project.DAL.Migrator;
 
 namespace project.App;
 
@@ -54,6 +55,13 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(TeacherTestsView), typeof(TeacherTestsView));
         Routing.RegisterRoute(nameof(TeacherClassificationSubjectDetailView), typeof(TeacherClassificationSubjectDetailView));
         Routing.RegisterRoute(nameof(TeacherProfileView), typeof(TeacherProfileView));
+
+        Routing.RegisterRoute(nameof(AdminProfileView), typeof(AdminProfileView));
+        Routing.RegisterRoute(nameof(AdminStudentsView), typeof(AdminStudentsView));
+        Routing.RegisterRoute(nameof(AdminTeachersView), typeof(AdminTeachersView));
+
+
+
 
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
 

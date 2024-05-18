@@ -24,4 +24,15 @@ public class TeacherFacade(IUnitOfWorkFactory unitOfWorkFactory, TeacherModelMap
             await unitOfWork.CommitAsync();
         }
     }
+
+    public async Task<List<TeacherListModel>> SearchTeacher(string searchTerm)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+        var repository = unitOfWork.GetRepository<TeacherEntity, TeacherEntityMapper>();
+
+        IQueryable<TeacherEntity> query = repository.Get()
+            .Where(entity => entity.FirstName.ToLower().Contains(searchTerm.ToLower()) || entity.LastName.ToLower().Contains(searchTerm.ToLower()));
+
+        return query.AsEnumerable().Select(teacherModelMapper.MapToListModel).ToList();
+    }
 }
