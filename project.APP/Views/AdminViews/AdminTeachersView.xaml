@@ -41,22 +41,23 @@
               ColumnDefinitions=".15*,.85*">
             <!--navigation menu-->
             <VerticalStackLayout Grid.Column="0">
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                Text="teachers" Command="{Binding GoToTeacherCommand}"/>
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                Text="teachers" Command="{Binding GoToTeacherCommand}" IsEnabled="False"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                 Text="students" Command="{Binding GoToStudentCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
             Text="subjects" Command="{Binding GoToSubjectCommand}"/>    
             </VerticalStackLayout>
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,0.2*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
+            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
                 <Entry x:Name="teacherNameEntry" Grid.Row="1" Grid.Column="1" Placeholder="Enter teacher name" Margin="20,0,0,0">
                 <Entry.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="Completed"
                                       Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference teacherNameEntry}}"/>
                 </Entry.Behaviors>
                 </Entry>
-                <Button Grid.Row="1" Grid.Column="3" Text="search teacher" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference teacherNameEntry}}" Margin="0,0,20,0"/>
+                <Button Grid.Row="1" Grid.Column="2" Text="search teacher" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference teacherNameEntry}}" Margin="0,0,20,0"/>
+                <Button Grid.Row="1" Grid.Column="3" Text="new teacher" Command="{Binding NewTeacherCommand}" Margin="0,0,20,0"/>
 
                 <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
                     <ListView Grid.Column="1" ItemsSource="{Binding Teachers}">

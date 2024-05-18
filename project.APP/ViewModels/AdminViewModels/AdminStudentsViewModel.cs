@@ -29,5 +29,11 @@ public partial class AdminStudentsViewModel(
     {
         Students = await studentFacade.SearchStudent(searchTerm);
     }
+
+    [RelayCommand]
+    async Task NewStudent(string searchTerm)
+    {
+      
+    }
 }
 
