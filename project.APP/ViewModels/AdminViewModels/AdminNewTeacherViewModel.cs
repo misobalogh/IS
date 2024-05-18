@@ -34,5 +34,7 @@ public partial class AdminNewTeacherViewModel(ITeacherFacade teacherFacade, IMes
         }
 
         await teacherFacade.SaveAsync(NewTeacher);
+
+        await Shell.Current.GoToAsync(nameof(AdminTeachersView));
     }
 }
