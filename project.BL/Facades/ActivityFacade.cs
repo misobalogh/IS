@@ -32,6 +32,7 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
         }
     }
 
+    // TODO: async
     public async Task<List<ActivityListModel>> FilterBySubjects(Guid subjectId, DateTime startDate, DateTime endDate)
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
