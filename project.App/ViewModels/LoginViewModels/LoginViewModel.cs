@@ -33,6 +33,7 @@ public partial class LoginViewModel(
     [RelayCommand]
     async Task Login()
     {
+        LoadDataAsync();
         const string EmptyEntryPlaceholder = "Please enter your email";
 
         if (string.IsNullOrEmpty(LoginCredential))
