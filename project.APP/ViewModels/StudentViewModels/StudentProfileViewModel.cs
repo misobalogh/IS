@@ -32,7 +32,7 @@ public partial class StudentProfileViewModel(
     {
         string newImageUrl = await Application.Current.MainPage.DisplayPromptAsync("Change Image", "Enter the URL of the new profile image:");
 
-        if (!string.IsNullOrEmpty(newImageUrl))
+        if (!string.IsNullOrEmpty(newImageUrl) && loggedUser != null)
         {
             loggedUser.Image = new Uri(newImageUrl);
 

@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using project.App.Services;
-using project.App.Views.StudentViews;
 using project.App.Views.AdminViews;
 using project.BL.Facades;
 using project.BL.Facades.Interfaces;
@@ -11,29 +10,29 @@ using project.DAL.Enums;
 namespace project.App.ViewModels;
 
 
-public partial class AdminStudentsViewModel(
-    IStudentFacade studentFacade,
+public partial class AdminSubjectsViewModel(
+    ISubjectFacade subjectFacade,
     IMessengerService messengerService, UserDataService userDataService) 
     : AdminNavigationSideBar(messengerService, userDataService)
 {
-    public IEnumerable<StudentListModel> Students { get; set; } = null!;
+    public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        Students = await studentFacade.GetAsync();
+        Subjects = await subjectFacade.GetAsync();
     }
 
     [RelayCommand]
     async Task Search(string searchTerm)
     {
-        Students = await studentFacade.SearchStudent(searchTerm);
+        Subjects = await subjectFacade.SearchSubject(searchTerm);
     }
 
     [RelayCommand]
-    async Task NewStudent(string searchTerm)
+    async Task NewSubject(string searchTerm)
     {
-        await Shell.Current.GoToAsync(nameof(AdminNewStudentView));
+        await Shell.Current.GoToAsync(nameof(AdminNewSubjectView));
     }
 }
 

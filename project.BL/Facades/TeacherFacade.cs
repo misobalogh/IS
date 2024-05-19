@@ -43,7 +43,7 @@ public class TeacherFacade(IUnitOfWorkFactory unitOfWorkFactory, TeacherModelMap
         var repository = unitOfWork.GetRepository<TeacherEntity, TeacherEntityMapper>();
 
 
-        IQueryable<TeacherEntity> query = repository.Get().Where(e => e.Email == email);
+        IQueryable<TeacherEntity> query = repository.Get().Where(entity => entity.Email == email);
         return query.AsEnumerable().Any();
     }
 }

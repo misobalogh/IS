@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="project.App.Views.AdminViews.AdminNewTeacherView"
+             x:Class="project.App.Views.AdminViews.AdminNewStudentView"
              xmlns:views="clr-namespace:project.App.Views"
              xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
              xmlns:converters="clr-namespace:project.App.Converters"
-             x:DataType="viewModels:AdminNewTeacherViewModel"
+             x:DataType="viewModels:AdminNewStudentViewModel"
              xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              >
 
@@ -51,22 +51,18 @@
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
                 <!-- Label for Form Title -->
-                <Label Grid.Row="1" Grid.Column="1" Text="Create New Teacher" FontSize="24" VerticalOptions="End" HorizontalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="Create New Student" FontSize="24" VerticalOptions="End" HorizontalOptions="Center"/>
 
-                <!-- Input Fields for Teacher Data -->
+                <!-- Input Fields for Student Data -->
                 <VerticalStackLayout Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
-                    <Entry Placeholder="Email" Text="{Binding NewTeacher.Email}" FontSize="16" />
-                    <Entry Placeholder="First Name" Text="{Binding NewTeacher.FirstName}" FontSize="16"/>
-                    <Entry Placeholder="Last Name" Text="{Binding NewTeacher.LastName}" FontSize="16"/>
+                    <Entry Placeholder="Email" Text="{Binding NewStudent.Email}" FontSize="16" />
+                    <Entry Placeholder="First Name" Text="{Binding NewStudent.FirstName}" FontSize="16"/>
+                    <Entry Placeholder="Last Name" Text="{Binding NewStudent.LastName}" FontSize="16"/>
 
-                    <!-- Dropdowns for Titles Before and After Name -->
-                    <Picker Title="Title Before" ItemsSource="{Binding TitlesBefore}" SelectedItem="{Binding NewTeacher.TitleBefore}" FontSize="16"/>
-                    <Picker Title="Title After" ItemsSource="{Binding TitlesAfter}" SelectedItem="{Binding NewTeacher.TitleAfter}" FontSize="16"/>
-
-                    <Entry Placeholder="Password" Text="{Binding NewTeacher.Password}" FontSize="16" IsPassword="True"/>
+                    <Entry Placeholder="Password" Text="{Binding NewStudent.Password}" FontSize="16" IsPassword="True"/>
 
                     <!-- Button to Submit Form -->
-                    <Button Text="Create Teacher" Command="{Binding CreateTeacherCommand}" FontSize="16" BackgroundColor="Green" TextColor="White"/>
+                    <Button Text="Create Student" Command="{Binding CreateStudentCommand}" FontSize="16" BackgroundColor="Green" TextColor="White"/>
                 </VerticalStackLayout>
             </Grid>
         </Grid>

@@ -20,4 +20,14 @@ public class StudentFacade(IUnitOfWorkFactory unitOfWorkFactory, StudentModelMap
 
         return query.AsEnumerable().Select(studentModelMapper.MapToListModel).ToList();
     }
+
+    public async Task<bool> EmailExistsAsync(string email)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+        var repository = unitOfWork.GetRepository<TeacherEntity, TeacherEntityMapper>();
+
+
+        IQueryable<TeacherEntity> query = repository.Get().Where(entity => entity.Email == email);
+        return query.AsEnumerable().Any();
+    }
 }

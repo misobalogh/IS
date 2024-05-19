@@ -87,11 +87,20 @@
     <Compile Update="Shells\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AdminViews\AdminNewSubjectView.xaml.cs">
+      <DependentUpon>AdminNewSubjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminNewStudentView.xaml.cs">
+      <DependentUpon>AdminNewStudentView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\AdminViews\AdminProfileView.xaml.cs">
       <DependentUpon>AdminProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\AdminViews\AdminNewTeacherView.xaml.cs">
       <DependentUpon>AdminNewTeacherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminSubjectsView.xaml.cs">
+      <DependentUpon>AdminSubjectsView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\AdminViews\AdminTeachersView.xaml.cs">
       <DependentUpon>AdminTeachersView.xaml</DependentUpon>
@@ -129,10 +138,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <MauiXaml Update="Views\AdminViews\AdminNewSubjectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminNewStudentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Views\AdminViews\AdminProfileView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\AdminViews\AdminNewTeacherView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminSubjectsView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\AdminViews\AdminTeachersView.xaml">

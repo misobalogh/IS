@@ -38,7 +38,7 @@ public partial class AdminNavigationSideBar(IMessengerService messengerService, 
     [RelayCommand]
     async Task GoToSubject()
     {
-        await Shell.Current.GoToAsync(nameof(AdminProfileView));
+        await Shell.Current.GoToAsync(nameof(AdminSubjectsView));
     }
 
 
