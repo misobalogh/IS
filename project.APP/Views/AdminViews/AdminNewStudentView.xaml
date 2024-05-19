@@ -41,10 +41,10 @@
               ColumnDefinitions=".15*,.85*">
             <!-- Navigation menu -->
             <VerticalStackLayout Grid.Column="0">
-                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                Text="teachers" Command="{Binding GoToTeacherCommand}" IsEnabled="False"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                Text="students" Command="{Binding GoToStudentCommand}"/>
+                Text="teachers" Command="{Binding GoToTeacherCommand}"/>
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                Text="students" Command="{Binding GoToStudentCommand}" IsEnabled="False"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
             Text="subjects" Command="{Binding GoToSubjectCommand}"/>    
             </VerticalStackLayout>

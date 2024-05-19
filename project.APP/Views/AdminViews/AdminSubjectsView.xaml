@@ -43,10 +43,10 @@
             <VerticalStackLayout Grid.Column="0">
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                 Text="teachers" Command="{Binding GoToTeacherCommand}"/>
-                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                Text="students" Command="{Binding GoToStudentCommand}" IsEnabled="False"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-            Text="subjects" Command="{Binding GoToSubjectCommand}"/>    
+                Text="students" Command="{Binding GoToStudentCommand}" />
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+            Text="subjects" Command="{Binding GoToSubjectCommand}" IsEnabled="False"/>    
             </VerticalStackLayout>
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
