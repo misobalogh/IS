@@ -19,7 +19,7 @@ public sealed class EvaluationFacadeTests : FacadeTestsBase
         _evalutationtFacadeSUT = new EvaluationFacade(UnitOfWorkFactory, EvaluationModelMapper);
     }
 
-    [Fact]
+    [Fact] // TODO: fix
     public async Task Create_WithNonExistingItem_DoesNotThrow()
     {
         var model = new EvaluationModel
@@ -68,7 +68,7 @@ public sealed class EvaluationFacadeTests : FacadeTestsBase
         Assert.False(await dbxAssert.Evaluations.AnyAsync(i => i.Id == EvaluationSeeds.IFJMidterm.Id));
     }
     
-    [Fact]
+    [Fact] // TODO: fix
     public async Task NewEvaluation_InsertOrUpdate_EvaluationAdded()
     {
         //Arrange

@@ -15,11 +15,11 @@ namespace project.BL.Tests;
 
 public sealed class ActivityFacadeTests : FacadeTestsBase
 {
-    private readonly IActivityFacade _activitytFacadeSUT;
+    private readonly IActivityFacade _activityFacadeSUT;
 
     public ActivityFacadeTests(ITestOutputHelper output) : base(output)
     {
-        _activitytFacadeSUT = new ActivityFacade(UnitOfWorkFactory, ActivityModelMapper);
+        _activityFacadeSUT = new ActivityFacade(UnitOfWorkFactory, ActivityModelMapper);
     }
 
     [Fact]
@@ -42,13 +42,13 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
 
         };
 
-        await _activitytFacadeSUT.SaveAsync(model, model.SubjectId, model.TeacherId);
+        await _activityFacadeSUT.SaveAsync(model, model.SubjectId, model.TeacherId);
     }
     
     [Fact]
     public async Task GetById_NonExistent()
     {
-        var activity = await _activitytFacadeSUT.GetAsync(ActivitySeeds.EmptyActivity.Id);
+        var activity = await _activityFacadeSUT.GetAsync(ActivitySeeds.EmptyActivity.Id);
     
         Assert.Null(activity);
     }
@@ -56,7 +56,9 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
     [Fact]
     public async Task IFJMidterm_DeleteById_Deleted()
     {
-        await _activitytFacadeSUT.DeleteAsync(ActivitySeeds.IFJMidterm.Id);
+        // var test = await _activityFacadeSUT.GetAsync();
+        
+        await _activityFacadeSUT.DeleteAsync(ActivitySeeds.IFJMidterm.Id);
 
         await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
         Assert.False(await dbxAssert.Activities.AnyAsync(i => i.Id == ActivitySeeds.IFJMidterm.Id));
@@ -71,7 +73,7 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
 
         ActivitySeeds.SeedActivitiesForTesting();
         // Act
-        var results = await _activitytFacadeSUT.FilterBySubjects(subjectId, startDate, endDate);
+        var results = await _activityFacadeSUT.FilterBySubjects(subjectId, startDate, endDate);
 
         // Assert
         Assert.All(results, activity =>
@@ -90,7 +92,7 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
         ActivitySeeds.SeedActivitiesForTesting();
 
         // Act
-        var results = await _activitytFacadeSUT.GetSortedActivities(sortBy, descending);
+        var results = await _activityFacadeSUT.GetSortedActivities(sortBy, descending);
 
         // Use reflection correctly here:
         PropertyInfo? propInfo = typeof(ActivityListModel).GetProperty(sortBy);
@@ -113,6 +115,6 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
         string invalidProperty = "NonexistentProperty";
 
         // Act & Assert
-        await Assert.ThrowsAsync<ArgumentException>(() => _activitytFacadeSUT.GetSortedActivities(invalidProperty));
+        await Assert.ThrowsAsync<ArgumentException>(() => _activityFacadeSUT.GetSortedActivities(invalidProperty));
     }
 }
