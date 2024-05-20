@@ -17,7 +17,7 @@ public partial class StudentSubjectsViewModel(
     public string SubjectNameBtn { get; set; } = "Name";
     public string SubjectTagBtn { get; set; } = "Tag";
 
-    private bool SortDescending = true;
+    private bool SortDescending = false;
 
     private SortBy SortedBy = SortBy.None;
 
@@ -49,7 +49,8 @@ public partial class StudentSubjectsViewModel(
 
         SubjectNameBtn = GetSortColName(SubjectNameBtn);
 
-        //TODO: seradit seznam studentu
+        //TODO: seradit seznam predmetu
+        Subjects = subjectFacade.Sort(Subjects, nameof(SubjectListModel.SubjectName), SortDescending);
 
         SortedBy = SortBy.Name;
     }
@@ -63,7 +64,8 @@ public partial class StudentSubjectsViewModel(
         
         SubjectTagBtn = GetSortColName(SubjectTagBtn);
 
-        //TODO: seradit seznam studentu
+        //TODO: seradit seznam predmetu
+        Subjects = subjectFacade.Sort(Subjects, nameof(SubjectListModel.SubjectTag), SortDescending);
 
         SortedBy = SortBy.Tag;
     }
@@ -90,7 +92,7 @@ public partial class StudentSubjectsViewModel(
             SortDescending = !SortDescending;
         } else // if switched to sorting by different column, set to descending
         {
-            SortDescending = true;
+            SortDescending = false;
         }
     }
 
