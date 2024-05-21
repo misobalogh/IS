@@ -20,6 +20,7 @@ public partial class TeacherStudentsViewModel(
     //TODO: pokud by se nekde mely zobrazovat studenti, ktere ucitel uci
     //public IEnumerable<EnrolledSubjectsListModel> EnrolledSubjects { get; private set; } = null!;
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
+    private bool firstSearch = true;
 
     protected override async Task LoadDataAsync()
     {
@@ -31,6 +32,11 @@ public partial class TeacherStudentsViewModel(
     [RelayCommand]
     async Task Search(string searchTerm)
     {
+        if (firstSearch && string.IsNullOrEmpty(searchTerm))
+        {
+            return;
+        }
+        firstSearch = false;
         Students = await studentFacade.SearchStudent(searchTerm);
         //EnrolledSubjects = await enrolledSubjectsFacade.SearchSubject(searchTerm);
     }
