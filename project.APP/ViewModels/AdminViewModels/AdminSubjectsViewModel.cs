@@ -16,6 +16,7 @@ public partial class AdminSubjectsViewModel(
     : AdminNavigationSideBar(messengerService, userDataService)
 {
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+    private bool firstSearch = true;
 
     protected override async Task LoadDataAsync()
     {
@@ -26,6 +27,11 @@ public partial class AdminSubjectsViewModel(
     [RelayCommand]
     async Task Search(string searchTerm)
     {
+        if (firstSearch && string.IsNullOrEmpty(searchTerm))
+        {
+            return;
+        }
+        firstSearch = false;
         Subjects = await subjectFacade.SearchSubject(searchTerm);
     }
 

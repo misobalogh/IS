@@ -62,7 +62,7 @@
                     <Entry Placeholder="Password" Text="{Binding NewStudent.Password}" FontSize="16" IsPassword="True"/>
 
                     <!-- Button to Submit Form -->
-                    <Button Text="Create Student" Command="{Binding CreateStudentCommand}" FontSize="16" BackgroundColor="Green" TextColor="White"/>
+                    <Button Text="Create Student" Command="{Binding CreateStudentCommand}" FontSize="16" TextColor="White"/>
                 </VerticalStackLayout>
             </Grid>
         </Grid>

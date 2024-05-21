@@ -17,6 +17,7 @@ public partial class AdminTeachersViewModel(
     : AdminNavigationSideBar(messengerService, userDataService)
 {
     public IEnumerable<TeacherListModel> Teachers { get; set; } = null!;
+    private bool firstSearch = true;
 
     protected override async Task LoadDataAsync()
     {
@@ -27,6 +28,12 @@ public partial class AdminTeachersViewModel(
     [RelayCommand]
     async Task Search(string searchTerm)
     {
+        if (firstSearch && string.IsNullOrEmpty(searchTerm))
+        {
+            return;
+        }
+        firstSearch = false;
+
         Teachers = await teacherFacade.SearchTeacher(searchTerm);
     }
 

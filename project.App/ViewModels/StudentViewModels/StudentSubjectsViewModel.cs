@@ -13,6 +13,7 @@ public partial class StudentSubjectsViewModel(
     UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+    private bool firstSearch = true;
 
     public string SubjectNameBtn { get; set; } = "Name";
     public string SubjectTagBtn { get; set; } = "Tag";
@@ -37,6 +38,11 @@ public partial class StudentSubjectsViewModel(
     [RelayCommand]
     async Task Search(string searchTerm)
     {
+        if (firstSearch && string.IsNullOrEmpty(searchTerm))
+        {
+            return;
+        }
+        firstSearch = false;
         Subjects = await subjectFacade.SearchSubject(searchTerm);
     }
 

@@ -76,7 +76,7 @@
                             <DataTemplate x:DataType="m:SubjectListModel">
                                 <ViewCell>
                                     <Grid Padding="10" ColumnDefinitions="*,*,*">
-                                        <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="Center" />
+                                        <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
                                         <Label Text="{Binding SubjectTag}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
                                         <Label Text="{Binding Semester}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
                                     </Grid>

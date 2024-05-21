@@ -14,6 +14,7 @@ public partial class TeacherSubjectsViewModel(
     UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+    private bool firstSearch = true;
 
     protected override async Task LoadDataAsync()
     {
@@ -25,7 +26,27 @@ public partial class TeacherSubjectsViewModel(
     [RelayCommand]
     async Task Search(string searchTerm)
     {
+        if (firstSearch && string.IsNullOrEmpty(searchTerm))
+        {
+            return;
+        }
+        firstSearch = false;
         Subjects = await subjectFacade.SearchSubject(searchTerm);
+    }
+
+    [RelayCommand]
+    async Task ShowSubjectDetails(object clickedItem)
+    {
+        if (clickedItem == null)
+        {
+            return;
+        }
+
+        if (clickedItem is SubjectListModel subject)
+        {
+            var route = $"{nameof(TeacherSubjectsDetailView)}?subjectId={subject.Id}";
+            await Shell.Current.GoToAsync(route);
+        }
     }
 }
 
