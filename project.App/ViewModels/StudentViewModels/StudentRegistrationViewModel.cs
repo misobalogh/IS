@@ -17,6 +17,24 @@ public partial class StudentRegistrationViewModel(
 
     public IEnumerable<ActivityListModel> Activities { get; set; } = null!;
 
+    public string SubjectNameBtn { get; set; } = "Subject";
+    public string ActivityNameBtn { get; set; } = "Activity";
+    public string StartTimeBtn { get; set; } = "Start Time";
+    public string CapacityBtn { get; set; } = "Capacity";
+
+    private bool SortDescending = false;
+
+    private SortBy SortedBy = SortBy.None;
+
+    private enum SortBy
+    {
+        SubjectName,
+        ActivityName,
+        StartTime,
+        Capacity,
+        None
+    };
+
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
@@ -27,6 +45,102 @@ public partial class StudentRegistrationViewModel(
     async Task Register(ActivityModel activity)
     {
         //TODO
+    }
+
+
+    [RelayCommand]
+    void SortBySubjectName()
+    {
+        ResetToOriginalName();
+
+        ChangeSortDirectionIfSorted(SortBy.SubjectName);
+
+        SubjectNameBtn = GetSortColName(SubjectNameBtn);
+
+        Activities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.SubjectName), SortDescending);
+
+        SortedBy = SortBy.SubjectName;
+    }
+
+    [RelayCommand]
+    void SortByActivityName()
+    {
+        ResetToOriginalName();
+
+        ChangeSortDirectionIfSorted(SortBy.ActivityName);
+
+        ActivityNameBtn = GetSortColName(ActivityNameBtn);
+
+        Activities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.Name), SortDescending);
+
+        SortedBy = SortBy.ActivityName;
+    }
+
+
+    [RelayCommand]
+    void SortByStartTime()
+    {
+        ResetToOriginalName();
+
+        ChangeSortDirectionIfSorted(SortBy.StartTime);
+
+        StartTimeBtn = GetSortColName(StartTimeBtn);
+
+        Activities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.Start), SortDescending);
+
+        SortedBy = SortBy.StartTime;
+    }
+
+    [RelayCommand]
+    void SortByCapacity()
+    {
+        ResetToOriginalName();
+
+        ChangeSortDirectionIfSorted(SortBy.Capacity);
+
+        CapacityBtn = GetSortColName(CapacityBtn);
+
+        Activities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.Capacity), SortDescending);
+
+        SortedBy = SortBy.Capacity;
+    }
+
+    /// <summary>
+    /// Sets column header to original text - without arrows
+    /// </summary>
+    private void ResetToOriginalName()
+    {
+        SubjectNameBtn = "Subject";
+        ActivityNameBtn = "Activity";
+        StartTimeBtn = "Start Time";
+        CapacityBtn = "Capacity";
+    }
+
+    /// <summary>
+    /// if clicked on column by which is already sorted -> change direction of sort
+    /// </summary>
+    private void ChangeSortDirectionIfSorted(SortBy newSortBy)
+    {
+        if (newSortBy == SortedBy)
+        {
+            SortDescending = !SortDescending;
+        }
+        else // if switched to sorting by different column, set to descending
+        {
+            SortDescending = false;
+        }
+    }
+
+    private string GetSortColName(string colName)
+    {
+        if (SortDescending)
+        {
+            return colName + " ↓";
+        }
+        else
+        {
+            return colName + " ↑";
+        }
     }
 }
 

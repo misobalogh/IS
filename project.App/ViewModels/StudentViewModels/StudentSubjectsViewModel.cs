@@ -49,7 +49,6 @@ public partial class StudentSubjectsViewModel(
 
         SubjectNameBtn = GetSortColName(SubjectNameBtn);
 
-        //TODO: seradit seznam predmetu
         Subjects = subjectFacade.Sort(Subjects, nameof(SubjectListModel.SubjectName), SortDescending);
 
         SortedBy = SortBy.Name;
@@ -64,7 +63,6 @@ public partial class StudentSubjectsViewModel(
         
         SubjectTagBtn = GetSortColName(SubjectTagBtn);
 
-        //TODO: seradit seznam predmetu
         Subjects = subjectFacade.Sort(Subjects, nameof(SubjectListModel.SubjectTag), SortDescending);
 
         SortedBy = SortBy.Tag;
