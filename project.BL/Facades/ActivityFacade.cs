@@ -33,32 +33,16 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
     }
 
     // TODO: async
-    public async Task<List<ActivityListModel>> FilterBySubjects(Guid subjectId, DateTime startDate, DateTime endDate)
+    public IEnumerable<ActivityListModel> FilterBySubjects(IEnumerable<ActivityListModel> activities, Guid subjectId, DateTime startDate, DateTime endDate)
     {
-        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-        IRepository<ActivityEntity> repository = unitOfWork.GetRepository<ActivityEntity, ActivityEntityMapper>();
-
-        IQueryable<ActivityEntity> query = repository.Get()
+        return activities
             .Where(activity => activity.SubjectId == subjectId)
             .Where(activity => activity.Start >= startDate && activity.End <= endDate);
-
-        IEnumerable<ActivityListModel> activityModels = activityModelMapper.MapToListModel(query);
-
-        return activityModels.ToList();
     }
 
     // Sort activities dynamically based on property name and direction
-    public async Task<List<ActivityListModel>> GetSortedActivities(string sortBy, bool descending = false)
+    public IEnumerable<ActivityListModel> GetSortedActivities(IEnumerable<ActivityListModel> activities, string sortBy, bool descending = false)
     {
-        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-        var repository = unitOfWork.GetRepository<ActivityEntity, ActivityEntityMapper>();
-        var activities = await repository.Get()
-            .Include(a => a.Subject)
-            .Include(a => a.Teacher)
-            .ToListAsync();
-
-        var activityModels = activities.Select(activityModelMapper.MapToListModel).ToList();
-
         PropertyInfo? propInfo = typeof(ActivityListModel).GetProperty(sortBy);
         if (propInfo == null)
         {
@@ -66,9 +50,9 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
         }
 
         var sortedActivities = descending
-            ? activityModels.OrderByDescending(a => propInfo.GetValue(a, null))
-            : activityModels.OrderBy(a => propInfo.GetValue(a, null));
+            ? activities.OrderByDescending(a => propInfo.GetValue(a, null))
+            : activities.OrderBy(a => propInfo.GetValue(a, null));
 
-        return sortedActivities.ToList();
+        return sortedActivities;
     }
 }
