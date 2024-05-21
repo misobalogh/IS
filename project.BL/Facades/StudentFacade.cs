@@ -1,4 +1,5 @@
-﻿using project.BL.Mappers;
+﻿using System.Reflection;
+using project.BL.Mappers;
 using project.BL.Models;
 using project.DAL.Entities;
 using project.DAL.Mappers;
@@ -29,5 +30,20 @@ public class StudentFacade(IUnitOfWorkFactory unitOfWorkFactory, StudentModelMap
 
         IQueryable<TeacherEntity> query = repository.Get().Where(entity => entity.Email == email);
         return query.AsEnumerable().Any();
+    }
+
+    public IEnumerable<StudentListModel> Sort(IEnumerable<StudentListModel> students, string sortBy, bool descending)
+    {
+        PropertyInfo? propInfo = typeof(StudentListModel).GetProperty(sortBy);
+        if (propInfo == null)
+        {
+            throw new ArgumentException($"'{sortBy}' is not a valid property of StudentListModel");
+        }
+
+        var sortedStudents = descending
+            ? students.OrderByDescending(a => propInfo.GetValue(a, null))
+            : students.OrderBy(a => propInfo.GetValue(a, null));
+
+        return sortedStudents.ToList();
     }
 }

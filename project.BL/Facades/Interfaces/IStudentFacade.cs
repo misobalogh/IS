@@ -8,4 +8,5 @@ public interface IStudentFacade : IFacade<StudentEntity, StudentListModel, Stude
 {
     Task<List<StudentListModel>> SearchStudent(string searchTerm);
     Task<bool> EmailExistsAsync(string email);
+    public IEnumerable<StudentListModel> Sort(IEnumerable<StudentListModel> subjects, string sortBy, bool descending);
 }
