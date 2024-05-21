@@ -74,6 +74,7 @@
                     <Entry Placeholder="Capacity" Text="{Binding NewActivity.Capacity}" FontSize="16"/>
                     <Entry Placeholder="Max Points" Text="{Binding NewActivity.MaxPoints}" FontSize="16"/>
 
+                    <!--TODO-->
                     <!--<Picker Title="Room" ItemsSource="{Binding Room}" SelectedItem="{Binding NewActivity.Room}" FontSize="16"/>
                     <Picker Title="Activity Type" ItemsSource="{Binding ActivityType}" SelectedItem="{Binding NewActivity.ActivityType}" FontSize="16"/>-->
                     <Picker Title="Room" SelectedItem="{Binding NewActivity.Room}" FontSize="16"/>
@@ -81,7 +82,7 @@
 
 
                     <!-- Button to Submit Form -->
-                    <Button Text="Create Activity" Command="{Binding CreateActivityCommand}" FontSize="16" BackgroundColor="Green" TextColor="White"/>
+                    <Button Text="Create Activity" Command="{Binding CreateActivityCommand}" FontSize="16" TextColor="White"/>
                 </VerticalStackLayout>
             </Grid>
         </Grid>
