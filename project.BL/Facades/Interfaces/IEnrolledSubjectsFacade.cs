@@ -8,4 +8,5 @@ public interface IEnrolledSubjectsFacade : IFacade<EnrolledSubjectEntity, Enroll
 {
     Task SaveAsync(EnrolledSubjectsModel model, Guid studentId);
     Task<List<EnrolledSubjectsListModel>> SearchSubject(string searchTerm);
+    public IEnumerable<EnrolledSubjectsListModel> Sort(IEnumerable<EnrolledSubjectsListModel> subjects, string sortBy, bool descending);
 }

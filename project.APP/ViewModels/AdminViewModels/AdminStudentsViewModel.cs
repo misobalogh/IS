@@ -19,7 +19,7 @@ public partial class AdminStudentsViewModel(
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
     private bool firstSearch = true;
 
-    public string StudentNameBtn { get; set; } = "Student";
+    public string NameBtn { get; set; } = "Name";
     public string EmailBtn { get; set; } = "Email";
 
     private bool SortDescending = false;
@@ -57,13 +57,13 @@ public partial class AdminStudentsViewModel(
     }
 
     [RelayCommand]
-    void SortByStudentName()
+    void SortByName()
     {
         ResetToOriginalName();
 
         ChangeSortDirectionIfSorted(SortBy.Student);
 
-        StudentNameBtn = GetSortColName(StudentNameBtn);
+        NameBtn = GetSortColName(NameBtn);
 
         Students = studentFacade.Sort(Students, nameof(StudentListModel.FirstName), SortDescending);
 
@@ -89,7 +89,7 @@ public partial class AdminStudentsViewModel(
     /// </summary>
     private void ResetToOriginalName()
     {
-        StudentNameBtn = "Student";
+        NameBtn = "Name";
         EmailBtn = "Email";
     }
 
