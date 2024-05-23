@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using project.BL.Mappers;
 using project.BL.Models;
 using project.DAL.Entities;
@@ -45,5 +46,20 @@ public class TeacherFacade(IUnitOfWorkFactory unitOfWorkFactory, TeacherModelMap
 
         IQueryable<TeacherEntity> query = repository.Get().Where(entity => entity.Email == email);
         return query.AsEnumerable().Any();
+    }
+
+    public IEnumerable<TeacherListModel> Sort(IEnumerable<TeacherListModel> teachers, string sortBy, bool descending)
+    {
+        PropertyInfo? propInfo = typeof(TeacherListModel).GetProperty(sortBy);
+        if (propInfo == null)
+        {
+            throw new ArgumentException($"'{sortBy}' is not a valid property of TeacherListModel");
+        }
+
+        var sorted = descending
+            ? teachers.OrderByDescending(a => propInfo.GetValue(a, null))
+            : teachers.OrderBy(a => propInfo.GetValue(a, null));
+
+        return sorted.ToList();
     }
 }

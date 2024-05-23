@@ -8,4 +8,5 @@ public interface ITeacherFacade : IFacade<TeacherEntity, TeacherListModel, Teach
 {
     Task<List<TeacherListModel>> SearchTeacher(string searchTerm);
     Task<bool> EmailExistsAsync(string email);
+    public IEnumerable<TeacherListModel> Sort(IEnumerable<TeacherListModel> teachers, string sortBy, bool descending);
 }
