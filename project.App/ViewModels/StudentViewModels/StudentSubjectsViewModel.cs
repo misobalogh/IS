@@ -88,13 +88,11 @@ public partial class StudentSubjectsViewModel(
     /// </summary>
     private void ChangeSortDirectionIfSorted(SortBy newSortBy)
     {
-        if (newSortBy == SortBy.Name && SortedBy == SortBy.Name)
+        if (newSortBy == SortedBy)
         {
             SortDescending = !SortDescending;
-        } else if (newSortBy == SortBy.Tag && SortedBy == SortBy.Tag)
-        {
-            SortDescending = !SortDescending;
-        } else // if switched to sorting by different column, set to descending
+        }
+        else // if switched to sorting by different column, set to descending
         {
             SortDescending = false;
         }
