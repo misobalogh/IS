@@ -13,7 +13,7 @@ namespace project.App.ViewModels;
 
 public partial class AdminStudentsViewModel(
     IStudentFacade studentFacade,
-    IMessengerService messengerService, UserDataService userDataService) 
+    IMessengerService messengerService, UserDataService userDataService)
     : AdminNavigationSideBar(messengerService, userDataService)
 {
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
@@ -51,9 +51,18 @@ public partial class AdminStudentsViewModel(
     }
 
     [RelayCommand]
-    async Task NewStudent(string searchTerm)
+    async Task EditStudent(object clickedItem)
     {
-        await Shell.Current.GoToAsync(nameof(AdminNewStudentView));
+        if (clickedItem == null)
+        {
+            await Shell.Current.GoToAsync($"{nameof(AdminNewStudentView)}?studentId=");
+        }
+
+        if (clickedItem is StudentListModel student)
+        {
+            var route = $"{nameof(AdminNewStudentView)}?studentId={student.Id}";
+            await Shell.Current.GoToAsync(route);
+        }
     }
 
     [RelayCommand]
