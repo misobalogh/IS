@@ -10,6 +10,9 @@
              xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              >
 
+    <ContentPage.Resources>
+        <converters:ItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
@@ -57,7 +60,7 @@
                 </Entry.Behaviors>
                 </Entry>
                 <Button Grid.Row="1" Grid.Column="2" Text="search teacher" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference teacherNameEntry}}" Margin="0,0,20,0"/>
-                <Button Grid.Row="1" Grid.Column="3" Text="new teacher" Command="{Binding NewTeacherCommand}" Margin="0,0,20,0"/>
+                <Button Grid.Row="1" Grid.Column="3" Text="new teacher" Command="{Binding EditTeacherCommand}" Margin="0,0,20,0"/>
 
                 <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
                     <ListView Grid.Column="1" ItemsSource="{Binding Teachers}">
@@ -85,6 +88,13 @@
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
+                        <ListView.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="ItemTapped"
+                                Command="{Binding EditTeacherCommand}"
+                                EventArgsConverter="{StaticResource ItemTappedConverter}">
+                            </behaviors:EventToCommandBehavior>
+                        </ListView.Behaviors>
                     </ListView>
                 </ScrollView>
                 <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Color="{StaticResource Gray500}" 

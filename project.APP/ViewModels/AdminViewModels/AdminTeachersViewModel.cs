@@ -53,9 +53,18 @@ public partial class AdminTeachersViewModel(
     }
 
     [RelayCommand]
-    async Task NewTeacher()
+    async Task EditTeacher(object clickedItem)
     {
-        await Shell.Current.GoToAsync(nameof(AdminNewTeacherView));
+        if (clickedItem == null)
+        {
+            await Shell.Current.GoToAsync($"{nameof(AdminNewTeacherView)}?teacherId=");
+        }
+
+        if (clickedItem is TeacherListModel teacher)
+        {
+            var route = $"{nameof(AdminNewTeacherView)}?teacherId={teacher.Id}";
+            await Shell.Current.GoToAsync(route);
+        }
     }
 
     [RelayCommand]

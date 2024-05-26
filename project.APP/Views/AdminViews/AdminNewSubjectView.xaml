@@ -61,7 +61,7 @@
                     <Picker Title="Semester" ItemsSource="{Binding Semesters}" SelectedItem="{Binding NewSubject.Semester}" FontSize="16"/>
 
                     <!-- Button to Submit Form -->
-                    <Button Text="Create Subject" Command="{Binding CreateSubjectCommand}" FontSize="16" TextColor="White"/>
+                    <Button Text="Save Changes" Command="{Binding CreateSubjectCommand}" FontSize="16" TextColor="White"/>
                 </VerticalStackLayout>
             </Grid>
         </Grid>

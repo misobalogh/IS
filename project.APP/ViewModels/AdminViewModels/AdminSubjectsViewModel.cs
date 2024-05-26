@@ -53,9 +53,18 @@ public partial class AdminSubjectsViewModel(
     }
 
     [RelayCommand]
-    async Task NewSubject(string searchTerm)
+    async Task EditSubject(object clickedItem)
     {
-        await Shell.Current.GoToAsync(nameof(AdminNewSubjectView));
+        if (clickedItem == null)
+        {
+            await Shell.Current.GoToAsync($"{nameof(AdminNewSubjectView)}?subjectId=");
+        }
+
+        if (clickedItem is SubjectListModel subject)
+        {
+            var route = $"{nameof(AdminNewSubjectView)}?subjectId={subject.Id}";
+            await Shell.Current.GoToAsync(route);
+        }
     }
 
     [RelayCommand]

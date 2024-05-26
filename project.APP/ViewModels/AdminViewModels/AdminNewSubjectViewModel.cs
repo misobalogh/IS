@@ -7,10 +7,25 @@ using project.DAL.Enums;
 
 namespace project.App.ViewModels;
 
+[QueryProperty("SubjectId", "subjectId")]
 public partial class AdminNewSubjectViewModel(ISubjectFacade subjectFacade, IMessengerService messengerService, UserDataService userDataService) : AdminNavigationSideBar(messengerService, userDataService)
 {
+    public string? SubjectId { get; set; }
     public SubjectModel NewSubject { get; private set; } = SubjectModel.Empty;
     public List<Semester> Semesters { get; private set; } = Enum.GetValues(typeof(Semester)).Cast<Semester>().ToList();
+
+    protected override async Task LoadDataAsync()
+    {
+        if (string.IsNullOrEmpty(SubjectId))
+        {
+            return;
+        }
+
+        await base.LoadDataAsync();
+        NewSubject = await subjectFacade.GetAsync(Guid.Parse(SubjectId)) ?? SubjectModel.Empty;
+    }
+
+
 
     [RelayCommand]
     async Task CreateSubject()
