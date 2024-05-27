@@ -38,10 +38,11 @@ public partial class TeacherSubjectsDetailViewModel(
     }
 
     [RelayCommand]
-    async Task NewActivity()
+    async Task NewActivity(object clickedItem)
     {
         // TODO: implement new activity
-        await Shell.Current.GoToAsync(nameof(TeacherNewActivityView));
+        var route = $"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}";
+        await Shell.Current.GoToAsync(route);
     }
 
     [RelayCommand]

@@ -13,7 +13,7 @@ public record ActivityModel : ModelBase
     public required DateTime Start { get; set; }
     public required DateTime End { get; set; }
     public required Room Room { get; set; }
-    public required int Capacity { get; set; }
+    public required int? Capacity { get; set; }
     // MaxPoints == null means this activity has no points (e.g. lecture)
     public required int? MaxPoints { get; set; }
     // How many points student received
@@ -28,8 +28,8 @@ public record ActivityModel : ModelBase
         SubjectName = string.Empty,
         ActivityType = ActivityType.None,
         Room = Room.None,
-        Capacity = 0,
-        MaxPoints = 0,
+        Capacity = null,
+        MaxPoints = null,
         TeacherId = Guid.Empty,
     };
 }

@@ -8,13 +8,30 @@ using project.DAL.Enums;
 
 namespace project.App.ViewModels;
 
+[QueryProperty("SubjectId", "subjectId")]
 public partial class TeacherNewActivityViewModel(
     IActivityFacade activityFacade,
+    ISubjectFacade subjectFacade,
     IMessengerService messengerService, 
     UserDataService userDataService)
     : TeacherNavigationSideBar(messengerService, userDataService)
 {
     public ActivityModel NewActivity { get; private set; } = ActivityModel.Empty;
+    public List<Room> Rooms { get; private set; } = Enum.GetValues(typeof(Room)).Cast<Room>().ToList();
+    public List<ActivityType> ActivityTypes { get; private set; } = Enum.GetValues(typeof(ActivityType)).Cast<ActivityType>().ToList();
+    public string? SubjectId { get; set; }
+    public SubjectModel? Subject { get; private set; }
+
+    protected override async Task LoadDataAsync()
+    {
+        if (SubjectId == null)
+        {
+            return;
+        }
+
+        await base.LoadDataAsync();
+        Subject = await subjectFacade.GetAsync(Guid.Parse(SubjectId));
+    }
 
     [RelayCommand]
     async Task CreateActivity()
@@ -23,7 +40,7 @@ public partial class TeacherNewActivityViewModel(
             //string.IsNullOrEmpty(NewActivity.Start) ||
             /*string.IsNullOrEmpty(NewActivity.Capacity)*/)
         {
-            NotifyUser("Please fill in all required fields: Name..."); // TODO: add more fields
+            NotifyUser("Please fill in all required fields: Name of the activity..."); // TODO: add more fields
             return;
         }
 
@@ -41,9 +58,11 @@ public partial class TeacherNewActivityViewModel(
         //    return;
         //}
 
-        await activityFacade.SaveAsync(NewActivity);
+        await activityFacade.SaveAsync(NewActivity, Guid.Parse(SubjectId), loggedUser.Id);
         NotifyUser("New activity successfully created");
+        await LoadDataAsync();
         await Shell.Current.GoToAsync(nameof(TeacherSubjectsView));
+
     }
 
     private static void NotifyUser(string message)

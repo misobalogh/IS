@@ -50,7 +50,7 @@ public class ActivityModelMapper :
         => new()
         {
             Id = model.Id,
-            Capacity = model.Capacity,
+            Capacity = model.Capacity ?? 0,
             End = model.End,
             Room = model.Room,
             Start = model.Start,
