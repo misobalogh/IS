@@ -9,11 +9,11 @@ using project.BL.Models;
 namespace project.App.ViewModels;
 
 public partial class TeacherSubjectsViewModel(
-    ISubjectFacade subjectFacade, 
-    IMessengerService messengerService, 
+    ISubjectFacade subjectFacade,
+    IMessengerService messengerService,
     UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
-{    
-    public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+{
+    public IEnumerable<SubjectListModel> Subjects { get; set; } = new List<SubjectListModel>();
     private bool firstSearch = true;
 
     public string SubjectNameBtn { get; set; } = "Name";
@@ -49,7 +49,7 @@ public partial class TeacherSubjectsViewModel(
     }
 
     [RelayCommand]
-    async Task ShowSubjectDetails(object clickedItem)
+    public async Task ShowSubjectDetails(object clickedItem)
     {
         if (clickedItem == null)
         {

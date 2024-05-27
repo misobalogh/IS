@@ -56,6 +56,7 @@ public partial class AdminStudentsViewModel(
         if (clickedItem == null)
         {
             await Shell.Current.GoToAsync($"{nameof(AdminNewStudentView)}?studentId=");
+            return;
         }
 
         if (clickedItem is StudentListModel student)

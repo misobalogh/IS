@@ -1,4 +1,5 @@
 ﻿using project.App.ViewModels;
+using AdminNewTeacherViewModel = project.App.ViewModels.AdminViewModels.AdminNewTeacherViewModel;
 
 namespace project.App.Views.AdminViews;
 

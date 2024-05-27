@@ -50,7 +50,7 @@
                 <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                 Text="students" Command="{Binding GoToStudentCommand}" IsEnabled="False"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-            Text="subjects" Command="{Binding GoToSubjectCommand}"/>    
+                Text="subjects" Command="{Binding GoToSubjectCommand}"/>    
             </VerticalStackLayout>
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
@@ -63,7 +63,7 @@
                 <Button Grid.Row="1" Grid.Column="2" Text="search student" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference studentNameEntry}}" Margin="0,0,20,0"/>
                 <Button Grid.Row="1" Grid.Column="3" Text="new student" Command="{Binding EditStudentCommand}" Margin="0,0,20,0"/>
                 <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
-                    <ListView Grid.Column="1" ItemsSource="{Binding Students}">
+                    <ListView Grid.Column="1" ItemsSource="{Binding Students}" ItemTapped="OnItemTapped">
                         <ListView.Header>
                             <Grid Padding="15" BackgroundColor="#ab93e3">
                                 <Grid.ColumnDefinitions>
@@ -88,13 +88,6 @@
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                        <ListView.Behaviors>
-                            <behaviors:EventToCommandBehavior
-                                EventName="ItemTapped"
-                                Command="{Binding EditStudentCommand}"
-                                EventArgsConverter="{StaticResource ItemTappedConverter}">
-                            </behaviors:EventToCommandBehavior>
-                        </ListView.Behaviors>
                     </ListView>
                 </ScrollView>
                 <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Color="{StaticResource Gray500}" 

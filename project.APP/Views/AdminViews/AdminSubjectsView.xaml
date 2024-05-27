@@ -63,7 +63,7 @@
                 <Button Grid.Row="1" Grid.Column="2" Text="search subject" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference subjectNameEntry}}" Margin="0,0,20,0"/>
                 <Button Grid.Row="1" Grid.Column="3" Text="new subject" Command="{Binding EditSubjectCommand}" Margin="0,0,20,0"/>
                 <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
-                    <ListView Grid.Column="1" ItemsSource="{Binding Subjects}">
+                    <ListView Grid.Column="1" ItemsSource="{Binding Subjects}" ItemTapped="OnItemTapped">
                         <ListView.Header>
                             <Grid Padding="15" BackgroundColor="#ab93e3">
                                 <Grid.ColumnDefinitions>
@@ -87,13 +87,6 @@
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                        <ListView.Behaviors>
-                            <behaviors:EventToCommandBehavior
-                                EventName="ItemTapped"
-                                Command="{Binding EditSubjectCommand}"
-                                EventArgsConverter="{StaticResource ItemTappedConverter}">
-                            </behaviors:EventToCommandBehavior>
-                        </ListView.Behaviors>
                     </ListView>
                 </ScrollView>
                 <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Color="{StaticResource Gray500}" 

@@ -58,6 +58,7 @@ public partial class AdminSubjectsViewModel(
         if (clickedItem == null)
         {
             await Shell.Current.GoToAsync($"{nameof(AdminNewSubjectView)}?subjectId=");
+            return;
         }
 
         if (clickedItem is SubjectListModel subject)

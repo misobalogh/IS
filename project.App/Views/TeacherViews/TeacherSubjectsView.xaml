@@ -12,7 +12,7 @@
 
     <ContentPage.Resources>
         <!--<converters:MarkToString x:Key="MarkToString"/>-->
-        <converters:ItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
+        <converters:TeacherItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
     </ContentPage.Resources>
 
     <Grid RowDefinitions=".2*,.8*"

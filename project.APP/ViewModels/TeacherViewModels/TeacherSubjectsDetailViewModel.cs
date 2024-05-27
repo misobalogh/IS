@@ -33,7 +33,7 @@ public partial class TeacherSubjectsDetailViewModel(
 
         if (/*loggedUser != null && */Subject != null)
         {
-            Activities = Activities.Where(activity => Subject.Id == activity.SubjectId);
+            Activities = Activities.Where(activity => activity.SubjectId == Subject.Id);
         }
     }
 

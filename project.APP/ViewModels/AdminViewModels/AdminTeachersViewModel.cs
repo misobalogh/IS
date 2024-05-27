@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using project.App.Services;
 using project.App.Views.TeacherViews;
@@ -58,6 +59,7 @@ public partial class AdminTeachersViewModel(
         if (clickedItem == null)
         {
             await Shell.Current.GoToAsync($"{nameof(AdminNewTeacherView)}?teacherId=");
+            return;
         }
 
         if (clickedItem is TeacherListModel teacher)
