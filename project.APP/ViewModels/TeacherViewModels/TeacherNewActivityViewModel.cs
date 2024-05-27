@@ -57,12 +57,16 @@ public partial class TeacherNewActivityViewModel(
         //    NotifyUser("Email already exists.");
         //    return;
         //}
+        if (SubjectId == null || loggedUser == null)
+        {
+            NotifyUser("There was problem with create activity");
+            return;
+        };
 
         await activityFacade.SaveAsync(NewActivity, Guid.Parse(SubjectId), loggedUser.Id);
         NotifyUser("New activity successfully created");
         await LoadDataAsync();
         await Shell.Current.GoToAsync(nameof(TeacherSubjectsView));
-
     }
 
     private static void NotifyUser(string message)

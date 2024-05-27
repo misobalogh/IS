@@ -59,11 +59,13 @@
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="students" Command="{Binding GoToStudentsCommand}"/>
             </VerticalStackLayout>
-            <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
+            
+                <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+                <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
                 <!-- Label for Form Title -->
                 <Label Grid.Row="1" Grid.Column="1" Text="Create New Activity" FontSize="24" VerticalOptions="End" HorizontalOptions="Center"/>
 
+                <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Vertical">
                 <!-- Input Fields for Activity Data -->
                 <VerticalStackLayout Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
                     <Entry Placeholder="Name" Text="{Binding NewActivity.Name}" FontSize="16" />
@@ -95,6 +97,7 @@
                     <!-- Button to Submit Form -->
                     <Button Text="Create Activity" Command="{Binding CreateActivityCommand}" FontSize="16" TextColor="White"/>
                 </VerticalStackLayout>
+                </ScrollView>
             </Grid>
         </Grid>
     </Grid>

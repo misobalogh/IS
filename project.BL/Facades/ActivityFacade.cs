@@ -30,6 +30,11 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
             await repository.UpdateAsync(entity);
             await unitOfWork.CommitAsync();
         }
+        else
+        {
+            await repository.InsertAsync(entity);
+            await unitOfWork.CommitAsync();
+        }
     }
 
     // TODO: async
