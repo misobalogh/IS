@@ -42,6 +42,20 @@ public partial class AdminNewSubjectViewModel(ISubjectFacade subjectFacade, IMes
         await Shell.Current.GoToAsync(nameof(AdminSubjectsView));
     }
 
+    [RelayCommand]
+    async Task DeleteSubject()
+    {
+        if (string.IsNullOrEmpty(SubjectId))
+        {
+            NotifyUser("Subject not found");
+            return;
+        }
+
+        await subjectFacade.DeleteAsync(Guid.Parse(SubjectId));
+        NotifyUser("Subject successfully deleted");
+        await Shell.Current.GoToAsync(nameof(AdminSubjectsView));
+    }   
+
     private static void NotifyUser(string message)
     {
         MainThread.BeginInvokeOnMainThread(() =>
