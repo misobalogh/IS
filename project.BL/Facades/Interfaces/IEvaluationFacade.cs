@@ -6,5 +6,5 @@ namespace project.BL.Facades;
 
 public interface IEvaluationFacade : IFacade<EvaluationEntity, EvaluationListModel, EvaluationModel>
 {
-
+    Task SaveAsync(EvaluationModel evaluation);
 }

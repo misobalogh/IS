@@ -227,6 +227,9 @@
 	  <MauiXaml Update="Views\TeacherViews\TeacherSubjectsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherTestsDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TeacherViews\TeacherTestsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
