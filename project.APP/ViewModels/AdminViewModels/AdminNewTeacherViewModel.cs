@@ -56,6 +56,20 @@ public partial class AdminNewTeacherViewModel(ITeacherFacade teacherFacade, IMes
         await Shell.Current.GoToAsync(nameof(AdminTeachersView));
     }
 
+    [RelayCommand]
+    async Task DeleteTeacher()
+    {
+        if (string.IsNullOrEmpty(TeacherId))
+        {
+            NotifyUser("Teacher not found");
+            return;
+        }
+
+        await teacherFacade.DeleteAsync(Guid.Parse(TeacherId));
+        NotifyUser("Teacher successfully deleted");
+        await Shell.Current.GoToAsync(nameof(AdminTeachersView));
+    }
+
     private static void NotifyUser(string message)
     {
         MainThread.BeginInvokeOnMainThread(() =>
