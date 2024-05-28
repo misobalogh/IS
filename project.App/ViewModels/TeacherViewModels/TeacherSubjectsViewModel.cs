@@ -34,7 +34,13 @@ public partial class TeacherSubjectsViewModel(
     {
         await base.LoadDataAsync();
 
-        Subjects = await subjectFacade.GetAsync();
+        if (loggedUser == null) return;
+
+        var teacherSubjectIds = loggedUser.TeachingSubjects.Select(s => s.Id).ToList();
+
+        var allSubjects = await subjectFacade.GetAsync();
+
+        Subjects = allSubjects.Where(subject => teacherSubjectIds.Contains(subject.Id)).ToList();
         SortByName();
     }
 
