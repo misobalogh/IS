@@ -39,6 +39,7 @@ public partial class StudentRegistrationViewModel(
     {
         await base.LoadDataAsync();
         Activities = await activityFacade.GetAsync();
+        SortBySubjectName();
     }
 
     [RelayCommand]

@@ -38,6 +38,8 @@ public partial class StudentClassificationViewModel(
         {
             EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
         }
+
+        SortBySubject();
     }
 
     [RelayCommand]

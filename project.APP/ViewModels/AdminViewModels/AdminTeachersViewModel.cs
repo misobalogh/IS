@@ -39,6 +39,7 @@ public partial class AdminTeachersViewModel(
     {
         await base.LoadDataAsync();
         Teachers = await teacherFacade.GetAsync();
+        SortByName();
     }
 
     [RelayCommand]

@@ -12,6 +12,4 @@ public interface IFacade<TEntity, TListModel, TDetailModel>
     Task<TDetailModel?> GetAsync(Guid id);
     Task<IEnumerable<TListModel>> GetAsync();
     Task<TDetailModel> SaveAsync(TDetailModel model);
-    //TODO: sorty by se daly asi udelat genericky
-    //IEnumerable<TListModel> Sort(IEnumerable<TListModel> models, string sortBy, bool descending);
 }

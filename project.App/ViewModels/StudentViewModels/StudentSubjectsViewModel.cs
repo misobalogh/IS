@@ -33,6 +33,7 @@ public partial class StudentSubjectsViewModel(
         await base.LoadDataAsync();
 
         Subjects = await subjectFacade.GetAsync();
+        SortByName();
     }
 
     [RelayCommand]

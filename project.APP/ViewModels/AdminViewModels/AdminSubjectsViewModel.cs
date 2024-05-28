@@ -39,6 +39,7 @@ public partial class AdminSubjectsViewModel(
     {
         await base.LoadDataAsync();
         Subjects = await subjectFacade.GetAsync();
+        SortByName();
     }
 
     [RelayCommand]

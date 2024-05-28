@@ -37,6 +37,7 @@ public partial class AdminStudentsViewModel(
     {
         await base.LoadDataAsync();
         Students = await studentFacade.GetAsync();
+        SortByName();
     }
 
     [RelayCommand]

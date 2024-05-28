@@ -13,7 +13,6 @@ namespace project.App.ViewModels;
 
 public partial class TeacherStudentsViewModel(
     IStudentFacade studentFacade,
-    IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService, UserDataService userDataService) 
     : TeacherNavigationSideBar(messengerService, userDataService)
 {
@@ -41,8 +40,8 @@ public partial class TeacherStudentsViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        //EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
         Students = await studentFacade.GetAsync();
+        SortByName();
     }
 
     [RelayCommand]
