@@ -23,7 +23,7 @@ public partial class TeacherStudentsViewModel(
 
     public string NameBtn { get; set; } = "Name";
     public string EmailBtn { get; set; } = "Email";
-    public string GradeBtn { get; set; } = "Grade";
+    public string GradeBtn { get; set; } = "Year Of Study";
 
     private bool SortDescending = false;
 
@@ -118,7 +118,7 @@ public partial class TeacherStudentsViewModel(
     {
         NameBtn = "Name";
         EmailBtn = "Email";
-        GradeBtn = "Grade";
+        GradeBtn = "Year Of Study";
     }
 
     /// <summary>
