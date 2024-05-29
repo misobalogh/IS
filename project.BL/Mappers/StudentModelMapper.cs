@@ -3,7 +3,10 @@ using project.DAL.Entities;
 
 namespace project.BL.Mappers;
 
-public class StudentModelMapper :
+public class StudentModelMapper(
+    EnrolledSubjectsModelMapper enrolledSubjectsModelMapper, 
+    RegisteredActivitiesModelMapper registeredActivitiesModelMapper,
+    EvaluationModelMapper evaluationModelMapper) :
     ModelMapperBase<StudentEntity, StudentListModel, StudentModel>
 {
     public override StudentListModel MapToListModel(StudentEntity? entity)
@@ -31,12 +34,12 @@ public class StudentModelMapper :
                 LastName = entity.LastName,
                 Image = entity.Image,
                 Password = entity.Password,
-                //EnrolledSubjects = enrolledSubjectsModelMapper.MapToListModel(entity.EnrolledSubjects)
-                //    .ToObservableCollection(),
-                //RegisteredActivities = registeredActivitiesModelMapper.MapToListModel(entity.RegisteredActivities)
-                //    .ToObservableCollection(),
-                //Evaluation = evaluationModelMapper.MapToListModel(entity.Evaluations)
-                //    .ToObservableCollection(),
+                EnrolledSubjects = enrolledSubjectsModelMapper.MapToListModel(entity.EnrolledSubjects)
+                    .ToObservableCollection(),
+                RegisteredActivities = registeredActivitiesModelMapper.MapToListModel(entity.RegisteredActivities)
+                    .ToObservableCollection(),
+                Evaluation = evaluationModelMapper.MapToListModel(entity.Evaluations)
+                    .ToObservableCollection(),
             };
 
     public override StudentEntity MapToEntity(StudentModel model)
