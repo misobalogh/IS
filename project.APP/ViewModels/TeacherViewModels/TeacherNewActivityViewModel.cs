@@ -24,6 +24,10 @@ public partial class TeacherNewActivityViewModel(
     public string? ActivityId { get; set; }
     public string? SubjectId { get; set; }
     public ActivityModel? Activity { get; private set; }
+    public DateTime StartDate { get; set; } = DateTime.Now.Date;
+    public TimeSpan StartTime { get; set; } = DateTime.Now.TimeOfDay;
+    public DateTime EndDate { get; set; } = DateTime.Now.Date;
+    public TimeSpan EndTime { get; set; } = DateTime.Now.TimeOfDay;
 
     protected override async Task LoadDataAsync()
     {
@@ -48,6 +52,11 @@ public partial class TeacherNewActivityViewModel(
                 NewActivity.TeacherId = loggedUser.Id;
             }
         }
+
+        StartDate = NewActivity.Start.Date;
+        StartTime = NewActivity.Start.TimeOfDay;
+        EndDate = NewActivity.End.Date;
+        EndTime = NewActivity.End.TimeOfDay;
     }
 
     [RelayCommand]
@@ -65,6 +74,8 @@ public partial class TeacherNewActivityViewModel(
             return;
         };
 
+        NewActivity.Start = StartDate.Date.Add(StartTime);
+        NewActivity.End = EndDate.Date.Add(EndTime);
         if (ActivityId == null)
         {
             await activityFacade.SaveAsync(NewActivity, Guid.Parse(SubjectId), loggedUser.Id);

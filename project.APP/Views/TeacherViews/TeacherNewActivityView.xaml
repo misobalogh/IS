@@ -73,14 +73,14 @@
                     <!--<Entry Placeholder="Start Time" Text="{Binding NewActivity.Start.Date}" FontSize="16"/>-->
                     <!-- Date and Time Pickers for Start Time -->
                     <Label Text="Start Time:" FontSize="16" />
-                    <DatePicker Date="{Binding NewActivity.Start.Date}" FontSize="16"/>
-                    <TimePicker Time="{Binding NewActivity.Start.TimeOfDay}" FontSize="16"/>
+                    <DatePicker Date="{Binding StartDate, Mode=TwoWay}" FontSize="16"/>
+                    <TimePicker Time="{Binding StartTime, Mode=TwoWay}" FontSize="16"/>
                     
                     <!--<Entry Placeholder="End Time" Text="{Binding NewActivity.End}" FontSize="16"/>-->
                     <!-- Date and Time Pickers for End Time -->
                     <Label Text="End Time:" FontSize="16" />
-                    <DatePicker Date="{Binding NewActivity.End.Date}" FontSize="16"/>
-                    <TimePicker Time="{Binding NewActivity.End.TimeOfDay}" FontSize="16"/>
+                    <DatePicker Date="{Binding EndDate, Mode=TwoWay}" FontSize="16"/>
+                    <TimePicker Time="{Binding EndTime, Mode=TwoWay}" FontSize="16"/>
                     <Entry Placeholder="Subject Name" Text="{Binding NewActivity.SubjectName}" FontSize="16" IsReadOnly="True"/>
                     <!--<Label Text="{Binding Subject.Name}"></Label>-->
                     <!--<Entry Placeholder="Teacher Name" Text="{Binding NewActivity.TeacherName}" FontSize="16"/>-->
