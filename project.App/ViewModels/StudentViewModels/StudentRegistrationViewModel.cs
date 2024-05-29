@@ -57,7 +57,6 @@ public partial class StudentRegistrationViewModel(
     [RelayCommand]
     async Task Register(ActivityModel activity)
     {
-        //TODO
     }
 
 

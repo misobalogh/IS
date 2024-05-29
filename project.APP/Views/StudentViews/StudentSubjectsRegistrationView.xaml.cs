@@ -5,7 +5,6 @@ namespace project.App.Views.StudentViews;
 
 public partial class StudentSubjectsRegistrationView
 {
-    private bool isRegistered = false;
     StudentSubjectsRegistrationViewModel vm;
 
 
@@ -25,14 +24,14 @@ public partial class StudentSubjectsRegistrationView
         {
             if (await vm.IsRegistered(subject))
             {
-                //await vm.Unregister(subject!.Id); //TODO: fix v Repository.DeleteAsync to failne z nejakeho duvodu
+                //await vm.Unregister(subject!.Id);
                 button.Text = "Register";
                 button.BackgroundColor = Color.FromRgb(171, 147, 227);
             }
             else
             {
                 await vm.Register(subject: subject);
-                button.Text = "Unregistered";
+                button.Text = "Unregister";
                 button.BackgroundColor = Color.FromRgb(255, 0, 0);
             }
         }
@@ -48,7 +47,7 @@ public partial class StudentSubjectsRegistrationView
         {
             if (await vm.IsRegistered(subject))
             {
-                button.Text = "Unregistered";
+                button.Text = "Unregister";
                 button.BackgroundColor = Color.FromRgb(255, 0, 0);
             }
             else

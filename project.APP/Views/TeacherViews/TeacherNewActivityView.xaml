@@ -88,7 +88,6 @@
                     <Entry Placeholder="Capacity" Text="{Binding NewActivity.Capacity}" FontSize="16"/>
                     <Entry Placeholder="Max Points" Text="{Binding NewActivity.MaxPoints}" FontSize="16"/>
 
-                    <!--TODO-->
                     <Picker Title="Room" ItemsSource="{Binding Rooms}" SelectedItem="{Binding NewActivity.Room}" FontSize="16"/>
                     <Picker Title="Activity Type" ItemsSource="{Binding ActivityTypes}" SelectedItem="{Binding NewActivity.ActivityType}" FontSize="16"/>
                     <!--<Picker Title="Room" SelectedItem="{Binding NewActivity.Room}" FontSize="16"/>
