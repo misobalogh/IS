@@ -116,12 +116,6 @@
     <Compile Update="Views\StudentViews\StudentScheduleView.xaml.cs">
       <DependentUpon>StudentScheduleView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\TeacherViews\TeacherClassificationSubjectDetailView.xaml.cs">
-      <DependentUpon>TeacherClassificationSubjectDetailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\TeacherViews\TeacherClassificationView.xaml.cs">
-      <DependentUpon>TeacherClassificationView.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\TeacherViews\TeacherProfileView.xaml.cs">
       <DependentUpon>TeacherProfileView.xaml</DependentUpon>
     </Compile>
@@ -209,12 +203,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentViews\StudentTestsView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\TeacherViews\TeacherClassificationSubjectDetailView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\TeacherViews\TeacherClassificationView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TeacherViews\TeacherNewActivityView.xaml">

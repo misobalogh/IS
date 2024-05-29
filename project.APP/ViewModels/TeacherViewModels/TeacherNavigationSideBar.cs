@@ -28,12 +28,6 @@ public partial class TeacherNavigationSideBar(IMessengerService messengerService
     }
 
     [RelayCommand]
-    async Task GoToClassification()
-    {
-        await Shell.Current.GoToAsync(nameof(TeacherClassificationView));
-    }
-
-    [RelayCommand]
     async Task GoToSubjects()
     {
         await Shell.Current.GoToAsync(nameof(TeacherSubjectsView));

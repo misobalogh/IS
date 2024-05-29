@@ -49,8 +49,6 @@
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="schedule" Command="{Binding GoToScheduleCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="classification" Command="{Binding GoToClassificationCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="tests" Command="{Binding GoToTestsCommand}"/>
