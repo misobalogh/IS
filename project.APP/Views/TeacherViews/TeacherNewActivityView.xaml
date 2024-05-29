@@ -80,7 +80,7 @@
                     <Label Text="End Time:" FontSize="16" />
                     <DatePicker Date="{Binding NewActivity.End.Date}" FontSize="16"/>
                     <TimePicker Time="{Binding NewActivity.End.TimeOfDay}" FontSize="16"/>
-                    <Entry Placeholder="Subject Name" Text="{Binding Subject.Name}" FontSize="16" IsReadOnly="True"/>
+                    <Entry Placeholder="Subject Name" Text="{Binding Activity.SubjectName}" FontSize="16" IsReadOnly="True"/>
                     <!--<Label Text="{Binding Subject.Name}"></Label>-->
                     <!--<Entry Placeholder="Teacher Name" Text="{Binding NewActivity.TeacherName}" FontSize="16"/>-->
                     <Entry Placeholder="Teacher Email" Text="{Binding loggedUser.Email}" FontSize="16" IsReadOnly="True"/>

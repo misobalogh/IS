@@ -11,6 +11,7 @@ namespace project.App.ViewModels;
 
 public partial class StudentRegistrationViewModel(
     IActivityFacade activityFacade, 
+    IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService,
     UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
@@ -39,6 +40,17 @@ public partial class StudentRegistrationViewModel(
     {
         await base.LoadDataAsync();
         Activities = await activityFacade.GetAsync();
+        var enrolledSubjects = await enrolledSubjectsFacade.GetAsync();
+
+        if (loggedUser != null)
+        {
+            enrolledSubjects = enrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
+            List<Guid> EnrolledSubjecsIds = enrolledSubjects.Select(subject => subject.SubjectId).ToList();
+
+            Activities = Activities.Where(activity =>
+                (activity.ActivityType != ActivityType.MidtermExam && activity.ActivityType != ActivityType.FinalExam)
+                && EnrolledSubjecsIds.Contains(activity.SubjectId));
+        }
         SortBySubjectName();
     }
 

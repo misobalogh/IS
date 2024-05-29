@@ -51,7 +51,7 @@ public partial class AdminNewStudentViewModel(IStudentFacade studentFacade, IMes
             return;
         }
 
-        await studentFacade.SaveAsync(NewStudent);
+        await studentFacade.SaveAsync(NewStudent with { EnrolledSubjects = default!, RegisteredActivities = default!, Evaluation = default!});
         NotifyUser("New student successfully created");
         await Shell.Current.GoToAsync(nameof(AdminStudentsView));
     }

@@ -11,6 +11,7 @@ public class RegisteredActivitiesModelMapper :
             ? RegisteredActivitiesListModel.Empty
             : new RegisteredActivitiesListModel
             {
+                StudentId = entity.StudentId,
                 ActivityId = entity.ActivityId,
                 ActivityName = entity.Activity.Name,
                 End = entity.Activity.End,
@@ -24,6 +25,7 @@ public class RegisteredActivitiesModelMapper :
             ? RegisteredActivitiesModel.Empty
             : new RegisteredActivitiesModel
             {
+                StudentId = entity.StudentId,
                 ActivityId = entity.ActivityId,
                 ActivityName = entity.Activity.Name,
                 End = entity.Activity.End,
