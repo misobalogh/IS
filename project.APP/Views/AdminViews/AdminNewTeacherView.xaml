@@ -47,7 +47,7 @@
                 Text="subjects" Command="{Binding GoToSubjectCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
+            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
                 <!-- Label for Form Title -->
                 <Label Grid.Row="1" Grid.Column="1" Text="Create New Teacher" FontSize="24" VerticalOptions="End" HorizontalOptions="Center"/>
                 <Button Grid.Row="1" Grid.Column="3" Text="Delete This Teacher" Command="{Binding DeleteTeacherCommand}" Margin="0,0,0,0" BackgroundColor="Red" TextColor="White" FontSize="16"/>
@@ -64,9 +64,28 @@
 
                     <Entry Placeholder="Password" Text="{Binding NewTeacher.Password}" FontSize="16" IsPassword="True"/>
 
+                    <FlexLayout Direction="Row" HorizontalOptions="FillAndExpand" Margin="5,5,5,5">
+                        <Picker FlexLayout.Grow="1" ItemsSource="{Binding Subjects}" ItemDisplayBinding="{Binding SubjectName}" SelectedItem="{Binding SelectedSubject}" FontSize="16"/>
+                        <Button FlexLayout.Grow="0.5" Text="Add Subject" Command="{Binding AddSubjectToTeacherCommand}" FontSize="16" TextColor="White"/>
+                    </FlexLayout>
+
                     <!-- Button to Submit Form -->
                     <Button Text="Save Changes" Command="{Binding CreateTeacherCommand}" FontSize="16" TextColor="White"/>
                 </VerticalStackLayout>
+
+                <CollectionView Grid.Row="3" Grid.Column="4" ItemsSource="{Binding AssignedSubjects}" SelectionMode="None">
+                    <CollectionView.Header>
+                        <Label Text="Assigned Subjects" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="18" Padding="10" Background="#ab93e3"/>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate >
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:DataType="m:SubjectListModel" Text="{Binding SubjectName}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Margin="10,0,0,0"/>
+                                <Button Text="X" Command="{Binding RemoveSubjectFromTeacherCommand}" CommandParameter="{Binding .}" BackgroundColor="Transparent" TextColor="Red"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Grid>
         </Grid>
     </Grid>

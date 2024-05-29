@@ -18,7 +18,7 @@ public record TeacherModel : ModelBase
     public Uri? PhotoUrl { get; set; }
     public required string Email { get; set; }
 
-    public ObservableCollection<SubjectListModel> TeachingSubjects { get; set; } = new();
+    public ObservableCollection<TeachingSubjectsListModel> TeachingSubjects { get; set; } = new();
     
     public static TeacherModel Empty => new()
     {
