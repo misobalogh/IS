@@ -51,7 +51,7 @@ public partial class TeacherSubjectsDetailViewModel(
     {
         if (clickedItem == null)
         {
-            await Shell.Current.GoToAsync($"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}"); // TODO: předat SubjectName přes activity
+            await Shell.Current.GoToAsync($"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}&activityId={string.Empty}"); // TODO: předat SubjectName přes activity
             return; // v tomto případě se nejedná o editaci, ale o vytvoření nové aktivity, takže není id aktivity, ale víme jen název předmětu, respektive jeho Id
         }
 

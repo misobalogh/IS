@@ -21,7 +21,7 @@ public partial class TeacherSubjectsDetailView
         var activity = e.Group as ActivityListModel;
         if (activity != null)
         {
-            var route = $"{nameof(TeacherNewActivityView)}?activityId={activity.Id}";
+            var route = $"{nameof(TeacherNewActivityView)}?subjectId={string.Empty}&activityId={activity.Id}";
             await Shell.Current.GoToAsync(route);
         }
 
