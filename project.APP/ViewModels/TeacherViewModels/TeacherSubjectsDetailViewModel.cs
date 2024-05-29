@@ -21,7 +21,7 @@ public partial class TeacherSubjectsDetailViewModel(
 
     public SubjectModel? Subject { get; private set; }
     public IEnumerable<ActivityListModel> Activities { get; private set; } = null!;
-    private DateTime _startDate;
+    private DateTime _startDate = DateTime.Now;
     public DateTime StartDate
     {
         get => _startDate;
@@ -32,7 +32,7 @@ public partial class TeacherSubjectsDetailViewModel(
         }
     }
 
-    private DateTime _endDate;
+    private DateTime _endDate = DateTime.Now;
     public DateTime EndDate
     {
         get => _endDate;

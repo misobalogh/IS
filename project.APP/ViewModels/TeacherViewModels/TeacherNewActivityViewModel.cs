@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+//using Javax.Security.Auth;
 using project.App.Services;
 using project.App.Views.TeacherViews;
 using project.BL.Facades;
@@ -78,19 +79,26 @@ public partial class TeacherNewActivityViewModel(
         await Shell.Current.GoToAsync(nameof(TeacherSubjectsView));
     }
 
-    //[RelayCommand]
-    //async Task DeleteActivity()
-    //{
-    //    if (string.IsNullOrEmpty(SubjectId))
-    //    {
-    //        NotifyUser("Subject not found");
-    //        return;
-    //    }
+    [RelayCommand]
+    async Task DeleteActivity()
+    {
+        if (string.IsNullOrEmpty(ActivityId))
+        {
+            NotifyUser("Activity not found");
+            return;
+        }
 
-    //    await subjectFacade.DeleteAsync(Guid.Parse(SubjectId));
-    //    NotifyUser("Subject successfully deleted");
-    //    await Shell.Current.GoToAsync(nameof(AdminSubjectsView));
-    //}
+        await activityFacade.DeleteAsync(Guid.Parse(ActivityId));
+        NotifyUser("Activity successfully deleted");
+        if (string.IsNullOrEmpty(SubjectId))
+        {
+            await Shell.Current.GoToAsync($"{nameof(TeacherSubjectsDetailView)}?subjectId={NewActivity.SubjectId}");
+        }
+        else
+        {
+            await Shell.Current.GoToAsync($"{nameof(TeacherSubjectsDetailView)}?subjectId={SubjectId}");
+        }
+    }
 
     private static void NotifyUser(string message)
     {

@@ -64,8 +64,14 @@
             <!--content-->
             <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
                 <Button Grid.Row="1" Grid.Column="3" Text="new activity" Command="{Binding EditActivityCommand}" Margin="0,0,0,0"/>
-                <DatePicker Date="{Binding StartDate}" Format="d" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1" />
-                <DatePicker Date="{Binding EndDate}" Format="d" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="2"/>
+                <StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center">
+                    <Label Text="Filter by Start date" FontSize="20" VerticalOptions="Center"/>
+                    <DatePicker Date="{Binding StartDate}" Format="d" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="2" VerticalOptions="Center">
+                    <Label Text="Filter by End date" FontSize="20" VerticalOptions="Center"/>
+                    <DatePicker Date="{Binding EndDate}" Format="d" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
                 <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
                     <ListView Grid.Column="1" ItemsSource="{Binding Activities}">
                         <ListView.Behaviors>
