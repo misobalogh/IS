@@ -10,7 +10,6 @@ public partial class StudentRegistrationView
         InitializeComponent();
     }
 
-    // TODO: extract logic to converter
     private void OnRegisterButtonClicked(object sender, EventArgs e)
     {
         var button = sender as Button;

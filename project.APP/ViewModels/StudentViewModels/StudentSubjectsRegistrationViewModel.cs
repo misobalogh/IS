@@ -29,7 +29,6 @@ public partial class StudentSubjectsRegistrationViewModel(
     {
         if (subject != null && loggedUser != null)
         {
-            var x = await enrolledSubjectsFacade.GetAsync(); //TODO: remove jenom na kontrolu
 
             var newEnrolledSubject = new EnrolledSubjectsModel()
             {

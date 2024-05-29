@@ -84,26 +84,6 @@
                         <Binding Path="loggedUser.Email" StringFormat="Email: {0}" />
                     </Label.Text>
                 </Label>
-
-                <!--TODO: vypsat studentovi předměty-->
-                <!--<CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="m:SubjectListModel">
-                        <HorizontalStackLayout>
-                            <Label VerticalOptions="Center">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding SubjectName}"/>
-                                        <Span Text=" "/>
-                                        <Span Text="A"></Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>-->
-
-                <!--<Label Text="Subjects:" FontSize="20"/>-->
-                <!--<Label Text="{Binding SubjectName}" FontSize="20"/>-->
             </VerticalStackLayout>
 
 
