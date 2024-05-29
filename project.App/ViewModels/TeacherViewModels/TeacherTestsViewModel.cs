@@ -44,7 +44,7 @@ public partial class TeacherTestsViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        Activities = await activityFacade.GetAsync();
+        var activitiesList = await activityFacade.GetAsync();
         EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
 
         if (loggedUser != null)
@@ -52,10 +52,12 @@ public partial class TeacherTestsViewModel(
             EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
             List<Guid> EnrolledSubjecsIds = EnrolledSubjects.Select(subject => subject.SubjectId).ToList();
 
-            Activities = Activities.Where(activity => 
-                (activity.ActivityType == ActivityType.MidtermExam || activity.ActivityType == ActivityType.FinalExam) 
+            activitiesList = activitiesList.Where(activity =>
+                (activity.ActivityType == ActivityType.MidtermExam || activity.ActivityType == ActivityType.FinalExam)
                 && loggedUser.LastName == activity.TeacherName);
         }
+
+        Activities = new ObservableCollection<ActivityListModel>(activitiesList);
         SortByName();
     }
 
@@ -81,7 +83,6 @@ public partial class TeacherTestsViewModel(
         }
     }
 
-
     [RelayCommand]
     void SortByName()
     {
@@ -91,7 +92,8 @@ public partial class TeacherTestsViewModel(
 
         TestNameBtn = GetSortColName(TestNameBtn);
 
-        Activities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.ActivityType), SortDescending);
+        var sortedActivities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.Name), SortDescending);
+        Activities = new ObservableCollection<ActivityListModel>(sortedActivities);
 
         SortedBy = SortBy.Name;
     }
