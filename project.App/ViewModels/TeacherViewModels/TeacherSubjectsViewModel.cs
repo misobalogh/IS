@@ -40,7 +40,8 @@ public partial class TeacherSubjectsViewModel(
 
         var allSubjects = await subjectFacade.GetAsync();
 
-        Subjects = allSubjects.Where(subject => teacherSubjectIds.Contains(subject.Id)).ToList();
+        //Subjects = allSubjects.Where(subject => teacherSubjectIds.Contains(subject.Id)).ToList();
+        Subjects = allSubjects;
         SortByName();
     }
 
