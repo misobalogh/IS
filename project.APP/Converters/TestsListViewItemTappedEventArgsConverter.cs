@@ -15,17 +15,25 @@ public class TestsListViewItemTappedEventArgsConverter : BaseConverterOneWay<Ite
             return null;
         }
 
-        var item = value.Item as ActivityListModel;
+        var item = value.Item;
         if (item == null)
         {
-            Debug.WriteLine($"Failed to cast Item to ActivityListModel. Actual type: {value.Item.GetType()}");
+            Debug.WriteLine("Item in ItemTappedEventArgs is null");
+            return null;
+        }
+
+        Debug.WriteLine($"Item type: {item.GetType()}");
+
+        if (item is ActivityListModel activityItem)
+        {
+            Debug.WriteLine($"Converted Item: {activityItem.SubjectName}, {activityItem.Name}, {activityItem.ActivityType}");
+            return activityItem;
         }
         else
         {
-            Debug.WriteLine($"Converted Item: {item.SubjectName}, {item.Name}, {item.ActivityType}");
+            Debug.WriteLine($"Failed to cast Item to ActivityListModel. Actual type: {item.GetType()}");
+            return null;
         }
-
-        return item;
     }
 
     public override object DefaultConvertReturnValue { get; set; } = null!;
