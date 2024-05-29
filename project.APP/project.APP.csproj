@@ -179,6 +179,9 @@
     <MauiXaml Update="Views\StudentViews\StudentScheduleView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Views\StudentViews\StudentSubjectsRegistrationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Views\StudentViews\StudentSubjectsView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

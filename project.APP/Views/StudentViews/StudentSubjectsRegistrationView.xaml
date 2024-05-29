@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="project.App.Views.StudentViews.StudentSubjectsView"
-             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
-             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             x:Class="project.App.Views.StudentViews.StudentSubjectsRegistrationView"
              xmlns:views="clr-namespace:project.App.Views"
-             x:DataType="viewModels:StudentSubjectsViewModel"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             x:DataType="viewModels:StudentSubjectsRegistrationViewModel"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              >
 
     <Grid RowDefinitions=".2*,.8*"
@@ -13,9 +13,9 @@
         <!--header-->
         <Image Width="50" Height="50" Source="logo_1.png"></Image>
         <HorizontalStackLayout Grid.Column="3"
-                               Padding="10"
-                               Spacing="10"
-                               HorizontalOptions="End">
+                                Padding="10"
+                                Spacing="10"
+                                HorizontalOptions="End">
             <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
             <VerticalStackLayout>
                 <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
@@ -46,51 +46,38 @@
                         Text="schedule" Command="{Binding GoToScheduleCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="classification" Command="{Binding GoToClassificationCommand}"/>
-                <Button TextColor="White" Background="#6E6E6E"     FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="subjects" Command="{Binding GoToSubjectsCommand}" IsEnabled="False"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
+                <Button TextColor="White" Background="Transparent"  FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="tests" Command="{Binding GoToTestsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="registration" Command="{Binding GoToRegistrationCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="subject registration" Command="{Binding GoToSubjectsRegistrationCommand}" LineBreakMode="WordWrap"/>
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subject registration" Command="{Binding GoToSubjectsRegistrationCommand}" IsEnabled="False" LineBreakMode="WordWrap"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
-
-            <!-- TODO: vlozit nad Listview toto: -->
-            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,0.2*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
-                <Entry x:Name="subjectNameEntry" Grid.Row="1" Grid.Column="1" Placeholder="Enter subject name:" Margin="20,0,0,0"/>
-                <Button Grid.Row="1" Grid.Column="3" Text="search subject" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference subjectNameEntry}}" Margin="0,0,20,0"/>
-
-                <ListView Grid.ColumnSpan="5" Grid.Row="3" ItemsSource="{Binding Subjects}">
-                    <ListView.Header>
-                        <Grid Padding="10" BackgroundColor="#ab93e3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Text="{Binding SubjectNameBtn}" Command="{Binding SortByNameCommand}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
-                            <Button Text="{Binding SubjectTagBtn}" Command="{Binding SortByTagCommand}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-                        </Grid>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
+            <ScrollView Grid.Column="1">
+                <CollectionView ItemsSource="{Binding Subjects}">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="m:SubjectListModel">
-                            <ViewCell>
-                                <Grid Padding="10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
-                                    <Label Text="{Binding SubjectTag}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-
+                            <Frame Margin="40,30,40,0" BackgroundColor="{StaticResource Gray600}">
+                                <Grid ColumnDefinitions="0.15*,0.15*,0.15*,*,auto"
+                                      RowDefinitions="auto,auto"
+                                      ColumnSpacing="20" RowSpacing="10">
+                                    <!--first row-->
+                                    <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectName}" />
+                                    <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Semester}"/>
+                                    <Button Grid.Column="5" VerticalOptions="Center" Text="Register" x:Name="registerButton" Clicked="OnRegisterButtonClicked"
+                                            Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
+                                            CommandParameter="{Binding .}"/>
+                                    <!--second row-->
+                                    <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectTag}"/>
                                 </Grid>
-                            </ViewCell>
+                            </Frame>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
         </Grid>
     </Grid>
 </views:ContentPageBase>
