@@ -64,31 +64,21 @@
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <ScrollView Grid.Column="1">
-                <ListView Grid.ColumnSpan="5" Grid.Row="3" ItemsSource="{Binding Students}">
+                <ListView Grid.ColumnSpan="5" Grid.Row="3" ItemsSource="{Binding Evaluations}">
                     <ListView.Header>
-                        <Grid Padding="10" BackgroundColor="#ab93e3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
+                        <Grid Padding="10" BackgroundColor="#ab93e3" ColumnDefinitions="0.3*,0.3*,0.3*,*,auto" ColumnSpacing="20">
                             <Label Text="Name" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
                             <Label Text="Surname" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
-                            <Label Text="Points" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                            <Label Text="Points" FontSize="20" VerticalOptions="Center" Grid.Column="3" HorizontalOptions="Center" />
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="m:StudentListModel">
+                        <DataTemplate x:DataType="m:EvaluationListModel">
                             <ViewCell>
-                                <Grid Padding="10">
-                                    <Grid ColumnDefinitions="0.3*,0.3*,0.3*,*,auto"
-                                  RowDefinitions="auto,auto"
-                                  ColumnSpacing="20" RowSpacing="10">
-
-                                        <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding FirstName}" />
-                                        <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding LastName}"/>
-                                        <!--<Label Grid.Column="3" VerticalOptions="Center" Text="{Binding Points}"/>-->
-                                    </Grid>
+                                <Grid ColumnDefinitions="0.3*,0.3*,0.3*,*,auto" RowDefinitions="auto,auto" ColumnSpacing="20" RowSpacing="10" Padding="10">
+                                    <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding StudentFirstName}" />
+                                    <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding StudentLastName}"/>
+                                    <Label Grid.Column="3" VerticalOptions="Center" Text="{Binding Points}"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

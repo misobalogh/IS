@@ -9,12 +9,12 @@ namespace project.App.ViewModels;
 
 public partial class StudentSubjectsViewModel(
     ISubjectFacade subjectFacade, 
+    IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService,
     UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {    
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
     private bool firstSearch = true;
-
     public string SubjectNameBtn { get; set; } = "Name";
     public string SubjectTagBtn { get; set; } = "Tag";
 
@@ -31,8 +31,17 @@ public partial class StudentSubjectsViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
+        if (loggedUser == null)
+        {
+            return;
+        }
 
         Subjects = await subjectFacade.GetAsync();
+        var enrolledSubjects = await enrolledSubjectsFacade.GetAsync();
+        var enrolledByLoggedUser = enrolledSubjects.Where(es => es.StudentId == loggedUser.Id).Select(es => es.SubjectId);
+
+        Subjects = Subjects.Where(sub => enrolledByLoggedUser.Contains(sub.Id));
+        
         SortByName();
     }
 

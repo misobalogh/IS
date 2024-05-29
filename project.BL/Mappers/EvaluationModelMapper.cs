@@ -13,8 +13,10 @@ public class EvaluationModelMapper :
             {
                 Points = entity.Points,
                 StudentId = entity.StudentId,
+                ActivityId = entity.ActivityId,
                 Id = entity.Id,
-                Note = entity.Note
+                StudentFirstName = entity.Student.FirstName,
+                StudentLastName = entity.Student.LastName,
             };
 
     public override EvaluationModel MapToDetailModel(EvaluationEntity? entity)
@@ -27,6 +29,8 @@ public class EvaluationModelMapper :
                 Id = entity.Id,
                 Note = entity.Note,
                 ActivityId = entity.ActivityId,
+                StudentFirstName = entity.Student.FirstName,
+                StudentLastName = entity.Student.LastName,
             };
 
     public override EvaluationEntity MapToEntity(EvaluationModel model)
