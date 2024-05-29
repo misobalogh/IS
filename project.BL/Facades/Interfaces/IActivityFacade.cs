@@ -6,6 +6,6 @@ namespace project.BL.Facades.Interfaces;
 public interface IActivityFacade : IFacade<ActivityEntity, ActivityListModel, ActivityModel>
 {
     Task SaveAsync(ActivityModel model, Guid subjectId, Guid teacherId);
-    IEnumerable<ActivityListModel> FilterBySubjects(IEnumerable<ActivityListModel> activities, Guid subjectId, DateTime startDate, DateTime endDate);
+    Task<IEnumerable<ActivityListModel>> FilterBySubjectsAsync(IEnumerable<ActivityListModel> activities, Guid subjectId, DateTime startDate, DateTime endDate);
     IEnumerable<ActivityListModel> GetSortedActivities(IEnumerable<ActivityListModel> activities, string sortBy, bool descending = false);
 }

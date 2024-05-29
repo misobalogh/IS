@@ -38,11 +38,14 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
     }
 
     // TODO: async
-    public IEnumerable<ActivityListModel> FilterBySubjects(IEnumerable<ActivityListModel> activities, Guid subjectId, DateTime startDate, DateTime endDate)
+    public async Task<IEnumerable<ActivityListModel>> FilterBySubjectsAsync(IEnumerable<ActivityListModel> activities, Guid subjectId, DateTime startDate, DateTime endDate)
     {
-        return activities
-            .Where(activity => activity.SubjectId == subjectId)
-            .Where(activity => activity.Start >= startDate && activity.End <= endDate);
+        return await Task.Run(() =>
+        {
+            return activities
+                .Where(activity => activity.SubjectId == subjectId)
+                .Where(activity => activity.Start >= startDate && activity.End <= endDate);
+        });
     }
 
     // Sort activities dynamically based on property name and direction

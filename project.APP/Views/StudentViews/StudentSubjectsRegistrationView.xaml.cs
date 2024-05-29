@@ -32,7 +32,7 @@ public partial class StudentSubjectsRegistrationView
             else
             {
                 await vm.Register(subject: subject);
-                button.Text = "Registered";
+                button.Text = "Unregistered";
                 button.BackgroundColor = Color.FromRgb(255, 0, 0);
             }
         }
@@ -48,7 +48,7 @@ public partial class StudentSubjectsRegistrationView
         {
             if (await vm.IsRegistered(subject))
             {
-                button.Text = "Registered";
+                button.Text = "Unregistered";
                 button.BackgroundColor = Color.FromRgb(255, 0, 0);
             }
             else
