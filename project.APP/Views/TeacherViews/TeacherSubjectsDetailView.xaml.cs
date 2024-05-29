@@ -11,20 +11,20 @@ public partial class TeacherSubjectsDetailView
 	}
 
 
-    private async void OnItemTapped(object sender, ItemTappedEventArgs e)
-    {
-        if (e.Group == null)
-        {
-            return;
-        }
+    //private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+    //{
+    //    if (e.Group == null)
+    //    {
+    //        return;
+    //    }
 
-        var activity = e.Group as ActivityListModel;
-        if (activity != null)
-        {
-            var route = $"{nameof(TeacherNewActivityView)}?subjectId={string.Empty}&activityId={activity.Id}";
-            await Shell.Current.GoToAsync(route);
-        }
+    //    var activity = e.Group as ActivityListModel;
+    //    if (activity != null)
+    //    {
+    //        var route = $"{nameof(TeacherNewActivityView)}?activityId={activity.Id}";
+    //        await Shell.Current.GoToAsync(route);
+    //    }
 
-        ((ListView)sender).SelectedItem = null;
-    }
+    //    ((ListView)sender).SelectedItem = null;
+    //}
 }

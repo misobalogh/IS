@@ -43,6 +43,8 @@ public partial class TeacherNewActivityViewModel(
             {
                 NewActivity.SubjectId = subject.Id;
                 NewActivity.SubjectName = subject.Name;
+                NewActivity.TeacherName = loggedUser.LastName;
+                NewActivity.TeacherId = loggedUser.Id;
             }
         }
     }
@@ -56,7 +58,7 @@ public partial class TeacherNewActivityViewModel(
             return;
         }
 
-        if (ActivityId == null || loggedUser == null)
+        if ((ActivityId == null && SubjectId == null)|| loggedUser == null)
         {
             NotifyUser("There was problem with create activity");
             return;
