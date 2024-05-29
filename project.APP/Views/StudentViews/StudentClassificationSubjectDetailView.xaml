@@ -58,6 +58,8 @@
                         Text="tests" Command="{Binding GoToTestsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="registration" Command="{Binding GoToRegistrationCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subject registration" Command="{Binding GoToSubjectsRegistrationCommand}" LineBreakMode="WordWrap"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             

@@ -26,7 +26,7 @@ public partial class TeacherNewActivityViewModel(
 
     protected override async Task LoadDataAsync()
     {
-        if (string.IsNullOrEmpty(ActivityId))
+        if (string.IsNullOrEmpty(ActivityId) && string.IsNullOrEmpty(SubjectId))
         {
             return;
         }
@@ -34,7 +34,7 @@ public partial class TeacherNewActivityViewModel(
         await base.LoadDataAsync();
         if (!string.IsNullOrEmpty(ActivityId))
         {
-            Activity = await activityFacade.GetAsync(Guid.Parse(ActivityId)) ?? ActivityModel.Empty;
+            NewActivity = await activityFacade.GetAsync(Guid.Parse(ActivityId)) ?? ActivityModel.Empty;
         }
         else if (!string.IsNullOrEmpty(SubjectId))
         {
@@ -43,6 +43,8 @@ public partial class TeacherNewActivityViewModel(
             {
                 NewActivity.SubjectId = subject.Id;
                 NewActivity.SubjectName = subject.Name;
+                NewActivity.TeacherName = loggedUser.LastName;
+                NewActivity.TeacherId = loggedUser.Id;
             }
         }
     }
@@ -56,14 +58,14 @@ public partial class TeacherNewActivityViewModel(
             return;
         }
 
-        if (ActivityId == null || loggedUser == null)
+        if ((ActivityId == null && SubjectId == null)|| loggedUser == null)
         {
             NotifyUser("There was problem with create activity");
             return;
         };
 
         await activityFacade.SaveAsync(NewActivity, Guid.Parse(ActivityId), loggedUser.Id);
-        NotifyUser("New activity successfully created");
+        NotifyUser("Changes Saved");
         //await LoadDataAsync();
         await Shell.Current.GoToAsync(nameof(TeacherSubjectsView));
     }

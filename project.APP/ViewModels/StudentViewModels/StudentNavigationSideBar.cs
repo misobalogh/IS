@@ -52,6 +52,12 @@ public partial class StudentNavigationSideBar(IMessengerService messengerService
         await Shell.Current.GoToAsync(nameof(StudentRegistrationView));
     }
 
+    [RelayCommand]
+    async Task GoToSubjectsRegistration()
+    {
+        await Shell.Current.GoToAsync(nameof(StudentSubjectsRegistrationView));
+    }
+
 
     [RelayCommand]
     async Task Logout()

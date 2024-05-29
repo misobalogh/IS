@@ -47,6 +47,7 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(StudentTestsView), typeof(StudentTestsView));
         Routing.RegisterRoute(nameof(StudentClassificationSubjectDetailView), typeof(StudentClassificationSubjectDetailView));
         Routing.RegisterRoute(nameof(StudentProfileView), typeof(StudentProfileView));
+        Routing.RegisterRoute(nameof(StudentSubjectsRegistrationView), typeof(StudentSubjectsRegistrationView));
 
         Routing.RegisterRoute(nameof(TeacherClassificationView), typeof(TeacherClassificationView));
         Routing.RegisterRoute(nameof(TeacherStudentsView), typeof(TeacherStudentsView));
