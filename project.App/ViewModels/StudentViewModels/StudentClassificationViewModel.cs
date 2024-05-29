@@ -34,11 +34,10 @@ public partial class StudentClassificationViewModel(
     {
         await base.LoadDataAsync();
         EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
-        if (loggedUser !=  null)
-        {
-            EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
-        }
-
+        if (loggedUser ==  null) { return; }
+        
+        EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
+        
         SortBySubject();
     }
 
