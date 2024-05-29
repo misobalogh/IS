@@ -15,20 +15,14 @@ public class TestsListViewItemTappedEventArgsConverter : BaseConverterOneWay<Ite
             return null;
         }
 
-        if (value.Group == null)
-        {
-            Debug.WriteLine("Group in ItemTappedEventArgs is null");
-            return null;
-        }
-
-        var item = value.Group as ActivityListModel;
+        var item = value.Item as ActivityListModel;
         if (item == null)
         {
-            Debug.WriteLine($"Failed to cast Group to ActivityListModel. Actual type: {value.Group.GetType()}");
+            Debug.WriteLine($"Failed to cast Item to ActivityListModel. Actual type: {value.Item.GetType()}");
         }
         else
         {
-            Debug.WriteLine($"Converted Group: {item.SubjectName}, {item.Name}, {item.ActivityType}");
+            Debug.WriteLine($"Converted Item: {item.SubjectName}, {item.Name}, {item.ActivityType}");
         }
 
         return item;

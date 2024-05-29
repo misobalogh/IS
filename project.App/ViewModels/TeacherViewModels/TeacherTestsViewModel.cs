@@ -83,7 +83,6 @@ public partial class TeacherTestsViewModel(
         }
     }
 
-
     [RelayCommand]
     void SortByName()
     {
@@ -93,7 +92,8 @@ public partial class TeacherTestsViewModel(
 
         TestNameBtn = GetSortColName(TestNameBtn);
 
-        Activities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.ActivityType), SortDescending);
+        var sortedActivities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.Name), SortDescending);
+        Activities = new ObservableCollection<ActivityListModel>(sortedActivities);
 
         SortedBy = SortBy.Name;
     }
