@@ -58,13 +58,23 @@ public partial class TeacherNewActivityViewModel(
             return;
         }
 
-        if ((ActivityId == null && SubjectId == null)|| loggedUser == null)
+        if ((ActivityId == null && SubjectId == null) || loggedUser == null)
         {
             NotifyUser("There was problem with create activity");
             return;
         };
 
-        await activityFacade.SaveAsync(NewActivity, Guid.Parse(ActivityId), loggedUser.Id);
+        if (ActivityId == null)
+        {
+            await activityFacade.SaveAsync(NewActivity, Guid.Parse(SubjectId), loggedUser.Id);
+        }
+        else if (SubjectId == null)
+        {
+            var subject = await activityFacade.GetAsync(Guid.Parse(ActivityId));
+            await activityFacade.SaveAsync(NewActivity, subject.SubjectId, loggedUser.Id);
+        }
+
+        
         NotifyUser("Changes Saved");
         //await LoadDataAsync();
         await Shell.Current.GoToAsync(nameof(TeacherSubjectsView));
