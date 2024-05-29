@@ -54,7 +54,7 @@ public partial class TeacherNewActivityViewModel(
     {
         if (string.IsNullOrEmpty(NewActivity.Name))
         {
-            NotifyUser("Please fill in all required fields: Name of the activity..."); // TODO: add more fields
+            NotifyUser("Please fill in all required fields: Name of the activity..."); 
             return;
         }
 
@@ -64,19 +64,17 @@ public partial class TeacherNewActivityViewModel(
             return;
         };
 
-        if (ActivityId == null)
+        if (ActivityId == null && SubjectId != null)
         {
             await activityFacade.SaveAsync(NewActivity, Guid.Parse(SubjectId), loggedUser.Id);
         }
-        else if (SubjectId == null)
+        else if (ActivityId != null && SubjectId == null)
         {
             var subject = await activityFacade.GetAsync(Guid.Parse(ActivityId));
             await activityFacade.SaveAsync(NewActivity, subject.SubjectId, loggedUser.Id);
         }
 
-        
         NotifyUser("Changes Saved");
-        //await LoadDataAsync();
         await Shell.Current.GoToAsync(nameof(TeacherSubjectsView));
     }
 

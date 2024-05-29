@@ -9,7 +9,7 @@ public record DALOptions
     /// Deletes database before application startup
     /// </summary>
     //TODO: set to false
-    public bool RecreateDatabaseEachTime { get; init; } = true;
+    public bool RecreateDatabaseEachTime { get; init; } = false;
 
     /// <summary>
     /// Seeds DemoData from DbContext on database creation.

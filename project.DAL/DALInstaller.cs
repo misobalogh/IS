@@ -26,9 +26,8 @@ public static class DALInstaller
             throw new InvalidOperationException($"{nameof(options.DatabaseDirectory)} is not set");
         }
 
-        //TODO: seedTestingData before release set to false
         services.AddSingleton<IDbContextFactory<ApplicationDbContext>>(_ =>
-            new DbContextSqLiteFactory("project.db", true));
+            new DbContextSqLiteFactory("project.db", options.SeedDemoData));
 
         services.AddSingleton<IDbMigrator, DbMigrator>();
 

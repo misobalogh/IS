@@ -37,7 +37,6 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
         }
     }
 
-    // TODO: async
     public async Task<IEnumerable<ActivityListModel>> FilterBySubjectsAsync(IEnumerable<ActivityListModel> activities, Guid subjectId, DateTime startDate, DateTime endDate)
     {
         return await Task.Run(() =>
