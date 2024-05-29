@@ -69,7 +69,7 @@
                                     <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Semester}"/>
                                     <Button Grid.Column="5" VerticalOptions="Center" Text="Register" x:Name="registerButton" Clicked="OnRegisterButtonClicked"
                                             Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
-                                            CommandParameter="{Binding .}"/>
+                                            CommandParameter="{Binding .}" Loaded="OnLoad"/>
                                     <!--second row-->
                                     <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectTag}"/>
                                 </Grid>

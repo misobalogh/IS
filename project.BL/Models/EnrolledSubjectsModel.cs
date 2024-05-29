@@ -9,6 +9,7 @@ public record EnrolledSubjectsModel : ModelBase
     public required int Points { get; set; }
     public required Mark Mark { get; set; }
     public required DateTime Year { get; set; }
+    public required Guid StudentId { get; set; }
 
     public static EnrolledSubjectsModel Empty => new()
     {
@@ -16,6 +17,7 @@ public record EnrolledSubjectsModel : ModelBase
         SubjectName = string.Empty,
         Points = 0,
         Mark = Mark.None,
-        Year = DateTime.Now
+        Year = DateTime.Now,
+        StudentId = Guid.Empty,
     };
 }
