@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.Globalization;
+using CommunityToolkit.Mvvm.Input;
 using project.App.Services;
 using project.App.Views.TeacherViews;
 using project.BL.Facades;
@@ -35,30 +36,47 @@ public partial class TeacherSubjectsDetailViewModel(
         {
             Activities = Activities.Where(activity => activity.SubjectId == Subject.Id);
         }
+        Activities = activityFacade.GetSortedActivities(Activities, nameof(ActivityListModel.ActivityType));
     }
 
-    [RelayCommand]
-    async Task NewActivity(object clickedItem)
-    {
-        // TODO: implement new activity
-        var route = $"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}";
-        await Shell.Current.GoToAsync(route);
-    }
+    //[RelayCommand]
+    //async Task NewActivity(object clickedItem)
+    //{
+    //    var route = $"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}";
+    //    await Shell.Current.GoToAsync(route);
+    //}
 
     [RelayCommand]
     async Task EditActivity(object clickedItem)
     {
         if (clickedItem == null)
         {
-            return;
+            await Shell.Current.GoToAsync($"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}"); // TODO: předat SubjectName přes activity
+            return; // v tomto případě se nejedná o editaci, ale o vytvoření nové aktivity, takže není id aktivity, ale víme jen název předmětu, respektive jeho Id
         }
 
-        if (clickedItem is ActivityListModel activity)
+        if (clickedItem is ActivityListModel activity) // TODO: sem se to asi nikdy nedostane, zachytí to funkce OnItemTapped v .xaml.cs
         {
-            // TODO: implement edit activity
-            //var route = $"{nameof(TeacherEditActivityView)}?activityId={activity.Id}";
-            //await Shell.Current.GoToAsync(route);
+            var route = $"{nameof(TeacherNewActivityView)}?activityId={activity.Id}";
+            await Shell.Current.GoToAsync(route);
         }
     }
+
+
+    //[RelayCommand]
+    //async Task EditActivity(object clickedItem)
+    //{
+    //    if (clickedItem == null)
+    //    {
+    //        return;
+    //    }
+
+    //    if (clickedItem is ActivityListModel activity)
+    //    {
+    //        // TODO: implement edit activity
+    //        //var route = $"{nameof(TeacherEditActivityView)}?activityId={activity.Id}";
+    //        //await Shell.Current.GoToAsync(route);
+    //    }
+    //}
 }
 
