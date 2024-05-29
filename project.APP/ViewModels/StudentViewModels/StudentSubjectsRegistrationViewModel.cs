@@ -12,6 +12,7 @@ namespace project.App.ViewModels;
 
 public partial class StudentSubjectsRegistrationViewModel(
     ISubjectFacade subjectFacade,
+    IEnrolledSubjectsFacade enrolledSubjectsFacade,
     IMessengerService messengerService,
     UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
@@ -24,10 +25,45 @@ public partial class StudentSubjectsRegistrationViewModel(
         Subjects = await subjectFacade.GetAsync();
     }
 
-    [RelayCommand]
-    async Task Register()
+    public async Task Register(SubjectListModel? subject)
     {
-        //TODO
+        if (subject != null && loggedUser != null)
+        {
+            var x = await enrolledSubjectsFacade.GetAsync(); //TODO: remove jenom na kontrolu
+
+            var newEnrolledSubject = new EnrolledSubjectsModel()
+            {
+                Mark = Mark.None,
+                SubjectName = subject.SubjectName,
+                Points = 0,
+                SubjectId = subject.Id,
+                StudentId = loggedUser.Id,
+                Year = DateTime.Now,
+            };
+
+            await enrolledSubjectsFacade.SaveAsync(newEnrolledSubject, loggedUser.Id);
+        }
+    }
+
+    public async Task Unregister(Guid? subjectId)
+    {
+        if (subjectId != null)
+        {
+            await enrolledSubjectsFacade.DeleteAsync((Guid)subjectId);
+        }
+    }
+
+    public async Task<bool> IsRegistered(SubjectListModel? subject)
+    {
+        if (subject != null && loggedUser != null)
+        {
+            var enrolledSubjects = await enrolledSubjectsFacade.GetAsync();
+
+            enrolledSubjects = enrolledSubjects.Where(x => x.SubjectId == subject.Id && x.StudentId == loggedUser.Id);
+
+            return enrolledSubjects.Any();
+        }
+        return false;
     }
 }
 

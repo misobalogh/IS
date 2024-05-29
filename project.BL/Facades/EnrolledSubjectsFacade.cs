@@ -29,6 +29,11 @@ public class EnrolledSubjectsFacade(IUnitOfWorkFactory unitOfWorkFactory, Enroll
             await repository.UpdateAsync(entity);
             await unitOfWork.CommitAsync();
         }
+        else
+        {
+            await repository.InsertAsync(entity);
+            await unitOfWork.CommitAsync();
+        }
     }
 
     public async Task<List<EnrolledSubjectsListModel>> SearchSubject(string searchTerm)
