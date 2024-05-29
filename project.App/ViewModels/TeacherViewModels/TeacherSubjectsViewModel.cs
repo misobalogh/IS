@@ -10,6 +10,7 @@ namespace project.App.ViewModels;
 
 public partial class TeacherSubjectsViewModel(
     ISubjectFacade subjectFacade,
+    ITeachingSubjectsFacade teachingSubjectsFacade,
     IMessengerService messengerService,
     UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {
@@ -36,12 +37,10 @@ public partial class TeacherSubjectsViewModel(
 
         if (loggedUser == null) return;
 
-        var teacherSubjectIds = loggedUser.TeachingSubjects.Select(s => s.Id).ToList();
-
         var allSubjects = await subjectFacade.GetAsync();
+        var teacherSubjectIds = loggedUser.TeachingSubjects.Select(ts => ts.SubjectId).ToList();
+        Subjects = allSubjects.Where(subject => teacherSubjectIds.Contains(subject.Id)).ToList();
 
-        //Subjects = allSubjects.Where(subject => teacherSubjectIds.Contains(subject.Id)).ToList();
-        Subjects = allSubjects;
         SortByName();
     }
 

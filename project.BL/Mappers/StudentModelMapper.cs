@@ -34,12 +34,12 @@ public class StudentModelMapper(
                 LastName = entity.LastName,
                 Image = entity.Image,
                 Password = entity.Password,
-                //EnrolledSubjects = enrolledSubjectsModelMapper.MapToListModel(entity.EnrolledSubjects)
-                //    .ToObservableCollection(),
-                //RegisteredActivities = registeredActivitiesModelMapper.MapToListModel(entity.RegisteredActivities)
-                //    .ToObservableCollection(),
-                //Evaluation = evaluationModelMapper.MapToListModel(entity.Evaluations)
-                //    .ToObservableCollection(),
+                EnrolledSubjects = enrolledSubjectsModelMapper.MapToListModel(entity.EnrolledSubjects)
+                    .ToObservableCollection(),
+                RegisteredActivities = registeredActivitiesModelMapper.MapToListModel(entity.RegisteredActivities)
+                    .ToObservableCollection(),
+                Evaluation = evaluationModelMapper.MapToListModel(entity.Evaluations)
+                    .ToObservableCollection(),
             };
 
     public override StudentEntity MapToEntity(StudentModel model)

@@ -14,6 +14,7 @@ namespace project.App.ViewModels;
 
 public partial class TeacherTestsViewModel(
     IActivityFacade activityFacade, 
+    ITeachingSubjectsFacade teachingSubjectsFacade,
     IMessengerService messengerService,
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
     UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
@@ -44,18 +45,19 @@ public partial class TeacherTestsViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
+
+
+
+        if (loggedUser == null) { return; }
+
         Activities = await activityFacade.GetAsync();
-        EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
 
-        if (loggedUser != null)
-        {
-            EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
-            List<Guid> EnrolledSubjecsIds = EnrolledSubjects.Select(subject => subject.SubjectId).ToList();
+        var teachingSubjects = loggedUser.TeachingSubjects.Select(es => es.SubjectId).ToList();
 
-            Activities = Activities.Where(activity => 
-                (activity.ActivityType == ActivityType.MidtermExam || activity.ActivityType == ActivityType.FinalExam) 
-                && loggedUser.LastName == activity.TeacherName);
-        }
+        Activities = Activities.Where(a => teachingSubjects.Contains(a.SubjectId));
+        Activities = Activities.Where(activity =>
+            (activity.ActivityType == ActivityType.MidtermExam || activity.ActivityType == ActivityType.FinalExam));
+
         SortByName();
     }
 

@@ -13,6 +13,8 @@ namespace project.App.ViewModels;
 
 public partial class TeacherStudentsViewModel(
     IStudentFacade studentFacade,
+    IEnrolledSubjectsFacade enrolledSubjectsFacade,
+    ISubjectFacade subjectFacade,
     IMessengerService messengerService, UserDataService userDataService) 
     : TeacherNavigationSideBar(messengerService, userDataService)
 {
@@ -40,7 +42,20 @@ public partial class TeacherStudentsViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
+        if (loggedUser == null)
+        {
+            return;
+        }
+
+        var allSubjects = await subjectFacade.GetAsync();
+        var teacherSubjectIds = loggedUser.TeachingSubjects.Select(ts => ts.SubjectId).ToList();
+        var teacherSubjects = allSubjects.Where(subject => teacherSubjectIds.Contains(subject.Id)).ToList();
+
         Students = await studentFacade.GetAsync();
+        var enrolledSubjects = enrolledSubjectsFacade.GetAsync();
+
+        //Students = Students.Where(student => enrolledSubjects.Any(es => es.Id == student.Id && teacherSubjectIds.Contains(es.Id)));
+
         SortByName();
     }
 
