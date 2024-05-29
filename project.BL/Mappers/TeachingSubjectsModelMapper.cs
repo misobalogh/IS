@@ -53,5 +53,16 @@ public class TeachingSubjectsModelMapper :
             Subject = null!,
             Teacher = null!,
         };
+
+    public TeachingSubjectsEntity MapToEntity(TeachingSubjectsListModel model, Guid TeacherId)
+        => new()
+        {
+            Id = model.Id,
+            Year = model.Year,
+            SubjectId = model.SubjectId,
+            TeacherId = TeacherId,
+            Subject = null!,
+            Teacher = null!,
+        };
 }
 

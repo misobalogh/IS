@@ -111,7 +111,7 @@ public partial class AdminNewTeacherViewModel(
             return;
         }
 
-        await teacherFacade.SaveAsync(NewTeacher);
+        await teacherFacade.SaveAsync(NewTeacher with { TeachingSubjects = default! });
         NotifyUser("Changes Saved");
         await Shell.Current.GoToAsync(nameof(AdminTeachersView));
     }

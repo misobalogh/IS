@@ -13,31 +13,24 @@ public class TeacherFacade(IUnitOfWorkFactory unitOfWorkFactory, TeacherModelMap
     : FacadeBase<TeacherEntity, TeacherListModel, TeacherModel, TeacherEntityMapper>(unitOfWorkFactory, teacherModelMapper), ITeacherFacade
 {
     protected override List<string> IncludesNavigationPathDetail =>
-        [$"{nameof(TeacherEntity.Subjects)}"];
-    public async Task SaveAsync(TeacherModel model)
-    {
-        TeacherEntity entity = teacherModelMapper.MapToEntity(model);
+        [$"{nameof(TeacherEntity.Subjects)}.{nameof(TeachingSubjectsEntity.Subject)}"];
 
-        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-        IRepository<TeacherEntity> repository =
-            unitOfWork.GetRepository<TeacherEntity, TeacherEntityMapper>();
-
-        if (await repository.ExistsAsync(entity))
-        {
-            await repository.UpdateAsync(entity);
-            await unitOfWork.CommitAsync();
-        }
-    }
 
     public async Task<List<TeacherListModel>> SearchTeacher(string searchTerm)
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
         var repository = unitOfWork.GetRepository<TeacherEntity, TeacherEntityMapper>();
 
-        IQueryable<TeacherEntity> query = repository.Get()
-            .Where(entity => entity.FirstName.ToLower().Contains(searchTerm.ToLower()) || entity.LastName.ToLower().Contains(searchTerm.ToLower()));
+        IQueryable<TeacherEntity> query = repository.Get();
 
-        return query.AsEnumerable().Select(teacherModelMapper.MapToListModel).ToList();
+        foreach (var include in IncludesNavigationPathDetail)
+        {
+            query = query.Include(include); 
+        }
+
+        query = query.Where(entity => entity.FirstName.ToLower().Contains(searchTerm.ToLower()) || entity.LastName.ToLower().Contains(searchTerm.ToLower()));
+
+        return query.Select(teacherModelMapper.MapToListModel).ToList();
     }
 
     public async Task<bool> EmailExistsAsync(string email)
@@ -45,9 +38,7 @@ public class TeacherFacade(IUnitOfWorkFactory unitOfWorkFactory, TeacherModelMap
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
         var repository = unitOfWork.GetRepository<TeacherEntity, TeacherEntityMapper>();
 
-
-        IQueryable<TeacherEntity> query = repository.Get().Where(entity => entity.Email == email);
-        return query.AsEnumerable().Any();
+        return await repository.Get().AnyAsync(entity => entity.Email == email);
     }
 
     public IEnumerable<TeacherListModel> Sort(IEnumerable<TeacherListModel> teachers, string sortBy, bool descending)

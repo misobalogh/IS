@@ -39,6 +39,16 @@ public partial class StudentRegistrationViewModel(
     {
         await base.LoadDataAsync();
         Activities = await activityFacade.GetAsync();
+
+        if (loggedUser == null)
+        {
+            return; 
+        }
+
+        //var enrolledSubjectIds = loggedUser.EnrolledSubjects.Select(es => es.SubjectId).ToList();
+
+        //Activities = Activities.Where(a => enrolledSubjectIds.Contains(a.SubjectId));
+
         SortBySubjectName();
     }
 

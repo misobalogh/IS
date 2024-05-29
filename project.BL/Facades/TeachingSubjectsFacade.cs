@@ -11,10 +11,23 @@ namespace project.BL.Facades;
 public class TeachingSubjectsFacade(IUnitOfWorkFactory unitOfWorkFactory, TeachingSubjectsModelMapper teachingSubjectsModelMapper)
     : FacadeBase<TeachingSubjectsEntity, TeachingSubjectsListModel, TeachingSubjectsModel, TeachingSubjectsEntityMapper>(unitOfWorkFactory, teachingSubjectsModelMapper), ITeachingSubjectsFacade
 {
-
-    public async Task SaveAsync(TeachingSubjectsModel model, Guid subjectId)
+    public async Task SaveAsync(TeachingSubjectsListModel model, Guid teacherId)
     {
-        TeachingSubjectsEntity entity = teachingSubjectsModelMapper.MapToEntity(model, subjectId);
+        TeachingSubjectsEntity entity = teachingSubjectsModelMapper.MapToEntity(model, teacherId);
+
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+        IRepository<TeachingSubjectsEntity> repository =
+            uow.GetRepository<TeachingSubjectsEntity, TeachingSubjectsEntityMapper>();
+
+        if (await repository.ExistsAsync(entity))
+        {
+            await repository.UpdateAsync(entity);
+            await uow.CommitAsync();
+        }
+    }
+    public async Task SaveAsync(TeachingSubjectsModel model, Guid teacherId)
+    {
+        TeachingSubjectsEntity entity = teachingSubjectsModelMapper.MapToEntity(model, teacherId);
 
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
         IRepository<TeachingSubjectsEntity> repository =
@@ -22,5 +35,5 @@ public class TeachingSubjectsFacade(IUnitOfWorkFactory unitOfWorkFactory, Teachi
 
         await repository.InsertAsync(entity);
         await unitOfWork.CommitAsync();
-    }
+    }  
 }

@@ -11,6 +11,13 @@ namespace project.BL.Facades;
 public class StudentFacade(IUnitOfWorkFactory unitOfWorkFactory, StudentModelMapper studentModelMapper) 
     : FacadeBase<StudentEntity, StudentListModel, StudentModel, StudentEntityMapper>(unitOfWorkFactory, studentModelMapper), IStudentFacade
 {
+    protected override List<string> IncludesNavigationPathDetail =>
+    [
+        $"{nameof(StudentEntity.EnrolledSubjects)}.{nameof(EnrolledSubjectEntity.Subject)}",
+        $"{nameof(StudentEntity.RegisteredActivities)}.{nameof(RegisteredActivitiesEntity.Activity)}",
+        $"{nameof(StudentEntity.Evaluations)}.{nameof(EvaluationEntity.Activity)}",
+    ];
+
     public async Task<List<StudentListModel>> SearchStudent(string searchTerm)
     {
         await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
