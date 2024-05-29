@@ -21,6 +21,27 @@ public partial class TeacherSubjectsDetailViewModel(
 
     public SubjectModel? Subject { get; private set; }
     public IEnumerable<ActivityListModel> Activities { get; private set; } = null!;
+    private DateTime _startDate;
+    public DateTime StartDate
+    {
+        get => _startDate;
+        set
+        {
+            SetProperty(ref _startDate, value);
+            FilterActivities();
+        }
+    }
+
+    private DateTime _endDate;
+    public DateTime EndDate
+    {
+        get => _endDate;
+        set
+        {
+            SetProperty(ref _endDate, value);
+            FilterActivities();
+        }
+    }
 
     protected override async Task LoadDataAsync()
     {
@@ -42,6 +63,18 @@ public partial class TeacherSubjectsDetailViewModel(
         Activities = new ObservableCollection<ActivityListModel>(sortedActivities);
     }
 
+    private async void FilterActivities()
+    {
+        if (SubjectId == null)
+        {
+            return;
+        }
+
+        var activitiesList = await activityFacade.GetAsync();
+        var filteredActivities = await activityFacade.FilterBySubjectsAsync(activitiesList, Guid.Parse(SubjectId), StartDate, EndDate);
+        Activities = new ObservableCollection<ActivityListModel>(filteredActivities);
+    }
+
     [RelayCommand]
     public async Task EditActivity(ActivityListModel clickedItem)
     {
@@ -54,45 +87,5 @@ public partial class TeacherSubjectsDetailViewModel(
         var route = $"{nameof(TeacherNewActivityView)}?activityId={clickedItem.Id}";
         await Shell.Current.GoToAsync(route);
     }
-
-    //[RelayCommand]
-    //async Task NewActivity(object clickedItem)
-    //{
-    //    var route = $"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}";
-    //    await Shell.Current.GoToAsync(route);
-    //}
-
-    //[RelayCommand]
-    //async Task EditActivity(object clickedItem)
-    //{
-    //    if (clickedItem == null)
-    //    {
-    //        await Shell.Current.GoToAsync($"{nameof(TeacherNewActivityView)}?subjectId={SubjectId}"); // TODO: předat SubjectName přes activity
-    //        return; // v tomto případě se nejedná o editaci, ale o vytvoření nové aktivity, takže není id aktivity, ale víme jen název předmětu, respektive jeho Id
-    //    }
-
-    //    if (clickedItem is ActivityListModel activity) // TODO: sem se to asi nikdy nedostane, zachytí to funkce OnItemTapped v .xaml.cs
-    //    {
-    //        var route = $"{nameof(TeacherNewActivityView)}?activityId={activity.Id}";
-    //        await Shell.Current.GoToAsync(route);
-    //    }
-    //}
-
-
-    //[RelayCommand]
-    //async Task EditActivity(object clickedItem)
-    //{
-    //    if (clickedItem == null)
-    //    {
-    //        return;
-    //    }
-
-    //    if (clickedItem is ActivityListModel activity)
-    //    {
-    //        // TODO: implement edit activity
-    //        //var route = $"{nameof(TeacherEditActivityView)}?activityId={activity.Id}";
-    //        //await Shell.Current.GoToAsync(route);
-    //    }
-    //}
 }
 
