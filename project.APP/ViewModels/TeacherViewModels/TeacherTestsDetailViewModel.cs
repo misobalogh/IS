@@ -67,8 +67,8 @@ public partial class StudentEvaluationModel : ObservableObject
     [ObservableProperty]
     public string? editPoints;
 
-    public StudentListModel? Student { get; set; }
-    public EvaluationModel? Evaluation { get; set; }
+    public StudentListModel Student { get; set; }
+    public EvaluationModel Evaluation { get; set; }
     private IEvaluationFacade evaluationFacade {  get; set; }
     public StudentEvaluationModel(StudentListModel Student, EvaluationModel? Evaluation, Guid ActivityId, IEvaluationFacade evaluationFacade)
     {
@@ -82,7 +82,7 @@ public partial class StudentEvaluationModel : ObservableObject
             Id = Guid.NewGuid(),
             ActivityId = ActivityId
         };
-        EditPoints = Evaluation?.Points.ToString() ?? "-";
+        EditPoints = Evaluation?.Points.ToString() ?? string.Empty;
         this.evaluationFacade = evaluationFacade;
     }
 
@@ -94,12 +94,12 @@ public partial class StudentEvaluationModel : ObservableObject
     }
 
     [RelayCommand]
-    private void SavePoints()
+    private async Task SavePoints()
     {
         if (Evaluation != null && int.TryParse(EditPoints, out var newPoints))
         {
             Evaluation.Points = newPoints;
-            evaluationFacade.SaveAsync(Evaluation);
+            await evaluationFacade.SaveAsync(Evaluation);
 
         }
         IsEditMode = false;
