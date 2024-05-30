@@ -77,8 +77,6 @@ public partial class StudentEvaluationModel : ObservableObject
         {
             Points = 0,
             StudentId = Student.Id,
-            StudentFirstName = Student.FirstName,
-            StudentLastName = Student.LastName,
             Id = Guid.NewGuid(),
             ActivityId = ActivityId
         };

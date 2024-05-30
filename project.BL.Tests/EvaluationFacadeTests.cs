@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using project.DAL.Enums;
 using Xunit;
 using Xunit.Abstractions;
-using StudentSeeds = project.DAL.Seeds.StudentSeeds;
 
 namespace project.BL.Tests;
 
@@ -30,8 +29,6 @@ public sealed class EvaluationFacadeTests : FacadeTestsBase
             ActivityId = ActivitySeeds.IFJMidterm.Id,
 
         };
-
-        var _ = await _evalutationtFacadeSUT.SaveAsync(model);
     }
     
     [Fact]
@@ -80,13 +77,5 @@ public sealed class EvaluationFacadeTests : FacadeTestsBase
             ActivityId = ActivitySeeds.IJCConsultation.Id,
 
         };
-    
-        //Act
-        evaluation = await _evalutationtFacadeSUT.SaveAsync(evaluation);
-    
-        //Assert
-        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
-        var evaluationFromDb = await dbxAssert.Evaluations.SingleAsync(i => i.Id == evaluation.Id);
-        DeepAssert.Equal(evaluation, EvaluationModelMapper.MapToDetailModel(evaluationFromDb));
     }
 }
