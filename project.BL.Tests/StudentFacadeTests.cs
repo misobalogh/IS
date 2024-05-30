@@ -81,13 +81,11 @@ public class StudentFacadeTests : FacadeTestsBase
         {
             var evaluationDetailModel = expectedModel.Evaluation.FirstOrDefault(i =>
                 i.Points == evaluationModel.Points
-                && i.Note == evaluationModel.Note
                 && i.StudentId == evaluationModel.StudentId);
 
             if (evaluationDetailModel != null)
             {
                 evaluationModel.StudentId = evaluationModel.StudentId;
-                evaluationModel.Note = evaluationDetailModel.Note;
                 evaluationModel.Points = evaluationDetailModel.Points;
             }
         }

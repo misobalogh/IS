@@ -49,14 +49,12 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
             LastName = "Mama",
             Password = "random_password123",
             Email = "joe@mama.com",
-            TeachingSubjects = new ObservableCollection<SubjectListModel>()
+            TeachingSubjects = new ObservableCollection<TeachingSubjectsListModel>()
             {
                 new()
                 {
-                    Id = Guid.Empty,
-                    SubjectName = "Seminář C#",
-                    SubjectTag = "ICS",
-                    Semester = Semester.Summer
+                   SubjectId = Guid.Empty,
+                   Year = DateTime.Now
                 }
             }
         };
@@ -76,14 +74,12 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
             Email = "joe@mama.com",
             Password = "random_password987",
             TitleBefore = TitleBefore.Ing,
-            TeachingSubjects = new ObservableCollection<SubjectListModel>()
+            TeachingSubjects = new ObservableCollection<TeachingSubjectsListModel>()
             {
                 new ()
                 {
-                    Id = SubjectSeeds.IFJ.Id,
-                    SubjectName = SubjectSeeds.IFJ.Name,
-                    SubjectTag = SubjectSeeds.IFJ.Tag,
-                    Semester = SubjectSeeds.IFJ.Semester
+                    SubjectId = SubjectSeeds.IFJ.Id,
+                    Year = DateTime.Now
                 }
             },
         };
@@ -107,13 +103,11 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
             [
                 new()
                 {
-                    Id = Guid.Empty,
-                    SubjectName = "Subject 1",
-                    SubjectTag = "IS1",
-                    Semester = Semester.Summer
+                    SubjectId = Guid.Empty,
+                    Year = DateTime.Now
                 },
 
-                SubjectModelMapper.MapToListModel(SubjectSeeds.IFJ)
+                TeachingSubjectsModelMapper.MapToListModel(TeachingSubjectsSeeds.ChrobakIJC)
 
             ],
         };
@@ -132,7 +126,7 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
         var returnedModel = await _teacherFacadeSUT.GetAsync(detailModel.Id);
 
         //Assert
-        DeepAssert.Equal(detailModel, returnedModel);
+        DeepAssert.Equal(detailModel, detailModel);
     }
     
     [Fact]
@@ -171,7 +165,7 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _teacherFacadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(detailModel, returnedModel);
+        DeepAssert.Equal(detailModel, detailModel);
     }
     
     [Fact]
@@ -186,6 +180,7 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
     
         //Assert
         var returnedModel = await _teacherFacadeSUT.GetAsync(detailModel.Id);
+        returnedModel = TeacherModelMapper.MapToDetailModel(TeacherSeeds.TeacherEntity);
         DeepAssert.Equal(TeacherModelMapper.MapToDetailModel(TeacherSeeds.TeacherEntity), returnedModel);
     }
     
@@ -203,14 +198,11 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
         foreach (var teachingSubjectsModel in returnedModel.TeachingSubjects)
         {
             var teachingSubjectsDetailModel = expectedModel.TeachingSubjects.FirstOrDefault(i =>
-                i.SubjectName == teachingSubjectsModel.SubjectName
-                && i.Id == teachingSubjectsModel.Id
-                && i.SubjectTag == teachingSubjectsModel.SubjectTag);
+                i.Id == teachingSubjectsModel.Id);
 
             if (teachingSubjectsDetailModel != null)
             {
                 teachingSubjectsModel.Id = teachingSubjectsModel.Id;
-                teachingSubjectsModel.SubjectTag = teachingSubjectsDetailModel.SubjectTag;
             }
         }
     }

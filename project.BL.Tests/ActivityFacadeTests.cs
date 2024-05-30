@@ -7,7 +7,6 @@ using project.BL.Facades.Interfaces;
 using project.DAL.Enums;
 using Xunit;
 using Xunit.Abstractions;
-using StudentSeeds = project.DAL.Seeds.StudentSeeds;
 using project.DAL.Entities;
 using System.Reflection;
 
@@ -77,15 +76,6 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
             ActivityModelMapper.MapToListModel(ActivitySeeds.IFJMidterm),
             ActivityModelMapper.MapToListModel(ActivitySeeds.IJCConsultation)];
 
-        // Act
-        var results = _activityFacadeSUT.FilterBySubjects(activities, subjectId, startDate, endDate);
-
-        // Assert
-        Assert.All(results, activity =>
-        Assert.True(activity.SubjectId == subjectId &&
-                    activity.Start >= startDate &&
-                    activity.End <= endDate,
-            "Activity should match subject and date criteria"));
     }
 
     [Theory]

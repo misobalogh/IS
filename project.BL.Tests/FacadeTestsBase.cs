@@ -26,9 +26,9 @@ public class FacadeTestsBase : IAsyncLifetime
         RegisteredActivitiesModelMapper = new RegisteredActivitiesModelMapper();
         EvaluationModelMapper = new EvaluationModelMapper();
         SubjectModelMapper = new SubjectModelMapper();
-        TeacherModelMapper = new TeacherModelMapper();
-        StudentModelMapper = new StudentModelMapper();
-
+        TeachingSubjectsModelMapper = new TeachingSubjectsModelMapper();
+        TeacherModelMapper = new TeacherModelMapper(TeachingSubjectsModelMapper);
+        StudentModelMapper = new StudentModelMapper(EnrolledSubjectsModelMapper, RegisteredActivitiesModelMapper, EvaluationModelMapper);
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
     }
 
@@ -38,6 +38,7 @@ public class FacadeTestsBase : IAsyncLifetime
     protected EvaluationModelMapper EvaluationModelMapper { get; }
     protected RegisteredActivitiesModelMapper RegisteredActivitiesModelMapper { get; }
     protected StudentModelMapper StudentModelMapper { get; }
+    protected TeachingSubjectsModelMapper TeachingSubjectsModelMapper { get; }
     protected SubjectModelMapper SubjectModelMapper { get; }
     protected TeacherModelMapper TeacherModelMapper { get; }
     
