@@ -64,7 +64,7 @@
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             
             <!--content-->
-            <ListView Grid.Column="1" ItemsSource="{Binding Activities}">
+            <ListView Grid.Column="1" ItemsSource="{Binding ActivityEvaluation}">
                 <ListView.Header>
                     <Grid Padding="10" BackgroundColor="#ab93e3">
                         <Grid.ColumnDefinitions>
@@ -78,7 +78,7 @@
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="m:ActivityListModel">
+                    <DataTemplate x:DataType="viewModels:ActivityEvaluation">
                         <ViewCell>
                             <Grid Padding="10">
                                 <Grid.ColumnDefinitions>
@@ -86,9 +86,9 @@
                                     <ColumnDefinition Width="1*" />
                                     <ColumnDefinition Width="1*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Name}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
-                                <Label Text="{Binding Points}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
-                                <Label Text="{Binding Start}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                                <Label Text="{Binding activityModel.Name}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding evaluationModel.Points}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                <Label Text="{Binding activityModel.Start}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

@@ -4,11 +4,14 @@ using project.App.Views.StudentViews;
 using project.App.Services;
 using project.BL.Facades;
 using project.BL.Models;
+using project.BL.Facades.Interfaces;
 
 namespace project.App.ViewModels;
 
 public partial class StudentClassificationViewModel(
     IEnrolledSubjectsFacade enrolledSubjectsFacade,
+    IActivityFacade activityFacade,
+    IEvaluationFacade evaluationFacade,
     IMessengerService messengerService,
     UserDataService userDataService) : StudentNavigationSideBar(messengerService, userDataService)
 {
@@ -33,11 +36,35 @@ public partial class StudentClassificationViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        EnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
         if (loggedUser ==  null) { return; }
-        
-        EnrolledSubjects = EnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
-        
+
+        var allEnrolledSubjects = await enrolledSubjectsFacade.GetAsync();
+        var allActivities = await activityFacade.GetAsync();
+        var allEvaluations = await evaluationFacade.GetAsync();
+
+        var relevantEnrolledSubjects = allEnrolledSubjects.Where(subject => subject.StudentId == loggedUser.Id);
+
+        var relevantActivities = allActivities
+            .Where(a => relevantEnrolledSubjects
+                .Select(es => es.SubjectId)
+                .Contains(a.SubjectId)
+            );
+
+        foreach (var enrolledSubject in relevantEnrolledSubjects)
+        {
+            var subjectActivities = relevantActivities.Where(a => a.SubjectId == enrolledSubject.SubjectId);
+
+            var totalPoints = allEvaluations
+                .Where(e => subjectActivities.Select(a => a.Id).Contains(e.ActivityId))
+                .Sum(e => e.Points);
+
+            var modifyES = await enrolledSubjectsFacade.GetAsync(enrolledSubject.Id);
+            if (modifyES == null) { continue; }
+            modifyES.Points = totalPoints;
+            await enrolledSubjectsFacade.SaveAsync(modifyES, loggedUser.Id);
+        }
+
+        EnrolledSubjects = (await enrolledSubjectsFacade.GetAsync()).Where(subject => subject.StudentId == loggedUser.Id);
         SortBySubject();
     }
 
@@ -49,7 +76,7 @@ public partial class StudentClassificationViewModel(
         }
 
         if (clickedItem is EnrolledSubjectsListModel subject) {
-            var route = $"{nameof(StudentClassificationSubjectDetailView)}?subjectId={subject.Id}";
+            var route = $"{nameof(StudentClassificationSubjectDetailView)}?subjectId={subject.SubjectId}";
             await Shell.Current.GoToAsync(route);
         }
     }
