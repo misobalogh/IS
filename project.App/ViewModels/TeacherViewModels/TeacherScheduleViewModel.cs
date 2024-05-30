@@ -10,10 +10,13 @@ using project.BL.Models;
 
 namespace project.App.ViewModels;
 
-public partial class TeacherScheduleViewModel(IRegisteredActivitiesFacade registeredActivitiesFacade,
-    IMessengerService messengerService, UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
+public partial class TeacherScheduleViewModel(
+    IActivityFacade activitiesFacade,
+    ITeachingSubjectsFacade teachingSubjectsFacade,
+    IMessengerService messengerService,
+    UserDataService userDataService) : TeacherNavigationSideBar(messengerService, userDataService)
 {
-    public IEnumerable<RegisteredActivitiesListModel> Activities { get; set; } = null!;
+    public IEnumerable<ActivityListModel> Activities { get; set; } = null!;
 
     private List<string> schedule = null!;
     public List<string> Schedule
@@ -28,7 +31,14 @@ public partial class TeacherScheduleViewModel(IRegisteredActivitiesFacade regist
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        Activities = await registeredActivitiesFacade.GetAsync();
+        if (loggedUser == null) { return; }
+
+        Activities = await activitiesFacade.GetAsync();
+
+        var teachingSubjects = loggedUser.TeachingSubjects.Select(es => es.SubjectId).ToList();
+
+        Activities = Activities.Where(a => teachingSubjects.Contains(a.SubjectId));
+
         Schedule = CreateScheduleList();
     }
 
@@ -44,7 +54,7 @@ public partial class TeacherScheduleViewModel(IRegisteredActivitiesFacade regist
                 if (activities.Any())
                 {
                     var activity = activities.First();
-                    scheduleList.Add($"{activity.ActivityName}\n{activity.Room}");
+                    scheduleList.Add($"{activity.Name}\n{activity.Room}");
                 }
                 else
                 {

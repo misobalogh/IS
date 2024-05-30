@@ -29,8 +29,6 @@ public static class AppInstaller
             .AsSelfWithInterfaces()
             .WithTransientLifetime());
 
-        //TODO: services.AddTransient<INavigationService, NavigationService>();
-
         return services;
     }
 }

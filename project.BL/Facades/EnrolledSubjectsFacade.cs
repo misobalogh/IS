@@ -1,4 +1,5 @@
-﻿using project.BL.Mappers;
+﻿using System.Reflection;
+using project.BL.Mappers;
 using project.BL.Models;
 using project.DAL.Entities;
 using project.DAL.Mappers;
@@ -28,6 +29,11 @@ public class EnrolledSubjectsFacade(IUnitOfWorkFactory unitOfWorkFactory, Enroll
             await repository.UpdateAsync(entity);
             await unitOfWork.CommitAsync();
         }
+        else
+        {
+            await repository.InsertAsync(entity);
+            await unitOfWork.CommitAsync();
+        }
     }
 
     public async Task<List<EnrolledSubjectsListModel>> SearchSubject(string searchTerm)
@@ -41,5 +47,20 @@ public class EnrolledSubjectsFacade(IUnitOfWorkFactory unitOfWorkFactory, Enroll
                 entity.Subject.Name.ToLower().Contains(searchTerm.ToLower()));
 
         return query.AsEnumerable().Select(enrolledSubjectsModelMapper.MapToListModel).ToList();
+    }
+
+    public IEnumerable<EnrolledSubjectsListModel> Sort(IEnumerable<EnrolledSubjectsListModel> subjects, string sortBy, bool descending)
+    {
+        PropertyInfo? propInfo = typeof(EnrolledSubjectsListModel).GetProperty(sortBy);
+        if (propInfo == null)
+        {
+            throw new ArgumentException($"'{sortBy}' is not a valid property of EnrolledSubjectsListModel");
+        }
+
+        var sortedSubjects = descending
+            ? subjects.OrderByDescending(a => propInfo.GetValue(a, null))
+            : subjects.OrderBy(a => propInfo.GetValue(a, null));
+
+        return sortedSubjects.ToList();
     }
 }

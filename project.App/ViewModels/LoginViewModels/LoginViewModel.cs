@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using project.App.Views.StudentViews;
+using project.App.Views.TeacherViews;
+using project.App.Views.AdminViews;
 using project.App.Services;
 using project.BL.Models;
-using project.App.Views.TeacherViews;
 using project.BL.Facades;
 
 namespace project.App.ViewModels;
@@ -32,10 +33,13 @@ public partial class LoginViewModel(
     [RelayCommand]
     async Task Login()
     {
+        await LoadDataAsync();
+        const string EmptyEntryPlaceholder = "Please enter your email";
+
         if (string.IsNullOrEmpty(LoginCredential))
         {
             // Notify user
-            PlaceholderText = "Please enter your email";
+            PlaceholderText = EmptyEntryPlaceholder;
             EntryBorderColor = Colors.Red;
             LoginCredential = string.Empty;
             return;
@@ -50,7 +54,7 @@ public partial class LoginViewModel(
             }
             userDataService.SetCurrentUser(LoggedStudent);
             await Shell.Current.GoToAsync(nameof(StudentScheduleView));
-            PlaceholderText = "Please enter your email";
+            PlaceholderText = EmptyEntryPlaceholder;
             LoginCredential = string.Empty;
             EntryBorderColor = Colors.Transparent;
             return;
@@ -66,7 +70,16 @@ public partial class LoginViewModel(
             }
             userDataService.SetCurrentUser(LoggedTeacher);
             await Shell.Current.GoToAsync(nameof(TeacherScheduleView));
-            PlaceholderText = "Please enter your email";
+            PlaceholderText = EmptyEntryPlaceholder;
+            LoginCredential = string.Empty;
+            EntryBorderColor = Colors.Transparent;
+            return;
+        }
+
+        if (string.Equals(LoginCredential, "admin@admin")) {
+            userDataService.SetCurrentUser("admin");
+            await Shell.Current.GoToAsync(nameof(AdminTeachersView));
+            PlaceholderText = EmptyEntryPlaceholder;
             LoginCredential = string.Empty;
             EntryBorderColor = Colors.Transparent;
             return;

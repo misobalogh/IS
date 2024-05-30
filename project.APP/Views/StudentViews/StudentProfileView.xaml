@@ -25,10 +25,13 @@
                     </Label.GestureRecognizers>
                 </Label>
             </VerticalStackLayout>
-
-            <!--TOOD: získat obrázek z loggedUser.Image tak, aby pokud je null, zobrazilo se avatar_placeholder.png-->
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.Image, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToStudentProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
     <Grid Grid.Row="1"
@@ -47,6 +50,8 @@
                     Text="tests" Command="{Binding GoToTestsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                     Text="registration" Command="{Binding GoToRegistrationCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subject registration" Command="{Binding GoToSubjectsRegistrationCommand}" LineBreakMode="WordWrap"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
@@ -72,31 +77,12 @@
                     </Label.Text>
                 </Label>
 
-                <!--TODO: vypsat studentovi předměty-->
-                <!--<CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="m:SubjectListModel">
-                        <HorizontalStackLayout>
-                            <Label VerticalOptions="Center">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding SubjectName}"/>
-                                        <Span Text=" "/>
-                                        <Span Text="A"></Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>-->
-
-                <!--<Label Text="Subjects:" FontSize="20"/>-->
-                <!--<Label Text="{Binding SubjectName}" FontSize="20"/>-->
             </VerticalStackLayout>
             
 
 
             <!-- Profile Image in the rightmost column -->
-            <Image Source="profile.png"
+            <Image Source="{Binding Path=loggedUser.Image, TargetNullValue=profile.png}"
                    WidthRequest="250"
                    HeightRequest="250"
                    HorizontalOptions="End"
@@ -104,14 +90,13 @@
                    Margin="0, 50, 100, 10"
                    Grid.Column="2"/>
 
-            <!--TODO-->
-            <!--<Button Text="Change Image"-->
-                    <!--WidthRequest="200"
+            <Button Text="Change Image"
+                    WidthRequest="200"
                     HorizontalOptions="End"
                     VerticalOptions="End"
                     Margin="0, 0, 125, 50"
                     Grid.Column="2"
-                    Command="{Binding ChangeImage}"/>-->
+                    Command="{Binding ChangeImageCommand}"/>
         </Grid>
     </Grid>
 </views:ContentPageBase>

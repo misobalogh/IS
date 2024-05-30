@@ -28,8 +28,13 @@
                 </Label>
             </VerticalStackLayout>
             <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
         <Grid Grid.Row="1"
@@ -40,8 +45,6 @@
             <VerticalStackLayout Grid.Column="0">
                 <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="schedule" Command="{Binding GoToScheduleCommand}" IsEnabled="False"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="classification" Command="{Binding GoToClassificationCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 

@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- pokud se bude delat installer, nahradit vsechny TargetFramework(s) ve vsech projektech za -->
+    <!--     <TargetFrameworks>net8.0-windows10.0.19041.0</TargetFrameworks> -->
     <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
@@ -77,8 +79,6 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\AdminViewModels\" />
-    <Folder Include="Views\AdminViews\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -89,17 +89,32 @@
     <Compile Update="Shells\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AdminViews\AdminNewSubjectView.xaml.cs">
+      <DependentUpon>AdminNewSubjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminNewStudentView.xaml.cs">
+      <DependentUpon>AdminNewStudentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminProfileView.xaml.cs">
+      <DependentUpon>AdminProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminNewTeacherView.xaml.cs">
+      <DependentUpon>AdminNewTeacherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminSubjectsView.xaml.cs">
+      <DependentUpon>AdminSubjectsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminTeachersView.xaml.cs">
+      <DependentUpon>AdminTeachersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminViews\AdminStudentsView.xaml.cs">
+      <DependentUpon>AdminStudentsView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ContentPageBase.xaml.cs">
       <DependentUpon>ContentPageBase.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\StudentViews\StudentScheduleView.xaml.cs">
       <DependentUpon>StudentScheduleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\TeacherViews\TeacherClassificationSubjectDetailView.xaml.cs">
-      <DependentUpon>TeacherClassificationSubjectDetailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\TeacherViews\TeacherClassificationView.xaml.cs">
-      <DependentUpon>TeacherClassificationView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\TeacherViews\TeacherProfileView.xaml.cs">
       <DependentUpon>TeacherProfileView.xaml</DependentUpon>
@@ -119,6 +134,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <MauiXaml Update="Views\AdminViews\AdminNewSubjectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminNewStudentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminNewTeacherView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminSubjectsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminTeachersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AdminViews\AdminStudentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Views\LoginViews\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
@@ -135,6 +171,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\StudentViews\StudentScheduleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\StudentViews\StudentSubjectsRegistrationView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\StudentViews\StudentSubjectsView.xaml">
@@ -166,10 +205,7 @@
 	  <MauiXaml Update="Views\StudentViews\StudentTestsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TeacherViews\TeacherClassificationSubjectDetailView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\TeacherViews\TeacherClassificationView.xaml">
+	  <MauiXaml Update="Views\TeacherViews\TeacherNewActivityView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TeacherViews\TeacherProfileView.xaml">
@@ -178,7 +214,13 @@
 	  <MauiXaml Update="Views\TeacherViews\TeacherStudentsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherSubjectsDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TeacherViews\TeacherSubjectsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeacherViews\TeacherTestsDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TeacherViews\TeacherTestsView.xaml">

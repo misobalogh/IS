@@ -3,10 +3,10 @@ using project.DAL.Entities;
 
 namespace project.BL.Mappers;
 
-public class StudentModelMapper (
-        EnrolledSubjectsModelMapper enrolledSubjectsModelMapper,
-        RegisteredActivitiesModelMapper registeredActivitiesModelMapper,
-        EvaluationModelMapper evaluationModelMapper) :
+public class StudentModelMapper(
+    EnrolledSubjectsModelMapper enrolledSubjectsModelMapper, 
+    RegisteredActivitiesModelMapper registeredActivitiesModelMapper,
+    EvaluationModelMapper evaluationModelMapper) :
     ModelMapperBase<StudentEntity, StudentListModel, StudentModel>
 {
     public override StudentListModel MapToListModel(StudentEntity? entity)
@@ -52,7 +52,5 @@ public class StudentModelMapper (
             LastName = model.LastName,
             Image = model.Image,
             Grade = model.Grade,
-            EnrolledSubjects = null!,
-            RegisteredActivities = null!,
         };
 }

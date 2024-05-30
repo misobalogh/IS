@@ -9,6 +9,7 @@ public partial class StudentRegistrationView
     {
         InitializeComponent();
     }
+
     private void OnRegisterButtonClicked(object sender, EventArgs e)
     {
         var button = sender as Button;

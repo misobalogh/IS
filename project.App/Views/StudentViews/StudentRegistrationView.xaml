@@ -26,8 +26,13 @@
                     </Label.GestureRecognizers>
                 </Label>
             </VerticalStackLayout>
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.Image, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToStudentProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
@@ -47,6 +52,8 @@
                         Text="tests" Command="{Binding GoToTestsCommand}"/>
                 <Button TextColor="White" Background="#6E6E6E"     FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="registration" Command="{Binding GoToRegistrationCommand}" IsEnabled="False"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subject registration" Command="{Binding GoToSubjectsRegistrationCommand}" LineBreakMode="WordWrap"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <ListView Grid.Column="1" ItemsSource="{Binding Activities}">
@@ -54,15 +61,15 @@
                     <Grid Padding="10" BackgroundColor="#ab93e3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Text="Subject" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
-                        <Label Text="Activity" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-                        <Label Text="Start Time" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
-                        <Label Text="Capacity" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
+                        <Button Text="{Binding SubjectNameBtn}" Command="{Binding SortBySubjectNameCommand}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                        <Button Text="{Binding ActivityNameBtn}" Command="{Binding SortByActivityNameCommand}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                        <Button Text="{Binding StartTimeBtn}" Command="{Binding SortByStartTimeCommand}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
+                        <Button Text="{Binding CapacityBtn}" Command="{Binding SortByCapacityCommand}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
                         <Label Text="Registered" FontSize="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="4"/>
                     </Grid>
                 </ListView.Header>

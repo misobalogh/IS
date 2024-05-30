@@ -55,7 +55,8 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
                 {
                     Id = Guid.Empty,
                     SubjectName = "Seminář C#",
-                    SubjectTag = "ICS"
+                    SubjectTag = "ICS",
+                    Semester = Semester.Summer
                 }
             }
         };
@@ -81,7 +82,8 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
                 {
                     Id = SubjectSeeds.IFJ.Id,
                     SubjectName = SubjectSeeds.IFJ.Name,
-                    SubjectTag = SubjectSeeds.IFJ.Tag
+                    SubjectTag = SubjectSeeds.IFJ.Tag,
+                    Semester = SubjectSeeds.IFJ.Semester
                 }
             },
         };
@@ -107,7 +109,8 @@ public sealed class TeacherFacadeTests : FacadeTestsBase
                 {
                     Id = Guid.Empty,
                     SubjectName = "Subject 1",
-                    SubjectTag = "IS1"
+                    SubjectTag = "IS1",
+                    Semester = Semester.Summer
                 },
 
                 SubjectModelMapper.MapToListModel(SubjectSeeds.IFJ)

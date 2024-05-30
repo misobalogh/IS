@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:project.App.Views"
+             x:Class="project.App.Views.TeacherViews.TeacherSubjectsDetailView"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
+             xmlns:converters="clr-namespace:project.App.Converters" 
+             x:DataType="viewModels:TeacherSubjectsDetailViewModel"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui">
+    <ContentPage.Resources>
+        <converters:MarkToString x:Key="MarkToString"/>
+        <converters:TestsListViewItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!--header-->
+        <Image Width="50" Height="50" Source="logo_1.png"></Image>
+        <HorizontalStackLayout Grid.Column="3"
+                               Padding="10"
+                               Spacing="10"
+                               HorizontalOptions="End">
+            <Label Text="{Binding loggedUser.TitleBefore, StringFormat='{}{0}.'}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
+            <VerticalStackLayout>
+                <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
+                <Label VerticalOptions="Center"
+                       Text="Logout" FontSize="20" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+            <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+        </HorizontalStackLayout>
+        <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions=".15*,.85*">
+            <!--navigation menu-->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80"
+                        Text="schedule" Command="{Binding GoToScheduleCommand}" IsEnabled="False"/>
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80"
+                        Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80"
+                        Text="tests" Command="{Binding GoToTestsCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80"
+                        Text="students" Command="{Binding GoToStudentsCommand}"/>
+            </VerticalStackLayout>
+            <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+
+            <!--content-->
+            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
+                <Button Grid.Row="1" Grid.Column="3" Text="new activity" Command="{Binding EditActivityCommand}" Margin="0,0,0,0"/>
+                <StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center">
+                    <Label Text="Filter by Start date" FontSize="20" VerticalOptions="Center"/>
+                    <DatePicker Date="{Binding StartDate}" Format="d" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="2" VerticalOptions="Center">
+                    <Label Text="Filter by End date" FontSize="20" VerticalOptions="Center"/>
+                    <DatePicker Date="{Binding EndDate}" Format="d" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
+                    <ListView Grid.Column="1" ItemsSource="{Binding Activities}">
+                        <ListView.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="ItemTapped"
+                                Command="{Binding EditActivityCommand}"
+                                EventArgsConverter="{StaticResource ItemTappedConverter}">
+                            </behaviors:EventToCommandBehavior>
+                        </ListView.Behaviors>
+                        <ListView.Header>
+                            <Grid Padding="10" BackgroundColor="#ab93e3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Name" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                <Label Text="Type" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                <Label Text="Room" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                                <Label Text="Date" FontSize="20" VerticalOptions="Center" Grid.Column="3" HorizontalOptions="Center" />
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="m:ActivityListModel">
+                                <ViewCell>
+                                    <Grid Padding="10" ColumnDefinitions="*,*,*,*">
+                                        <Label Text="{Binding Name}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                        <Label Text="{Binding ActivityType}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Room}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Start}" FontSize="20" VerticalOptions="Center" Grid.Column="3" HorizontalOptions="Center" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+                <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Color="{StaticResource Gray500}"
+                         HeightRequest="3" VerticalOptions="Start"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

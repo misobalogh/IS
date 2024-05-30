@@ -32,8 +32,13 @@
                 </Label>
             </VerticalStackLayout>
             <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
 
         <BoxView Color="{StaticResource Gray600}" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
@@ -45,8 +50,6 @@
             <VerticalStackLayout Grid.Column="0">
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="schedule" Command="{Binding GoToScheduleCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="classification" Command="{Binding GoToClassificationCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
@@ -73,9 +76,9 @@
                                     <ColumnDefinition Width="1*" />
                                     <ColumnDefinition Width="1*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Text="Student" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
-                                <Label Text="Grade" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
-                                <Label Text="Email" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                                <Button Text="{Binding NameBtn}" Command="{Binding SortByNameCommand}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                <Button Text="{Binding GradeBtn}" Command="{Binding SortByGradeCommand}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                <Button Text="{Binding EmailBtn}" Command="{Binding SortByEmailCommand}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
                             </Grid>
                         </ListView.Header>
                         <ListView.ItemTemplate>

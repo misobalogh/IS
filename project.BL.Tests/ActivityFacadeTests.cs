@@ -15,11 +15,11 @@ namespace project.BL.Tests;
 
 public sealed class ActivityFacadeTests : FacadeTestsBase
 {
-    private readonly IActivityFacade _activitytFacadeSUT;
+    private readonly IActivityFacade _activityFacadeSUT;
 
     public ActivityFacadeTests(ITestOutputHelper output) : base(output)
     {
-        _activitytFacadeSUT = new ActivityFacade(UnitOfWorkFactory, ActivityModelMapper);
+        _activityFacadeSUT = new ActivityFacade(UnitOfWorkFactory, ActivityModelMapper);
     }
 
     [Fact]
@@ -42,13 +42,13 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
 
         };
 
-        await _activitytFacadeSUT.SaveAsync(model, model.SubjectId, model.TeacherId);
+        await _activityFacadeSUT.SaveAsync(model, model.SubjectId, model.TeacherId);
     }
     
     [Fact]
     public async Task GetById_NonExistent()
     {
-        var activity = await _activitytFacadeSUT.GetAsync(ActivitySeeds.EmptyActivity.Id);
+        var activity = await _activityFacadeSUT.GetAsync(ActivitySeeds.EmptyActivity.Id);
     
         Assert.Null(activity);
     }
@@ -56,7 +56,9 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
     [Fact]
     public async Task IFJMidterm_DeleteById_Deleted()
     {
-        await _activitytFacadeSUT.DeleteAsync(ActivitySeeds.IFJMidterm.Id);
+        // var test = await _activityFacadeSUT.GetAsync();
+        
+        await _activityFacadeSUT.DeleteAsync(ActivitySeeds.IFJMidterm.Id);
 
         await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
         Assert.False(await dbxAssert.Activities.AnyAsync(i => i.Id == ActivitySeeds.IFJMidterm.Id));
@@ -65,13 +67,18 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
     [Theory]
     [InlineData("2024-05-15", "2024-05-16")]  
     [InlineData("2025-01-01", "2025-12-31")]  
-    public async Task FilterBySubjects_ReturnsCorrectActivities(DateTime startDate, DateTime endDate)
+    public void FilterBySubjects_ReturnsCorrectActivities(DateTime startDate, DateTime endDate)
     {
         Guid subjectId = ActivitySeeds.IFJMidterm.SubjectId;  // Assuming this is seeded
 
         ActivitySeeds.SeedActivitiesForTesting();
+
+        IEnumerable<ActivityListModel> activities = [
+            ActivityModelMapper.MapToListModel(ActivitySeeds.IFJMidterm),
+            ActivityModelMapper.MapToListModel(ActivitySeeds.IJCConsultation)];
+
         // Act
-        var results = await _activitytFacadeSUT.FilterBySubjects(subjectId, startDate, endDate);
+        var results = _activityFacadeSUT.FilterBySubjects(activities, subjectId, startDate, endDate);
 
         // Assert
         Assert.All(results, activity =>
@@ -84,13 +91,17 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
     [Theory]
     [InlineData("Name", true)]  // Descending sort by name
     [InlineData("Start", false)] // Ascending sort by start date
-    public async Task GetSortedActivities_ReturnsSortedResults(string sortBy, bool descending)
+    public void GetSortedActivities_ReturnsSortedResults(string sortBy, bool descending)
     {
         // Arrange
         ActivitySeeds.SeedActivitiesForTesting();
 
+        IEnumerable<ActivityListModel> activities = [
+            ActivityModelMapper.MapToListModel(ActivitySeeds.IFJMidterm),
+            ActivityModelMapper.MapToListModel(ActivitySeeds.IJCConsultation)];
+
         // Act
-        var results = await _activitytFacadeSUT.GetSortedActivities(sortBy, descending);
+        var result = _activityFacadeSUT.GetSortedActivities(activities, sortBy, descending);
 
         // Use reflection correctly here:
         PropertyInfo? propInfo = typeof(ActivityListModel).GetProperty(sortBy);
@@ -100,19 +111,25 @@ public sealed class ActivityFacadeTests : FacadeTestsBase
         }
 
         var expected = descending
-            ? results.OrderByDescending(a => propInfo.GetValue(a, null))
-            : results.OrderBy(a => propInfo.GetValue(a, null));
+            ? activities.OrderByDescending(a => propInfo.GetValue(a, null))
+            : activities.OrderBy(a => propInfo.GetValue(a, null));
 
-        Assert.True(results.SequenceEqual(expected), "Activities should be sorted correctly based on the provided property.");
+        Assert.True(result.SequenceEqual(expected), "Activities should be sorted correctly based on the provided property.");
     }
 
     [Fact]
-    public async Task GetSortedActivities_WithInvalidProperty_ThrowsArgumentException()
+    public void GetSortedActivities_WithInvalidProperty_ThrowsArgumentException()
     {
         // Arrange
+        ActivitySeeds.SeedActivitiesForTesting();
+
+        IEnumerable<ActivityListModel> activities = [
+            ActivityModelMapper.MapToListModel(ActivitySeeds.IFJMidterm),
+            ActivityModelMapper.MapToListModel(ActivitySeeds.IJCConsultation)];
+
         string invalidProperty = "NonexistentProperty";
 
         // Act & Assert
-        await Assert.ThrowsAsync<ArgumentException>(() => _activitytFacadeSUT.GetSortedActivities(invalidProperty));
+        Assert.Throws<ArgumentException>(() => _activityFacadeSUT.GetSortedActivities(activities, invalidProperty));
     }
 }

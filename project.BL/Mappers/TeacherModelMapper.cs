@@ -3,7 +3,7 @@ using project.DAL.Entities;
 
 namespace project.BL.Mappers;
 
-public class TeacherModelMapper : 
+public class TeacherModelMapper(TeachingSubjectsModelMapper teachingSubjectsModelMapper) : 
     ModelMapperBase<TeacherEntity, TeacherListModel, TeacherModel>
 {
     public override TeacherListModel MapToListModel(TeacherEntity? entity)
@@ -33,6 +33,7 @@ public class TeacherModelMapper :
                 PhotoUrl = entity.Image,
                 TitleBefore = entity.TitleBefore,
                 TitleAfter = entity.TitleAfter,
+                TeachingSubjects = teachingSubjectsModelMapper.MapToListModel(entity.Subjects).ToObservableCollection()
             };
 
     public override TeacherEntity MapToEntity(TeacherModel model) 

@@ -6,7 +6,13 @@
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
              x:DataType="viewModels:TeacherTestsViewModel"
              xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
-             >
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converters="clr-namespace:project.App.Converters">
+
+    <ContentPage.Resources>
+        <!--<converters:MarkToString x:Key="MarkToString"/>-->
+        <converters:TestsListViewItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions=".2*,.8*"
           ColumnDefinitions="auto,*,auto">
@@ -29,8 +35,13 @@
                 </Label>
             </VerticalStackLayout>
             <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
@@ -43,8 +54,6 @@
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="schedule" Command="{Binding GoToScheduleCommand}"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="classification" Command="{Binding GoToClassificationCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
                 <Button TextColor="White" Background="{StaticResource Gray500}"  FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="tests" Command="{Binding GoToTestsCommand}" IsEnabled="False"/>
@@ -52,6 +61,44 @@
                         Text="students" Command="{Binding GoToStudentsCommand}"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <ScrollView Grid.Column="1">
+                <ListView Grid.ColumnSpan="5" Grid.Row="3" ItemsSource="{Binding Activities}">
+                    <ListView.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="ItemTapped"
+                            Command="{Binding ShowActivityDetailsCommand}"
+                            EventArgsConverter="{StaticResource ItemTappedConverter}">
+                        </toolkit:EventToCommandBehavior>
+                    </ListView.Behaviors>
+                    <ListView.Header>
+                        <Grid Padding="10" BackgroundColor="#ab93e3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Text="{Binding TestNameBtn}" Command="{Binding SortByNameCommand}" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0"/>
+                        </Grid>
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="m:ActivityListModel">
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid ColumnDefinitions="0.3*,0.3*,0.3*,*,auto"
+                                          RowDefinitions="auto,auto"
+                                          ColumnSpacing="20" RowSpacing="10">
+
+                                        <Label  Grid.Column="0" VerticalOptions="Center" Text="{Binding SubjectName}" />
+                                        <Label  Grid.Column="1" VerticalOptions="Center" Text="{Binding Name}"/>
+                                        <Label  Grid.Column="2" VerticalOptions="Center" Text="{Binding ActivityType}"/>
+                                    </Grid>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
         </Grid>
     </Grid>
 </views:ContentPageBase>

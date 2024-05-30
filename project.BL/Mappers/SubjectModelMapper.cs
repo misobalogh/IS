@@ -13,7 +13,8 @@ public class SubjectModelMapper :
             {
                 Id = entity.Id,
                 SubjectName = entity.Name,
-                SubjectTag = entity.Tag
+                SubjectTag = entity.Tag,
+                Semester = entity.Semester
             };
 
     public override SubjectModel MapToDetailModel(SubjectEntity? entity)

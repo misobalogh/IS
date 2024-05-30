@@ -6,6 +6,7 @@ public class UserDataService : IUserDataService
 {
     public StudentModel? CurrentStudent { get; private set; }
     public TeacherModel? CurrentTeacher { get; private set; }
+    public string? CurrentAdmin { get; private set; }
 
     public void SetCurrentUser(object user)
     {
@@ -18,11 +19,17 @@ public class UserDataService : IUserDataService
         {
             CurrentTeacher = teacher;
         }
+
+        else if (user is string admin && admin == "admin") 
+        {
+            CurrentAdmin = admin;
+        }
     }
 
     public void ClearCurrentUser()
     {
         CurrentStudent = null;
         CurrentTeacher = null;
+        CurrentAdmin = null;
     }
 }

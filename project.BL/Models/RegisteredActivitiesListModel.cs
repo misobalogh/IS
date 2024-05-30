@@ -5,6 +5,7 @@ namespace project.BL.Models;
 public record RegisteredActivitiesListModel : ModelBase
 {
     public required Guid ActivityId { get; set; }
+    public Guid StudentId { get; set; }
     public required string ActivityName { get; set; }
     public required DateTime Start { get; set; }
     public required DateTime End { get; set; }
@@ -17,6 +18,7 @@ public record RegisteredActivitiesListModel : ModelBase
         Start = DateTime.Now,
         End = DateTime.Now,
         Room = Room.None,
-        ActivityName = string.Empty
+        ActivityName = string.Empty,
+        StudentId = Guid.Empty
     };
 }

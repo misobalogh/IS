@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="project.App.Views.AdminViews.AdminSubjectsView"
+             xmlns:views="clr-namespace:project.App.Views"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:converters="clr-namespace:project.App.Converters"
+             x:DataType="viewModels:AdminSubjectsViewModel"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             >
+
+    <ContentPage.Resources>
+        <converters:ItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
+    </ContentPage.Resources>
+
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!--header-->
+        <Image Width="50" Height="50" Source="logo_1.png"></Image>
+
+        <HorizontalStackLayout Grid.Column="3"
+                               Padding="10"
+                               Spacing="10"
+                               HorizontalOptions="End">
+            <Label Text="{Binding loggedUser}" FontSize="25"/>
+            <VerticalStackLayout>
+                <Label Text="{Binding loggedUser}" FontSize="25"/>
+                <Label VerticalOptions="Center"
+                       Text="Logout" FontSize="20" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+            <ImageButton Source="avatar_placeholder.png"
+                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+        </HorizontalStackLayout>
+
+        <BoxView Color="{StaticResource Gray600}" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions=".15*,.85*">
+            <!--navigation menu-->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                Text="teachers" Command="{Binding GoToTeacherCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                Text="students" Command="{Binding GoToStudentCommand}" />
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+            Text="subjects" Command="{Binding GoToSubjectCommand}" IsEnabled="False"/>    
+            </VerticalStackLayout>
+            <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
+                <Entry x:Name="subjectNameEntry" Grid.Row="1" Grid.Column="1" Placeholder="Enter subject name" Margin="20,0,0,0">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Completed"
+                                      Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference subjectNameEntry}}"/>
+                </Entry.Behaviors>
+                </Entry>
+                <Button Grid.Row="1" Grid.Column="2" Text="search subject" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference subjectNameEntry}}" Margin="0,0,20,0"/>
+                <Button Grid.Row="1" Grid.Column="3" Text="new subject" Command="{Binding EditSubjectCommand}" Margin="0,0,20,0"/>
+                <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
+                    <ListView Grid.Column="1" ItemsSource="{Binding Subjects}" ItemTapped="OnItemTapped">
+                        <ListView.Header>
+                            <Grid Padding="15" BackgroundColor="#ab93e3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Text="{Binding SubjectNameBtn}" Command="{Binding SortByNameCommand}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                <Button Text="{Binding SubjectTagBtn}" Command="{Binding SortByTagCommand}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                <Button Text="{Binding SemesterBtn}" Command="{Binding SortBySemesterCommand}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="m:SubjectListModel">
+                                <ViewCell>
+                                    <Grid Padding="10" ColumnDefinitions="*,*,*">
+                                        <Label Text="{Binding SubjectName}" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                        <Label Text="{Binding SubjectTag}" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Semester}" FontSize="20" VerticalOptions="Center" Grid.Column="2" HorizontalOptions="Center" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+                <BoxView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Color="{StaticResource Gray500}" 
+                         HeightRequest="3" VerticalOptions="Start"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

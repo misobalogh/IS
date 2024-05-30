@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="project.App.Views.TeacherViews.TeacherTestsDetailView"
+             xmlns:views="clr-namespace:project.App.Views"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             x:DataType="viewModels:TeacherTestsDetailViewModel"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converters="clr-namespace:project.App.Converters"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui">
+
+    <ContentPage.Resources>
+        <converters:Points x:Key="Points"/>
+        <converters:ItemTappedEventArgsConverter x:Key="ItemTappedConverter"/>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!--header-->
+        <Image Width="50" Height="50" Source="logo_1.png"></Image>
+
+        <HorizontalStackLayout Grid.Column="3"
+                               Padding="10"
+                               Spacing="10"
+                               HorizontalOptions="End">
+            <Label Text="{Binding loggedUser.TitleBefore, StringFormat='{}{0}.'}" FontSize="25"/>
+            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
+            <VerticalStackLayout>
+                <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
+                <Label VerticalOptions="Center"
+                       Text="Logout" FontSize="20" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+            <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+        </HorizontalStackLayout>
+
+        <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions=".15*,.85*">
+            <!--navigation menu-->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="schedule" Command="{Binding GoToScheduleCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
+                <Button TextColor="White" Background="{StaticResource Gray500}"  FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="tests" Command="{Binding GoToTestsCommand}" IsEnabled="False"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="students" Command="{Binding GoToStudentsCommand}"/>
+            </VerticalStackLayout>
+            <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <ScrollView Grid.Column="1">
+                <ListView Grid.ColumnSpan="5" Grid.Row="3" ItemsSource="{Binding StudentEvaluations}">
+                    <ListView.Header>
+                        <Grid Padding="10" BackgroundColor="#ab93e3" ColumnDefinitions="0.3*,0.3*,0.3*,*,auto" ColumnSpacing="20">
+                            <Label Text="Name" FontSize="20" VerticalOptions="Center" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                            <Label Text="Surname" FontSize="20" VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Center" />
+                            <Label Text="Points" FontSize="20" VerticalOptions="Center" Grid.Column="3" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:StudentEvaluationModel">
+                            <ViewCell>
+                                <Grid ColumnDefinitions="0.3*,0.3*,0.3*,*,auto" RowDefinitions="auto,auto" ColumnSpacing="20" RowSpacing="10" Padding="10">
+                                    <Label Grid.Column="0" VerticalOptions="Center" Text="{Binding Student.FirstName}" />
+                                    <Label Grid.Column="1" VerticalOptions="Center" Text="{Binding Student.LastName}"/>
+                                    <StackLayout Grid.Column="3" VerticalOptions="Center">
+                                        <Label Text="{Binding Evaluation.Points}"
+                                               IsVisible="{Binding IsEditMode, Converter={StaticResource InverseBooleanConverter}}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding EnableEditModeCommand}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Entry Text="{Binding EditPoints}" IsVisible="{Binding IsEditMode}"/>
+
+                                        <Button Text="Save" Command="{Binding SavePointsCommand}" IsVisible="{Binding IsEditMode}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

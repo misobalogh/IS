@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="project.App.Views.AdminViews.AdminNewSubjectView"
+             xmlns:views="clr-namespace:project.App.Views"
+             xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
+             xmlns:viewModels="clr-namespace:project.App.ViewModels"
+             xmlns:converters="clr-namespace:project.App.Converters"
+             x:DataType="viewModels:AdminNewSubjectViewModel"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             >
+
+
+    <Grid RowDefinitions=".2*,.8*"
+          ColumnDefinitions="auto,*,auto">
+        <!-- Header -->
+        <Image Width="50" Height="50" Source="logo_1.png"></Image>
+
+        <HorizontalStackLayout Grid.Column="3"
+                               Padding="10"
+                               Spacing="10"
+                               HorizontalOptions="End">
+            <Label Text="{Binding loggedUser}" FontSize="25"/>
+            <VerticalStackLayout>
+                <Label Text="{Binding loggedUser}" FontSize="25"/>
+                <Label VerticalOptions="Center"
+                       Text="Logout" FontSize="20" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+            <ImageButton Source="avatar_placeholder.png"
+                         BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+        </HorizontalStackLayout>
+
+        <BoxView Color="{StaticResource Gray600}" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions=".15*,.85*">
+            <!-- Navigation menu -->
+            <VerticalStackLayout Grid.Column="0">
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                Text="teachers" Command="{Binding GoToTeacherCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                Text="students" Command="{Binding GoToStudentCommand}"/>
+                <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                Text="subjects" Command="{Binding GoToSubjectCommand}"  IsEnabled="False"/>    
+            </VerticalStackLayout>
+            <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
+                <!-- Label for Form Title -->
+                <Label Grid.Row="1" Grid.Column="1" Text="Create New Subject" FontSize="24" VerticalOptions="End" HorizontalOptions="Center"/>
+                <Button Grid.Row="1" Grid.Column="3" Text="Delete This Subject" Command="{Binding DeleteSubjectCommand}" Margin="0,0,0,0" BackgroundColor="Red" TextColor="White" FontSize="16"/>
+
+                <!-- Input Fields for Subject Data -->
+                <VerticalStackLayout Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Entry Placeholder="Subject Name" Text="{Binding NewSubject.Name}" FontSize="16" />
+                    <Entry Placeholder="Tag" Text="{Binding NewSubject.Tag}" FontSize="16"/>
+
+                    <Picker Title="Semester" ItemsSource="{Binding Semesters}" SelectedItem="{Binding NewSubject.Semester}" FontSize="16"/>
+
+                    <!-- Button to Submit Form -->
+                    <Button Text="Save Changes" Command="{Binding CreateSubjectCommand}" FontSize="16" TextColor="White"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

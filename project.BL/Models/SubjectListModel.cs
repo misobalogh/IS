@@ -8,9 +8,12 @@ public record SubjectListModel : ModelBase
     public required string SubjectName { get; set; }
     public required string SubjectTag { get; set; }
 
+    public required Semester Semester { get; set; }
+
     public static SubjectListModel Empty => new()
     {
         SubjectName = string.Empty,
         SubjectTag = string.Empty,
+        Semester = Semester.Winter,
     };
 };

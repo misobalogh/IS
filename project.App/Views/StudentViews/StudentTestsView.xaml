@@ -26,8 +26,13 @@
                     </Label.GestureRecognizers>
                 </Label>
             </VerticalStackLayout>
-            <ImageButton Source="avatar_placeholder.png"
-                         BackgroundColor="Transparent"  Command="{Binding GoToStudentProfileCommand}"/>
+            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+                <Image Source="{Binding Path=loggedUser.Image, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToStudentProfileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
         </HorizontalStackLayout>
 
             <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
@@ -47,6 +52,8 @@
                         Text="tests" Command="{Binding GoToTestsCommand}" IsEnabled="False"/>
                 <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
                         Text="registration" Command="{Binding GoToRegistrationCommand}"/>
+                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
+                        Text="subject registration" Command="{Binding GoToSubjectsRegistrationCommand}" LineBreakMode="WordWrap"/>
             </VerticalStackLayout>
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <ScrollView Grid.Column="1">
@@ -63,7 +70,7 @@
                                     <Label  Grid.Column="2" VerticalOptions="Center" Text="{Binding ActivityType}"/>
                                     <Button Grid.Column="5" VerticalOptions="Center" Text="Register" x:Name="registerButton" Clicked="OnRegisterButtonClicked"
                                             Command="{Binding Path=BindingContext.RegisterCommand, Source={x:Reference Page}}"
-                                            CommandParameter="{Binding .}"/>
+                                            CommandParameter="{Binding .}" Loaded="OnLoad"/>
                                     <!--second row-->
                                     <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="{Binding Tag}"/>
                                     <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding TeacherName}"/>

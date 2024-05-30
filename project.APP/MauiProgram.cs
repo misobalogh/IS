@@ -1,14 +1,15 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using project.App.Views.StudentViews;
-using project.BL;
-using project.DAL.Options;
 using Microsoft.Extensions.Configuration;
-using project.DAL;
 using System.Reflection;
-using project.DAL.Migrator;
+using project.App.Views.StudentViews;
+using project.App.Views.AdminViews;
 using project.App.Views.TeacherViews;
 using project.App.Services;
+using project.BL;
+using project.DAL;
+using project.DAL.Options;
+using project.DAL.Migrator;
 
 namespace project.App;
 
@@ -46,14 +47,27 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(StudentTestsView), typeof(StudentTestsView));
         Routing.RegisterRoute(nameof(StudentClassificationSubjectDetailView), typeof(StudentClassificationSubjectDetailView));
         Routing.RegisterRoute(nameof(StudentProfileView), typeof(StudentProfileView));
+        Routing.RegisterRoute(nameof(StudentSubjectsRegistrationView), typeof(StudentSubjectsRegistrationView));
 
-        Routing.RegisterRoute(nameof(TeacherClassificationView), typeof(TeacherClassificationView));
         Routing.RegisterRoute(nameof(TeacherStudentsView), typeof(TeacherStudentsView));
         Routing.RegisterRoute(nameof(TeacherScheduleView), typeof(TeacherScheduleView));
         Routing.RegisterRoute(nameof(TeacherSubjectsView), typeof(TeacherSubjectsView));
         Routing.RegisterRoute(nameof(TeacherTestsView), typeof(TeacherTestsView));
-        Routing.RegisterRoute(nameof(TeacherClassificationSubjectDetailView), typeof(TeacherClassificationSubjectDetailView));
         Routing.RegisterRoute(nameof(TeacherProfileView), typeof(TeacherProfileView));
+        Routing.RegisterRoute(nameof(TeacherSubjectsDetailView), typeof(TeacherSubjectsDetailView));
+        Routing.RegisterRoute(nameof(TeacherNewActivityView), typeof(TeacherNewActivityView));
+        Routing.RegisterRoute(nameof(TeacherTestsDetailView), typeof(TeacherTestsDetailView));
+
+        Routing.RegisterRoute(nameof(AdminProfileView), typeof(AdminProfileView));
+        Routing.RegisterRoute(nameof(AdminStudentsView), typeof(AdminStudentsView));
+        Routing.RegisterRoute(nameof(AdminTeachersView), typeof(AdminTeachersView));
+        Routing.RegisterRoute(nameof(AdminSubjectsView), typeof(AdminSubjectsView));
+        Routing.RegisterRoute(nameof(AdminNewTeacherView), typeof(AdminNewTeacherView));
+        Routing.RegisterRoute(nameof(AdminNewStudentView), typeof(AdminNewStudentView));
+        Routing.RegisterRoute(nameof(AdminNewSubjectView), typeof(AdminNewSubjectView));
+
+
+
 
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
 

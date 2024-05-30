@@ -9,6 +9,6 @@ public class EvaluationEntityMapper : IEntityMapper<EvaluationEntity>
         existingEntity.Id = newEntity.Id;
         existingEntity.Points = newEntity.Points;
         existingEntity.Note = newEntity.Note;
-        existingEntity.StudentId = newEntity.Id;
+        existingEntity.StudentId = newEntity.StudentId;
     }
 }
