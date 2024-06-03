@@ -14,5 +14,5 @@ public record DALOptions
     /// <summary>
     /// Seeds DemoData from DbContext on database creation.
     /// </summary>
-    public bool SeedDemoData { get; init; } = false;
+    public bool SeedDemoData { get; init; } = true;
 }

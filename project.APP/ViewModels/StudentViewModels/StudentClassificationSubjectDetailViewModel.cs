@@ -38,7 +38,9 @@ public partial class StudentClassificationSubjectDetailViewModel(
         var allActivities = await activityFacade.GetAsync();
         var allEvaluations = await evaluationFacade.GetAsync();
 
-        var relevantActivities = allActivities.Where(a => a.SubjectId == Guid.Parse(SubjectId));   
+        var relevantActivities = allActivities.Where(a => a.SubjectId == Guid.Parse(SubjectId)).ToList();   
+        if (relevantActivities.Count == 0) { return; }
+
         var activityIds = relevantActivities.Select(a => a.Id).ToList();
 
         foreach (var activity in relevantActivities)
