@@ -5,6 +5,7 @@
                        xmlns:viewModels="clr-namespace:project.App.ViewModels"
                        xmlns:views="clr-namespace:project.App.Views"
                        xmlns:converters="clr-namespace:project.App.Converters"
+                       xmlns:components="clr-namespace:project.App.Views.AdminViews"
                        x:DataType="viewModels:AdminProfileViewModel"
                        >
 
@@ -38,14 +39,8 @@
           Grid.ColumnSpan="3"
           ColumnDefinitions=".15*,.85*">
             <!--navigation menu-->
-            <VerticalStackLayout Grid.Column="0">
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                    Text="teachers" Command="{Binding GoToTeacherCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="students" Command="{Binding GoToStudentCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                    Text="subjects" Command="{Binding GoToSubjectCommand}"/>
-            </VerticalStackLayout>
+            <components:AdminSideNavBar Grid.Column="0" ActiveView="" />
+            
             <BoxView Color="#404040" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
             <!-- Data Display Area -->

@@ -25,7 +25,7 @@
         </Button.Triggers>
     </Button>
 
-    <Button Text="students" Command="{Binding GoToStudentCommand}" IsEnabled="False">
+    <Button Text="students" Command="{Binding GoToStudentCommand}">
         <Button.Triggers>
             <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference SideNavBar}, Path=ActiveView}" Value="students">
                 <Setter Property="Style" Value="{StaticResource ActiveButtonStyle}" />
