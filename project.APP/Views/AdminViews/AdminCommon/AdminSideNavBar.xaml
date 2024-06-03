@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <VerticalStackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                     x:Class="project.App.Views.AdminViews.AdminSideNavBar">
+                     x:Class="project.App.Views.AdminViews.AdminSideNavBar"
+                     x:Name="SideNavBar">
 
-    <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-            Text="teachers" Command="{Binding GoToTeacherCommand}"/>
-    <Button TextColor="White" Background="#6E6E6E" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-            Text="students" Command="{Binding GoToStudentCommand}" />
-    <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-            Text="subjects" Command="{Binding GoToSubjectCommand}"/>
+    <VerticalStackLayout.Resources>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HeightRequest" Value="80" />
+        </Style>
+        <Style x:Key="ActiveButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#6E6E6E" />
+        </Style>
+    </VerticalStackLayout.Resources>
+
+    <Button Text="teachers" Command="{Binding GoToTeacherCommand}">
+        <Button.Triggers>
+            <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference SideNavBar}, Path=ActiveView}" Value="teachers">
+                <Setter Property="Style" Value="{StaticResource ActiveButtonStyle}" />
+            </DataTrigger>
+        </Button.Triggers>
+    </Button>
+
+    <Button Text="students" Command="{Binding GoToStudentCommand}" IsEnabled="False">
+        <Button.Triggers>
+            <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference SideNavBar}, Path=ActiveView}" Value="students">
+                <Setter Property="Style" Value="{StaticResource ActiveButtonStyle}" />
+            </DataTrigger>
+        </Button.Triggers>
+    </Button>
+
+    <Button Text="subjects" Command="{Binding GoToSubjectCommand}">
+        <Button.Triggers>
+            <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference SideNavBar}, Path=ActiveView}" Value="subjects">
+                <Setter Property="Style" Value="{StaticResource ActiveButtonStyle}" />
+            </DataTrigger>
+        </Button.Triggers>
+    </Button>
 
 </VerticalStackLayout>

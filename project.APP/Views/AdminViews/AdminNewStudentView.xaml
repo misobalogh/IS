@@ -38,7 +38,7 @@
               Grid.ColumnSpan="3"
               ColumnDefinitions=".15*,.85*">
             <!-- Navigation menu -->
-            <components:AdminSideNavBar Grid.Column="0" />
+            <components:AdminSideNavBar Grid.Column="0" ActiveView="students" />
 
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
 
