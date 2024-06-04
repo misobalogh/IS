@@ -6,8 +6,9 @@
              xmlns:m="clr-namespace:project.BL.Models;assembly=project.BL"
              xmlns:viewModels="clr-namespace:project.App.ViewModels"
              xmlns:converters="clr-namespace:project.App.Converters"
-             x:DataType="viewModels:TeacherStudentsViewModel"
+             xmlns:components="clr-namespace:project.App.Views.TeacherViews"
              xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:DataType="viewModels:TeacherStudentsViewModel"
              >
 
 
@@ -16,30 +17,7 @@
         <!--header-->
         <Image Width="50" Height="50" Source="logo_1.png"></Image>
 
-        <HorizontalStackLayout Grid.Column="3"
-                               Padding="10"
-                               Spacing="10"
-                               HorizontalOptions="End">
-            <Label Text="{Binding loggedUser.TitleBefore, StringFormat='{}{0}.'}" FontSize="25"/>
-            <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
-            <VerticalStackLayout>
-                <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
-                <Label VerticalOptions="Center"
-                       Text="Logout" FontSize="20" TextColor="White">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </VerticalStackLayout>
-            <Label Text="{Binding loggedUser.TitleAfter, StringFormat='{}{0}.'}" FontSize="25"/>
-            <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
-                <Image Source="{Binding Path=loggedUser.PhotoUrl, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToProfileCommand}" />
-                    </Image.GestureRecognizers>
-                </Image>
-            </Frame>
-        </HorizontalStackLayout>
+        <components:TeacherHeader Grid.Column="3"/>
 
         <BoxView Color="{StaticResource Gray600}" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
         <Grid Grid.Row="1"
@@ -47,16 +25,8 @@
               Grid.ColumnSpan="3"
               ColumnDefinitions=".15*,.85*">
             <!--navigation menu-->
-            <VerticalStackLayout Grid.Column="0">
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="schedule" Command="{Binding GoToScheduleCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="subjects" Command="{Binding GoToSubjectsCommand}"/>
-                <Button TextColor="White" Background="Transparent" FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="tests" Command="{Binding GoToTestsCommand}"/>
-                <Button TextColor="White" Background="#6E6E6E"     FontSize="25" HorizontalOptions="FillAndExpand" HeightRequest="80" 
-                        Text="students" Command="{Binding GoToStudentsCommand}" IsEnabled="False"/>
-            </VerticalStackLayout>
+            <components:TeacherSideNavBar  Grid.Column="0" ActiveView="students"/>
+
             <BoxView Color="{StaticResource Gray600}" WidthRequest="3" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
             <Grid Grid.Column="1" ColumnDefinitions="0.2*,*,0.2*,*,0.2*" RowDefinitions="0.05*,0.15*,0.05*,*">
                 <Entry x:Name="studentNameEntry" Grid.Row="1" Grid.Column="1" Placeholder="Enter student name" Margin="20,0,0,0">

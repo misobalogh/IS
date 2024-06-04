@@ -49,7 +49,7 @@ public partial class StudentClassificationSubjectDetailViewModel(
                 .Where(e => e.ActivityId == activity.Id && e.StudentId == loggedUser.Id && activityIds.Contains(e.ActivityId))
                 .FirstOrDefault();                
 
-            ActivityEvaluation.Add(new() { activityModel = activity, evaluationModel = relevantEvaluation });
+            ActivityEvaluation.Add(new() { activityModel = activity, evaluationModel = relevantEvaluation ?? EvaluationListModel.Empty });
         }
     }
 }
