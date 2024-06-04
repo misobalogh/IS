@@ -21,7 +21,7 @@
         <!--header-->
         <Image Width="50" Height="50" Source="logo_1.png"></Image>
 
-        <components:AdminProfileTopBar Grid.Column="3"/>
+        <components:AdminHeader Grid.Column="3"/>
 
         <BoxView Color="{StaticResource Gray600}" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
         <Grid Grid.Row="1"
@@ -39,8 +39,8 @@
                                       Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference studentNameEntry}}"/>
                 </Entry.Behaviors>
                 </Entry>
-                <Button Grid.Row="1" Grid.Column="2" Text="search student" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference studentNameEntry}}" Margin="0,0,20,0"/>
-                <Button Grid.Row="1" Grid.Column="3" Text="new student" Command="{Binding EditStudentCommand}" Margin="0,0,20,0"/>
+                <Button Grid.Row="1" Grid.Column="2" Text="Search student" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference studentNameEntry}}" Margin="0,0,20,0"/>
+                <Button Grid.Row="1" Grid.Column="3" Text="New student" Command="{Binding EditStudentCommand}" Margin="0,0,20,0"/>
                 <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource Gray600}">
                     <ListView Grid.Column="1" ItemsSource="{Binding Students}" ItemTapped="OnItemTapped">
                         <ListView.Header>

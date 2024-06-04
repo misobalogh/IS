@@ -14,7 +14,7 @@
         <!--header-->
         <Image Width="50" Height="50" Source="logo_1.png" />
 
-        <components:AdminProfileTopBar Grid.Column="3"/>
+        <components:AdminHeader Grid.Column="3"/>
 
         <BoxView Color="#404040" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
         <Grid Grid.Row="1"

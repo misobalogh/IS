@@ -17,7 +17,7 @@
         </Style>
     </VerticalStackLayout.Resources>
 
-    <Button Text="teachers" Command="{Binding GoToTeacherCommand}">
+    <Button Text="Teachers" Command="{Binding GoToTeacherCommand}">
         <Button.Triggers>
             <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference SideNavBar}, Path=ActiveView}" Value="teachers">
                 <Setter Property="Style" Value="{StaticResource ActiveButtonStyle}" />
@@ -25,7 +25,7 @@
         </Button.Triggers>
     </Button>
 
-    <Button Text="students" Command="{Binding GoToStudentCommand}">
+    <Button Text="Students" Command="{Binding GoToStudentCommand}">
         <Button.Triggers>
             <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference SideNavBar}, Path=ActiveView}" Value="students">
                 <Setter Property="Style" Value="{StaticResource ActiveButtonStyle}" />
@@ -33,7 +33,7 @@
         </Button.Triggers>
     </Button>
 
-    <Button Text="subjects" Command="{Binding GoToSubjectCommand}">
+    <Button Text="Subjects" Command="{Binding GoToSubjectCommand}">
         <Button.Triggers>
             <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference SideNavBar}, Path=ActiveView}" Value="subjects">
                 <Setter Property="Style" Value="{StaticResource ActiveButtonStyle}" />

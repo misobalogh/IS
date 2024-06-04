@@ -2,9 +2,9 @@
 using project.App.ViewModels;
 
 namespace project.App.Views.AdminViews;
-public partial class AdminProfileTopBar : HorizontalStackLayout
+public partial class AdminHeader : HorizontalStackLayout
 {
-    public AdminProfileTopBar()
+    public AdminHeader()
     {
         InitializeComponent();
     }
