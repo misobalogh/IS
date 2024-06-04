@@ -89,8 +89,8 @@
     <Compile Update="Shells\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\AdminViews\AdminCommon\AdminProfileTopBar.xaml.cs">
-      <DependentUpon>AdminProfileTopBar.xaml</DependentUpon>
+    <Compile Update="Views\AdminViews\AdminCommon\AdminHeader.xaml.cs">
+      <DependentUpon>AdminHeader.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\AdminViews\AdminCommon\AdminSideNavBar.xaml.cs">
       <DependentUpon>AdminSideNavBar.xaml</DependentUpon>
@@ -119,6 +119,12 @@
     <Compile Update="Views\ContentPageBase.xaml.cs">
       <DependentUpon>ContentPageBase.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\StudentViews\StudentCommon\StudentHeader.xaml.cs">
+      <DependentUpon>StudentHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StudentViews\StudentCommon\StudentSideNavBar.xaml.cs">
+      <DependentUpon>StudentSideNavBar.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\StudentViews\StudentScheduleView.xaml.cs">
       <DependentUpon>StudentScheduleView.xaml</DependentUpon>
     </Compile>
@@ -140,7 +146,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <MauiXaml Update="Views\AdminViews\AdminCommon\AdminProfileTopBar.xaml">
+    <MauiXaml Update="Views\AdminViews\AdminCommon\AdminHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\AdminViews\AdminCommon\AdminSideNavBar.xaml">
@@ -177,6 +183,12 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\StudentViews\StudentClassificationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\StudentViews\StudentCommon\StudentHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\StudentViews\StudentCommon\StudentSideNavBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\StudentViews\StudentRegistrationView.xaml">

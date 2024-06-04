@@ -41,13 +41,13 @@ public partial class StudentClassificationSubjectDetailViewModel(
         var relevantActivities = allActivities.Where(a => a.SubjectId == Guid.Parse(SubjectId)).ToList();   
         if (relevantActivities.Count == 0) { return; }
 
-        var activityIds = relevantActivities.Select(a => a.Id).ToList();
+        var activityIds = relevantActivities.Select(a => a.Id).ToList();        
 
         foreach (var activity in relevantActivities)
         {
             var relevantEvaluation = allEvaluations
                 .Where(e => e.ActivityId == activity.Id && e.StudentId == loggedUser.Id && activityIds.Contains(e.ActivityId))
-                .First();                
+                .FirstOrDefault();                
 
             ActivityEvaluation.Add(new() { activityModel = activity, evaluationModel = relevantEvaluation });
         }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HorizontalStackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="project.App.Views.StudentViews.StudentHeader"
+                       Padding="10"
+                       Spacing="10"
+                       HorizontalOptions="End">
+    <Label Text="{Binding loggedUser.FirstName}" FontSize="25"/>
+    <VerticalStackLayout>
+        <Label Text="{Binding loggedUser.LastName}" FontSize="25"/>
+        <Label VerticalOptions="Center"
+           Text="Logout" FontSize="20" TextColor="White">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </VerticalStackLayout>
+    <Frame WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+        <Image Source="{Binding Path=loggedUser.Image, TargetNullValue=avatar_placeholder.png}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToStudentProfileCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+    </Frame>
+</HorizontalStackLayout>
