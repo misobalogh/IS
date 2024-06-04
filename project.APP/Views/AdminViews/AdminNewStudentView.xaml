@@ -15,21 +15,7 @@
         <!-- Header -->
         <Image Width="50" Height="50" Source="logo_1.png"></Image>
 
-        <HorizontalStackLayout Grid.Column="2"
-                               Padding="10"
-                               Spacing="10"
-                               HorizontalOptions="End">
-            <Label Text="{Binding loggedUser}" FontSize="25"/>
-            <VerticalStackLayout>
-                <Label Text="{Binding loggedUser}" FontSize="25"/>
-                <Label VerticalOptions="Center" Text="Logout" FontSize="20" TextColor="White">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </VerticalStackLayout>
-            <ImageButton Source="avatar_placeholder.png" BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
-        </HorizontalStackLayout>
+        <components:AdminProfileTopBar Grid.Column="3"/>
 
         <BoxView Color="{StaticResource Gray600}" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="0" Grid.ColumnSpan="3"/>
 

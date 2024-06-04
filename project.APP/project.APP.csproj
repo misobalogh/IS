@@ -89,6 +89,9 @@
     <Compile Update="Shells\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AdminViews\AdminCommon\AdminProfileTopBar.xaml.cs">
+      <DependentUpon>AdminProfileTopBar.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\AdminViews\AdminCommon\AdminSideNavBar.xaml.cs">
       <DependentUpon>AdminSideNavBar.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <MauiXaml Update="Views\AdminViews\AdminCommon\AdminProfileTopBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Views\AdminViews\AdminCommon\AdminSideNavBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

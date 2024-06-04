@@ -16,12 +16,12 @@ public partial class AdminNewStudentViewModel(IStudentFacade studentFacade, IMes
 
     protected override async Task LoadDataAsync()
     {
+        await base.LoadDataAsync();
         if (string.IsNullOrEmpty(StudentId))
         {
             return;
         }
 
-        await base.LoadDataAsync();
         NewStudent = await studentFacade.GetAsync(Guid.Parse(StudentId)) ?? StudentModel.Empty;
     }
 

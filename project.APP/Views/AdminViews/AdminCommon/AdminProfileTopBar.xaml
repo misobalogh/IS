@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HorizontalStackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="project.App.Views.AdminViews.AdminProfileTopBar"
+                       Padding="10"
+                       Spacing="10"
+                       HorizontalOptions="End">
+    <Label Text="{Binding loggedUser}" FontSize="25"/>
+    <VerticalStackLayout>
+        <Label Text="{Binding loggedUser}" FontSize="25"/>
+        <Label VerticalOptions="Center" Text="Logout" FontSize="20" TextColor="White">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </VerticalStackLayout>
+    <ImageButton Source="avatar_placeholder.png" BackgroundColor="Transparent" Command="{Binding GoToProfileCommand}"/>
+</HorizontalStackLayout>

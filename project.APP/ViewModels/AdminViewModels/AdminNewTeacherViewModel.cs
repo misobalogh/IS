@@ -30,12 +30,12 @@ public partial class AdminNewTeacherViewModel(
     
     protected override async Task LoadDataAsync()
     {
+        await base.LoadDataAsync();
         if (string.IsNullOrEmpty(TeacherId))
         {
             return;
         }
 
-        await base.LoadDataAsync();
         NewTeacher = await teacherFacade.GetAsync(Guid.Parse(TeacherId)) ?? TeacherModel.Empty;
         foreach (var subject in await subjectFacade.GetAsync())
         {

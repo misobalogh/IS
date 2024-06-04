@@ -16,12 +16,12 @@ public partial class AdminNewSubjectViewModel(ISubjectFacade subjectFacade, IMes
 
     protected override async Task LoadDataAsync()
     {
+        await base.LoadDataAsync();
         if (string.IsNullOrEmpty(SubjectId))
         {
             return;
         }
 
-        await base.LoadDataAsync();
         NewSubject = await subjectFacade.GetAsync(Guid.Parse(SubjectId)) ?? SubjectModel.Empty;
     }
 
